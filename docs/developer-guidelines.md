@@ -63,7 +63,7 @@ If you add `useMemo` / `useCallback`, the PR **Architecture Notes** must say why
 
 ## Next.js App Router
 
-- Put routes under `app/(console)/` so the operator shell does not wrap `/api`.
+- Put routes under `app/(app)/` so the operator shell does not wrap `/api`. The group name is not a URL segment.
 - Data fetching for Dashboard and order details: async Server Components calling `lib/api`.
 - Data fetching for the Orders table: TanStack Query in a client island, still calling `lib/api`.
 - Route Handlers are adapters. They do not contain KPI math.

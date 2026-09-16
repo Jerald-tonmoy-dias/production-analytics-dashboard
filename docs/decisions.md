@@ -88,7 +88,7 @@ Reason: Matches Tailwind, owns the source, Radix handles keyboard/focus, we do n
 
 Trade-offs: Generated files we must not casually rewrite. Some primitives are Client Components — keep them leaves.
 
-Consequences: TASK-002 adds only primitives the next tickets need, not the full catalog.
+Consequences: TASK-002 adds only primitives the next tickets need, not the full catalog. That ticket also adds `cn()` (`clsx` + `tailwind-merge`) for conditional Tailwind classes and conflict resolution. Until then, keep class strings simple. Do not hand-roll class concatenation after `cn()` exists.
 
 Origin: Engineering decision (Stage 2 direction).
 
@@ -360,7 +360,7 @@ Problem: Modal vs `/orders/[id]`.
 
 Options considered: Dialog, drawer, dynamic route.
 
-Decision: `app/(console)/orders/[id]/page.tsx`.
+Decision: `app/(app)/orders/[id]/page.tsx`.
 
 Reason: Shareable link, App Router dynamic segments, `not-found.tsx`, simpler a11y than a modal stacked on filters.
 
@@ -412,7 +412,7 @@ Problem: `components/index.ts` barrels and `utils.ts` become junk drawers.
 
 Options considered: Atomic design; feature folders; everything under `app/`.
 
-Decision: Feature folders (`dashboard`, `orders`, `shared`, `ui`, `layout`) + `lib/{schemas,domain,api}` + route group `(console)`. Colocated stories. No global `utils.ts`; name the module (`format-money.ts`).
+Decision: Feature folders (`dashboard`, `orders`, `shared`, `ui`, `layout`) + `lib/{schemas,domain,api}` + route group `(app)`. Colocated stories. No global `utils.ts`; name the module (`format-money.ts`).
 
 Reason: Matches ticket boundaries. Reviewers can find a widget without a hunt.
 
@@ -421,6 +421,35 @@ Trade-offs: More directories while the app is small. Fine.
 Consequences: TASK-001 creates the empty tree.
 
 Origin: Engineering decision.
+
+Status: accepted
+
+---
+
+## Decision: Route group named `(app)`, not `(console)`
+
+Date: 2026-09-16
+
+Context: TASK-001 used `app/(console)/` for Dashboard and Orders. PR review asked what “console” meant and whether a clearer name exists.
+
+Problem: `(console)` does not appear in the URL, so the name is only for developers. “Console” was internal jargon (ops console) and was easy to misread as `console.log` or a browser console.
+
+Options considered:
+
+1. Keep `(console)`.
+2. `(shell)` — accurate for TASK-006 AppShell, less common.
+3. `(dashboard)` — wrong; Orders live here too.
+4. `(app)` — Next.js convention for the application segment.
+
+Decision: Rename to `app/(app)/`.
+
+Reason: Reviewers and future tickets will recognize `(app)` immediately. Parentheses still keep it out of the URL (`/` and `/orders` unchanged).
+
+Trade-offs: The word “app” is generic. The comment in `system-design.md` explains why the group exists.
+
+Consequences: Later tickets use `app/(app)/page.tsx`, `app/(app)/orders/`, `app/(app)/orders/[id]/`. Product copy may still say “operations console.”
+
+Origin: Engineering decision (PR review on TASK-001).
 
 Status: accepted
 
