@@ -803,6 +803,20 @@ Status: accepted
 
 ---
 
+## Decision: Shell identity and a theme slot (UX-017)
+
+Date: 2026-09-16
+
+Context: The sidebar said “Analytics”. `/favicon.ico` 404ed. UX-016 needs a place to mount a theme control without restyling the chrome.
+
+Decision: Shell label is `PRODUCT_NAME` (“Production Analytics”). Document title stays “Production Analytics Dashboard”. `AppShell` takes optional `headerActions` (one mount: mobile top-end, desktop sidebar foot). App icon via `app/icon.tsx` (`ImageResponse`); `app/favicon.ico` stops the tab 404. Primary nav stays Dashboard + Orders.
+
+Origin: Engineering decision (UX-017).
+
+Status: accepted
+
+---
+
 ## Decision: Filter recovery keeps placeholder data (UX-018)
 
 Date: 2026-09-16
