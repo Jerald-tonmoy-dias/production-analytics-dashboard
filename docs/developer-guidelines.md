@@ -124,7 +124,6 @@ Do not disable scrolling or trap focus except inside dialogs.
 
 - **Unit (Vitest):** `lib/domain` and `lib/schemas`. Conversion divide-by-zero, filter combinations, page bounds, invalid status.
 - **Storybook:** states listed in [system-design.md](./system-design.md#16-storybook-strategy).
-- **E2E:** skipped. Playwright was optional in TASK-013; Vitest + Storybook are the test layer.
 
 Run locally:
 

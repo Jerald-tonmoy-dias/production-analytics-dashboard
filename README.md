@@ -54,7 +54,7 @@ npm test             # Vitest
 npm run storybook    # Storybook at http://localhost:6006
 ```
 
-Domain tests land in TASK-004. Playwright was skipped in TASK-013.
+Domain tests land in TASK-004.
 
 ## Architecture overview
 

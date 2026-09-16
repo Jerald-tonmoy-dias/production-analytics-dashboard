@@ -295,7 +295,7 @@ shadcn primitives   →  shared states / layout  →  feature widgets  →  page
 - Feature widgets are presentational: props in, events out. They do not fetch.
 - Pages / thin client containers fetch or receive server data and pass DTOs down.
 
-Stories cover widget states (loading, empty, error, zero). Multi-page E2E was not added (TASK-013 skipped Playwright).
+Stories cover widget states (loading, empty, error, zero).
 
 ---
 
@@ -336,7 +336,6 @@ Optimize for meaningful coverage, not count.
 | --- | --- | --- |
 | Unit | Vitest | Zod schemas, KPI math, conversion (zero customers), filter/query builder, pagination bounds |
 | Visual / a11y states | Storybook | matrices above |
-| E2E | Not added | Playwright skipped in TASK-013 |
 
 Do not add Testing Library tests that duplicate Storybook states unless a behavior is easier to assert in code (e.g. debounce).
 
