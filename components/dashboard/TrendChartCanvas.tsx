@@ -29,6 +29,9 @@ function tooltipValue(value: number, format: TrendMetricFormat): string {
 }
 
 export function TrendChartCanvas({ series, format }: TrendChartCanvasProps) {
+  const seriesColor =
+    format === "currency" ? "var(--chart-revenue)" : "var(--chart-orders)";
+
   return (
     <ResponsiveContainer width="100%" height="100%">
       <AreaChart
@@ -67,8 +70,8 @@ export function TrendChartCanvas({ series, format }: TrendChartCanvasProps) {
         <Area
           type="monotone"
           dataKey="value"
-          stroke="var(--chart-2)"
-          fill="var(--chart-2)"
+          stroke={seriesColor}
+          fill={seriesColor}
           fillOpacity={0.16}
           strokeWidth={2}
           isAnimationActive={false}

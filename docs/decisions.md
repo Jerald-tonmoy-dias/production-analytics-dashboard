@@ -718,6 +718,77 @@ Status: accepted
 
 ---
 
+## Decision: UI/UX refinement after assessment; no RTL ticket
+
+Date: 2026-09-16
+
+Context: TASK-001–014 are done. The product is structurally complete and visually flat.
+
+Problem: Treating polish as incidental nits would leave a competent assessment, not a production-feeling SaaS console.
+
+Decision: Run a dedicated UI/UX phase as GitHub issues **UX-015–UX-022**. Preserve App Router, data contracts, and `1 ticket = 1 branch = 1 PR`. Do **not** create an RTL product ticket: the console is `en-US` with English mock copy. Prefer logical CSS properties only when already editing layout. Keep using `lucide-react` and `tw-animate-css`; do not add another icon or animation library.
+
+Origin: Engineering decision (post-assessment).
+
+Status: accepted
+
+---
+
+## Decision: Semantic status and chart color tokens (UX-015)
+
+Date: 2026-09-16
+
+Context: Nova neutral left `--destructive` as the only hue. Status badges reuse generic variants; both charts share gray `--chart-2`.
+
+Decision: Add semantic CSS variables in `:root` and `.dark`, mapped through Tailwind `@theme`. Status stays **text + color**. No new business metrics.
+
+| Token | Use |
+| --- | --- |
+| `--success` / `--success-foreground` | completed |
+| `--warning` | pending |
+| `--info` | processing |
+| `--destructive` | cancelled (already existed) |
+| `--chart-revenue` | Revenue series |
+| `--chart-orders` | Orders series |
+
+`--chart-1`…`--chart-5` remain the Nova gray ramp for unused shadcn chart slots. Feature code uses the named series tokens, not `--chart-2`.
+
+Origin: Engineering decision (UX-015).
+
+Status: accepted
+
+---
+
+## Decision: next-themes for Light / Dark / System (UX-016)
+
+Date: 2026-09-16
+
+Context: `.dark` tokens exist but nothing sets the class. Options: a minimal inline script + `localStorage`, or `next-themes`.
+
+Decision: **`next-themes`**, `attribute="class"`, `defaultTheme="system"`. Class strategy matches shadcn. The package exists to handle SSR/FOUC and system preference; a custom script is more likely to flash. Keep the provider a leaf around `{children}` (same as `TooltipProvider`). Do not introduce a second token system.
+
+Trade-offs: one small Recommended dependency.
+
+Origin: Engineering decision (UX-016).
+
+Status: accepted
+
+---
+
+## Decision: Motion tokens in UX-022; a11y audit in UX-021
+
+Date: 2026-09-16
+
+Context: Polish needs hover/lift/shimmer without a flashy motion language. Reduced-motion must be respected. Splitting “animation” across two tickets would duplicate work.
+
+Decision: **UX-022 owns** duration/easing tokens, KPI icons (lucide), elevation, hover, skeleton shimmer, and `prefers-reduced-motion` for that polish. Charts stay `isAnimationActive={false}`. **UX-021 owns** the broader accessibility review (contrast, hit targets, keyboard, and verifying reduced-motion across polish **and** shadcn popovers). UX-021 must not redefine the motion scale. No Framer Motion.
+
+Origin: Engineering decision (UX-021 / UX-022).
+
+Status: accepted
+
+---
+
 ## Dependency register (summary)
 
 | Package | Class | When installed | Why |
@@ -731,5 +802,7 @@ Status: accepted
 | `@tanstack/react-query` | Recommended | TASK-011 | Interactive list server state |
 | `recharts` | Recommended | TASK-007 | Charts |
 | `react-day-picker`, `date-fns` | Required | TASK-010 | shadcn Calendar for order date filters |
+| `next-themes` | Recommended | UX-016 | Class-strategy light/dark/system without FOUC |
 | `nuqs` | Optional | only if URL encoding hurts | Not planned |
+| Extra icon packs, extra animation kits | Avoid | never | Use `lucide-react` + `tw-animate-css` |
 | Zustand, Redux, axios, RHF, Framer Motion, next-auth, Prisma, Three.js, Docker | Avoid | never | No problem they uniquely solve here |

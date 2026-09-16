@@ -43,6 +43,18 @@ export const Default: Story = {
   },
 };
 
+export const Orders: Story = {
+  args: {
+    title: "Orders",
+    description: "Orders created, last 30 days",
+    series: SAMPLE_REVENUE.map((point) => ({
+      ...point,
+      value: Math.round(point.value / 800),
+    })),
+    format: "number",
+  },
+};
+
 export const Empty: Story = {
   args: {
     title: "Orders",
