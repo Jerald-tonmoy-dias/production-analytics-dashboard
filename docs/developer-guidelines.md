@@ -65,14 +65,14 @@ If you add `useMemo` / `useCallback`, the PR **Architecture Notes** must say why
 ## Next.js App Router
 
 - Put routes under `app/(shell)/` so the operator chrome does not wrap `/api`. The group name is not a URL segment. Keep the UI in `components/layout/AppShell.tsx` — do not add `components/shell/`.
-- Data fetching for Dashboard and order details: async Server Components calling `lib/api`.
-- Data fetching for the Orders table: TanStack Query in a client island, still calling `lib/api`.
+- Data fetching for Dashboard and order details: async Server Components calling `lib/api/rsc` (in-process `lib/domain`, same functions as the Route Handlers).
+- Data fetching for the Orders table: TanStack Query in a client island, calling `lib/api` HTTP helpers.
 - Route Handlers are adapters. They do not contain KPI math.
 - `loading.tsx` must **mirror the page layout** (skeletons), not a centered spinner.
 - `error.tsx` must offer recovery via `retry()` (Next.js 16.3; prefer `retry` over `reset`).
 - `not-found.tsx` on `orders/[id]` for unknown ids.
 
-RSC `fetch` to own Route Handlers needs an absolute URL on the server. Prefer a small helper that uses the incoming origin / `VERCEL_URL` / `localhost:3000` in development. Do not hardcode a production hostname in source.
+Do not HTTP-fetch this app's own Route Handlers from a Server Component on Vercel. `VERCEL_URL` is the per-deployment host and that loop fails in production. Browser `fetch("/api/...")` is fine.
 
 ---
 

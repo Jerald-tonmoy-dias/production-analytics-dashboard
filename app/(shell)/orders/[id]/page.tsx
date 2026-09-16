@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { OrderDetails } from "@/components/orders/OrderDetails";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { Button } from "@/components/ui/button";
-import { getOrder } from "@/lib/api/orders";
+import { getOrder } from "@/lib/api/rsc";
 import { NotFoundError, ValidationError } from "@/lib/errors";
 import { formatDateTime } from "@/lib/format";
 

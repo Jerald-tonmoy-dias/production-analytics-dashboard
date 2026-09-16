@@ -3,9 +3,7 @@ import { KpiCard } from "@/components/dashboard/KpiCard";
 import { RecentOrders } from "@/components/dashboard/RecentOrders";
 import { TrendChart } from "@/components/dashboard/TrendChart";
 import { PageHeader } from "@/components/shared/PageHeader";
-import { getActivities } from "@/lib/api/activities";
-import { getAnalytics } from "@/lib/api/analytics";
-import { getOrders } from "@/lib/api/orders";
+import { getActivities, getAnalytics, getOrders } from "@/lib/api/rsc";
 import { CHART_WINDOW_DAYS } from "@/lib/constants";
 
 const RECENT_ORDERS_PAGE_SIZE = 5;

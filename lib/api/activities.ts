@@ -7,8 +7,8 @@ import {
 /**
  * Load the dashboard activity feed (`GET /api/activities`).
  *
- * Unwraps `{ data }` so callers receive the activity rows. RSC cache tag:
- * `analytics`.
+ * Unwraps `{ data }` so callers receive the activity rows. HTTP client for
+ * the REST resource; Dashboard RSC uses `lib/api/rsc`.
  *
  * @param limit - Max rows (server default 8, max 50).
  * @throws {ValidationError} When `limit` is outside 1–50.

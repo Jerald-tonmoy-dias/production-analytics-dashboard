@@ -105,7 +105,7 @@ components/
 lib/
   schemas/                       # Zod source of truth for runtime + types
   domain/                        # pure mappers: KPIs, series, filters, pagination
-  api/                           # typed fetchers used by RSC and TanStack Query
+  api/                           # HTTP client (Orders Query) and `rsc.ts` (Dashboard/details)
   errors.ts                      # typed error classes / HTTP mapping
   constants.ts                   # page size, chart window, status enum
 
@@ -131,10 +131,9 @@ Route group `(shell)` exists so the operator chrome layout does not wrap `/api`.
 data/*.json
     → lib/schemas (Zod parse)
     → lib/domain  (derive KPIs, series, filtered pages)
-    → app/api/*   (REST)
-    → lib/api     (typed client)
-         ├─ Dashboard RSC  (Promise.all of GETs)
-         └─ Orders client  (TanStack Query, keyed by URL params)
+         ├─ app/api/*          (REST for the browser)
+         │    → lib/api        (typed HTTP client, Orders + TanStack Query)
+         └─ lib/api/rsc        (Dashboard + details Server Components)
               → feature components (DTO props only)
 ```
 
@@ -158,12 +157,12 @@ Practical split:
 | Surface | Component type | Why |
 | --- | --- | --- |
 | Root layout, console shell chrome that is just markup | Server, with small client nav island if needed | No hooks required for static links |
-| Dashboard page | Server | First paint from `fetch` |
+| Dashboard page | Server | First paint from in-process domain (`lib/api/rsc`) |
 | KPI cards | Server-safe presentational | Numbers in, markup out |
 | Charts | Client island | Recharts needs DOM |
 | Recent orders / activity as lists | Server-safe if links only | Client only if they poll (they will not) |
 | Orders filters, table interactions | Client | URL updates, Query |
-| Order details | Server | One GET by id |
+| Order details | Server | One in-process load by id |
 
 The Query provider is mounted on the **orders segment layout**, not the root layout, so the Dashboard does not pay for a client provider it does not use.
 
@@ -175,10 +174,10 @@ REST over Next.js Route Handlers. Four read resources:
 
 | Method | Route | Consumer |
 | --- | --- | --- |
-| `GET` | `/api/analytics` | Dashboard RSC |
+| `GET` | `/api/analytics` | HTTP clients / REST demo (Dashboard RSC uses `lib/api/rsc`) |
 | `GET` | `/api/orders` | Orders workspace (Query) |
-| `GET` | `/api/orders/:id` | Details RSC |
-| `GET` | `/api/activities` | Dashboard RSC |
+| `GET` | `/api/orders/:id` | HTTP clients / REST demo (Details RSC uses `lib/api/rsc`) |
+| `GET` | `/api/activities` | HTTP clients / REST demo (Dashboard RSC uses `lib/api/rsc`) |
 
 Contracts: [API Reference](./api-reference.md).
 
@@ -204,7 +203,7 @@ No mutations in v1. No POST/PUT/PATCH/DELETE.
 
 `app/api/*` is a thin adapter: parse query/path params, call domain, map errors to HTTP.
 
-`lib/api` is the only module pages import for data. It uses `fetch` against absolute or same-origin URLs. RSC calls it with Next `cache` options; the client calls it through Query.
+`lib/api` is the only module pages import for data. Server Components import `lib/api/rsc`, which calls `lib/domain` in-process (same functions as the Route Handlers). Client islands import the HTTP helpers and `fetch` same-origin `/api/*` through TanStack Query. That split exists because a Server Component `fetch` to `https://$VERCEL_URL/api/…` fails on Vercel (deployment host + Deployment Protection / no extra lambda). Route Handlers remain so the Orders list is a real REST + Query integration and a later backend swap does not rewrite components.
 
 ---
 
@@ -240,16 +239,16 @@ Native Next.js `searchParams` is preferred over `nuqs` unless URL encoding becom
 
 ## 11. Server state
 
-- **Dashboard:** fetch on the server per request (or with a short cache). No Query.
+- **Dashboard:** in-process domain read per request (`force-dynamic` because the series window uses wall-clock `now`). No Query.
 - **Orders list:** TanStack Query, query key = serialized filter set. Prevents duplicate calls when toggling back to a previous filter.
-- **Order details:** RSC fetch by id. Query is unnecessary for a mostly-static details page.
+- **Order details:** RSC in-process load by id. Query is unnecessary for a mostly-static details page.
 
 ---
 
 ## 12. Caching
 
 - Route Handlers read JSON from disk; no Redis.
-- RSC `fetch` to `/api/*` may use Next cache tags (`analytics`, `orders`) so a future mutation could invalidate. In v1 there are no mutations; caching is still wired so the pattern is visible and duplicate RSC fetches collapse.
+- Dashboard and details do not `fetch` this app’s Route Handlers. Duplicate RSC work is avoided by calling domain once per page.
 - TanStack Query `staleTime` on the order of 30s for lists. No infinite stale; operators expect reasonably fresh mock data after reload.
 
 This is **demonstration-scale** caching, not a CDN strategy.
@@ -369,8 +368,9 @@ No invented LCP budget. The spec grades **architectural** performance.
 ## 20. Deployment
 
 - **Platform:** Vercel (native Next.js).
-- **When:** TASK-001 deploys a scaffold so the live URL exists early. Later tickets redeploy via git push.
-- **Env:** none required for v1 (no secrets). If a public API base URL is needed for RSC on Vercel, use `VERCEL_URL` / relative fetch from the same origin.
+- **When:** Production is connected to GitHub; pushes to `main` redeploy.
+- **URL:** https://production-analytics-dashboard.vercel.app
+- **Env:** none required for v1 (no secrets). RSC pages do not self-fetch, so `VERCEL_URL` is not required for the dashboard.
 
 Submission requires the live link (email is stricter than the task spec).
 
