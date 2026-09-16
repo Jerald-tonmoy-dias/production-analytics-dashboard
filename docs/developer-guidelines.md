@@ -100,7 +100,7 @@ If a file mixes fetching, filtering, and markup, split it. If a file is a 15-lin
 
 - Tailwind utility classes. Use `cn()` from `@/lib/utils` for conditional classes.
 - Tokens come from the shadcn theme (CSS variables). Semantic hues: `success`, `warning`, `info`, `destructive`; chart series: `chart-revenue`, `chart-orders`. Do not scatter raw hex in feature files.
-- Responsive: mobile-first. KPIs stack; tables may scroll horizontally **or** collapse to cards — pick one in the ticket and stick to it.
+- Responsive: mobile-first. KPIs stack. Tables keep a min-width (`min-w-[40rem]` on `Table`) and scroll horizontally; they do not reflow into a card list.
 - Density: this is an ops console. Prefer compact tables over large marketing cards.
 
 ---
