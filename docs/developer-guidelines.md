@@ -69,7 +69,7 @@ If you add `useMemo` / `useCallback`, the PR **Architecture Notes** must say why
 - Data fetching for the Orders table: TanStack Query in a client island, still calling `lib/api`.
 - Route Handlers are adapters. They do not contain KPI math.
 - `loading.tsx` must **mirror the page layout** (skeletons), not a centered spinner.
-- `error.tsx` must offer retry via `reset()`.
+- `error.tsx` must offer recovery via `retry()` (Next.js 16.3; prefer `retry` over `reset`).
 - `not-found.tsx` on `orders/[id]` for unknown ids.
 
 RSC `fetch` to own Route Handlers needs an absolute URL on the server. Prefer a small helper that uses the incoming origin / `VERCEL_URL` / `localhost:3000` in development. Do not hardcode a production hostname in source.
