@@ -47,7 +47,7 @@ export function RecentOrders({
   const empty = state === "default" && orders.length === 0;
 
   return (
-    <Card className="min-w-0">
+    <Card className="h-full min-h-0 min-w-0">
       <CardHeader>
         <CardTitle>Recent orders</CardTitle>
         <CardDescription>Newest orders across the workspace.</CardDescription>

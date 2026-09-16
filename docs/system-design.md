@@ -97,10 +97,10 @@ app/
 components/
   ui/                            # shadcn primitives only
   shared/                        # EmptyState, ErrorState, PageHeader, skeletons
-  layout/                        # AppShell, AppNav (theme control slot on AppShell)
+  layout/                        # AppShell, AppNav, ThemeToggle
   dashboard/                     # KPI, charts, recent orders, activity feed
   orders/                        # filters, table, pagination, status badge, details
-  providers/                     # QueryClientProvider (orders segment only)
+  providers/                     # ThemeProvider (root) and QueryClientProvider (orders)
 
 lib/
   schemas/                       # Zod source of truth for runtime + types
@@ -164,7 +164,7 @@ Practical split:
 | Orders filters, table interactions | Client | URL updates, Query |
 | Order details | Server | One in-process load by id |
 
-The Query provider is mounted on the **orders segment layout**, not the root layout, so the Dashboard does not pay for a client provider it does not use.
+The Query provider is mounted on the **orders segment layout**, not the root layout, so the Dashboard does not pay for a client provider it does not use. `ThemeProvider` (`next-themes`, class strategy, `defaultTheme="dark"`) is a leaf around `{children}` in the root layout so `.dark` is available everywhere without marking that layout `"use client"`.
 
 ---
 

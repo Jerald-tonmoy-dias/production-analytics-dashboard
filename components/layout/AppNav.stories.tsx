@@ -37,3 +37,16 @@ export const Current: Story = {
     },
   },
 };
+
+export const Collapsed: Story = {
+  args: {
+    collapsed: true,
+  },
+  decorators: [
+    (Story) => (
+      <div className="bg-sidebar w-14 rounded-md p-2">
+        <Story />
+      </div>
+    ),
+  ],
+};

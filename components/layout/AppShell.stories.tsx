@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { AppShell } from "@/components/layout/AppShell";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { PageHeader } from "@/components/shared/PageHeader";
 
 const placeholderPage = (
@@ -12,12 +13,7 @@ const placeholderPage = (
   </div>
 );
 
-const themeSlot = (
-  <div
-    className="size-7 rounded-md border border-dashed border-sidebar-border"
-    aria-label="Theme control slot"
-  />
-);
+const renderThemeToggle = () => <ThemeToggle />;
 
 const meta = {
   title: "Layout/AppShell",
@@ -38,6 +34,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Dashboard: Story = {
   args: {
+    headerActions: renderThemeToggle,
     children: placeholderPage,
   },
 };
@@ -52,6 +49,7 @@ export const Orders: Story = {
     },
   },
   args: {
+    headerActions: renderThemeToggle,
     children: (
       <div className="space-y-6">
         <PageHeader
@@ -64,16 +62,9 @@ export const Orders: Story = {
   },
 };
 
-export const WithHeaderActions: Story = {
-  args: {
-    headerActions: themeSlot,
-    children: placeholderPage,
-  },
-};
-
 export const Mobile: Story = {
   args: {
-    headerActions: themeSlot,
+    headerActions: renderThemeToggle,
     children: placeholderPage,
   },
   decorators: [

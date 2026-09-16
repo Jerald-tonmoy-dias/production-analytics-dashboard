@@ -25,5 +25,11 @@ export const MAX_ACTIVITY_LIMIT = 50;
 /** Short product name shown in the operator shell. */
 export const PRODUCT_NAME = "Production Analytics";
 
+/** Compact mark for the collapsed desktop rail (matches the app icon). */
+export const PRODUCT_NAME_MARK = "P";
+
+/** Matches Tailwind `md`. Desktop rail vs mobile drawer. */
+export const MD_MEDIA_QUERY = "(min-width: 768px)";
+
 /** UTC calendar day the mock dataset is built around. Series tests freeze `now` to this. */
 export const DATASET_AS_OF_UTC = "2026-09-16T12:00:00.000Z";

@@ -57,7 +57,7 @@ If you add `useMemo` / `useCallback`, the PR **Architecture Notes** must say why
 
 - Filters and page number: URL.
 - Server data: RSC or TanStack Query.
-- Chrome: `useState`.
+- Chrome: `useState`. Theme: `next-themes` (`ThemeToggle` in the shell).
 - Do not introduce Zustand/Redux/Context for server data.
 
 ---
@@ -143,7 +143,7 @@ Do not add tests that assert class names or copy that will churn.
 - Colocate `*.stories.tsx` with the component.
 - One story file per meaningful component.
 - Cover states, not every prop permutation. Primitives: representative variants only (`Primitives/` in Storybook).
-- Preview must include global CSS / shadcn theme so stories look like the app. `.storybook/preview.tsx` already imports `app/globals.css` and wraps stories in `TooltipProvider`.
+- Preview must include global CSS / shadcn theme so stories look like the app. `.storybook/preview.tsx` already imports `app/globals.css`, wraps stories in `ThemeProvider` + `TooltipProvider`, and exposes a Light / Dark toolbar.
 
 ---
 
