@@ -765,7 +765,7 @@ Date: 2026-09-16
 
 Context: `.dark` tokens exist but nothing sets the class. Options: a minimal inline script + `localStorage`, or `next-themes`.
 
-Decision: **`next-themes`**, `attribute="class"`, `defaultTheme="system"`. Class strategy matches shadcn. The package exists to handle SSR/FOUC and system preference; a custom script is more likely to flash. Keep the provider a leaf around `{children}` (same as `TooltipProvider`). Do not introduce a second token system.
+Decision: **`next-themes`**, `attribute="class"`, `defaultTheme="system"`. Class strategy matches shadcn. The package exists to handle SSR/FOUC and system preference; a custom script is more likely to flash. Keep the provider a leaf around `{children}` (same as `TooltipProvider`). Do not introduce a second token system. `<html>` uses `suppressHydrationWarning` so the injected class script does not trip hydration. The control is a System / Light / Dark menu in `AppShell` `headerActions`. Dark `--sidebar-primary` matches `--primary` (neutral, not the leftover blue).
 
 Trade-offs: one small Recommended dependency.
 

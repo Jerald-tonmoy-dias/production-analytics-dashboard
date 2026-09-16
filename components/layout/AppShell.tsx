@@ -3,7 +3,7 @@ import { PRODUCT_NAME } from "@/lib/constants";
 
 type AppShellProps = {
   children: React.ReactNode;
-  /** Reserved for the UX-016 theme control. Rendered once (mobile: top bar, desktop: sidebar foot). */
+  /** Chrome actions (theme toggle). Rendered once (mobile: top bar, desktop: sidebar foot). */
   headerActions?: React.ReactNode;
 };
 

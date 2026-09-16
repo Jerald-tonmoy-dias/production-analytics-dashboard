@@ -25,7 +25,7 @@ Loading skeletons, empty states, error states, and responsive layout are first-c
 | Layer | Choice |
 | --- | --- |
 | Framework | Next.js App Router, React, TypeScript (strict) |
-| Styling | Tailwind CSS, shadcn/ui |
+| Styling | Tailwind CSS, shadcn/ui, next-themes |
 | Validation | Zod |
 | Server state (Orders list) | TanStack Query |
 | Charts | Recharts |
@@ -65,6 +65,10 @@ JSON datasets are parsed with Zod and transformed in a framework-agnostic domain
 - **Order details** is a Server Component at `/orders/[id]`, also via `lib/api/rsc`.
 
 UI components receive DTOs. They do not fetch JSON or compute KPIs.
+
+## Theme
+
+Light, Dark, and System. `next-themes` sets a `.dark` class on `<html>` (`attribute="class"`, `defaultTheme="system"`). Tokens stay in `app/globals.css` (`:root` / `.dark`); there is no parallel hex theme. The shell menu persists the choice in `localStorage` (`theme`). Storybook has a Light / Dark toolbar on the same tokens.
 
 Target tree: [system design — folder structure](./docs/system-design.md#4-folder--module-structure).
 
