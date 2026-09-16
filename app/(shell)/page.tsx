@@ -79,10 +79,12 @@ export default async function DashboardPage() {
         aria-label="Recent orders and activity"
         className="grid min-w-0 gap-4 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]"
       >
-        <div className="min-w-0">
+        <div className="min-h-0 min-w-0 xl:h-full">
           <RecentOrders orders={ordersPage.data} />
         </div>
-        <ActivityFeed activities={activities} />
+        <div className="min-h-0 min-w-0 xl:h-full">
+          <ActivityFeed activities={activities} />
+        </div>
       </section>
     </div>
   );

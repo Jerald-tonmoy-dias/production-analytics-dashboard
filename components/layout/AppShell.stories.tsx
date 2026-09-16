@@ -13,7 +13,7 @@ const placeholderPage = (
   </div>
 );
 
-const themeToggle = <ThemeToggle />;
+const renderThemeToggle = () => <ThemeToggle />;
 
 const meta = {
   title: "Layout/AppShell",
@@ -34,7 +34,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Dashboard: Story = {
   args: {
-    headerActions: themeToggle,
+    headerActions: renderThemeToggle,
     children: placeholderPage,
   },
 };
@@ -49,7 +49,7 @@ export const Orders: Story = {
     },
   },
   args: {
-    headerActions: themeToggle,
+    headerActions: renderThemeToggle,
     children: (
       <div className="space-y-6">
         <PageHeader
@@ -64,7 +64,7 @@ export const Orders: Story = {
 
 export const Mobile: Story = {
   args: {
-    headerActions: themeToggle,
+    headerActions: renderThemeToggle,
     children: placeholderPage,
   },
   decorators: [

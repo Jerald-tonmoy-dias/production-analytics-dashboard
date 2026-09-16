@@ -6,5 +6,7 @@ export default function ShellLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <AppShell headerActions={<ThemeToggle />}>{children}</AppShell>;
+  return (
+    <AppShell headerActions={() => <ThemeToggle />}>{children}</AppShell>
+  );
 }
