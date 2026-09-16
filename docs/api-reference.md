@@ -396,6 +396,12 @@ Pages must not import `data/*.json`. They call `lib/api`:
 
 RSC uses `getAnalytics` / `getActivities` / `getOrder`. The Orders table uses `getOrders` inside TanStack Query.
 
+`lib/api` parses every JSON body with Zod. Envelope errors become `ValidationError` / `NotFoundError` / `InternalError` from `lib/errors.ts`.
+
+Server-side `fetch` needs an absolute origin (`getApiBaseUrl()` in `lib/api/base-url.ts`): `NEXT_PUBLIC_APP_URL`, then `https://$VERCEL_URL`, then `http://localhost:3000`. Browser calls use a relative `/api/...` URL so Client Components can import the helpers without `next/headers`.
+
+RSC `fetch` attaches Next cache tags `analytics` (`/api/analytics`, `/api/activities`) and `orders` (`/api/orders`, `/api/orders/:id`). The browser ignores those options.
+
 ---
 
 ## Assumptions that affect the contract

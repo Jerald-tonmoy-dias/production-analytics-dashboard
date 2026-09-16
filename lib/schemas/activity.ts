@@ -14,5 +14,10 @@ export const activitySchema = z.object({
 
 export const activitiesSchema = z.array(activitySchema).min(1);
 
+export const activitiesListResponseSchema = z.object({
+  data: z.array(activitySchema),
+});
+
 export type Activity = z.infer<typeof activitySchema>;
 export type ActivityType = z.infer<typeof activityTypeSchema>;
+export type ActivitiesListResponse = z.infer<typeof activitiesListResponseSchema>;
