@@ -25,18 +25,28 @@ function jsonResponse(body: unknown, status = 200): Response {
 describe("getApiBaseUrl", () => {
   it("defaults to local development", () => {
     vi.stubEnv("NEXT_PUBLIC_APP_URL", "");
+    vi.stubEnv("VERCEL_PROJECT_PRODUCTION_URL", "");
     vi.stubEnv("VERCEL_URL", "");
     expect(getApiBaseUrl()).toBe("http://localhost:3000");
   });
 
   it("prefers NEXT_PUBLIC_APP_URL", () => {
     vi.stubEnv("NEXT_PUBLIC_APP_URL", "https://example.test/");
+    vi.stubEnv("VERCEL_PROJECT_PRODUCTION_URL", "prod.example.test");
     vi.stubEnv("VERCEL_URL", "ignored.vercel.app");
     expect(getApiBaseUrl()).toBe("https://example.test");
   });
 
-  it("uses https://$VERCEL_URL when no public URL is set", () => {
+  it("prefers the Vercel production host over VERCEL_URL", () => {
     vi.stubEnv("NEXT_PUBLIC_APP_URL", "");
+    vi.stubEnv("VERCEL_PROJECT_PRODUCTION_URL", "dash.example.test");
+    vi.stubEnv("VERCEL_URL", "ignored.vercel.app");
+    expect(getApiBaseUrl()).toBe("https://dash.example.test");
+  });
+
+  it("uses https://$VERCEL_URL when no public or production URL is set", () => {
+    vi.stubEnv("NEXT_PUBLIC_APP_URL", "");
+    vi.stubEnv("VERCEL_PROJECT_PRODUCTION_URL", "");
     vi.stubEnv("VERCEL_URL", "app.vercel.app");
     expect(getApiBaseUrl()).toBe("https://app.vercel.app");
   });

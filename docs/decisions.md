@@ -233,7 +233,7 @@ Decision: Option 3.
 
 Reason: Satisfies the spec’s layering and the JD’s REST integration. UI stays backend-agnostic.
 
-Trade-offs: RSC must call absolute URLs to own handlers. Slightly more code.
+Trade-offs: Originally implied RSC must call absolute URLs to own handlers. TASK-014 kept HTTP for Query and moved Server Components to in-process domain (`lib/api/rsc`).
 
 Consequences: TASK-004 (domain) and TASK-005 (HTTP) are separate so UI widgets can consume types before HTTP exists.
 
@@ -595,6 +595,34 @@ Consequences: Document in README performance section.
 
 Origin: Engineering decision.
 
+Status: superseded
+
+---
+
+## Decision: RSC reads domain in-process; HTTP is for the browser
+
+Date: 2026-09-16
+
+Context: TASK-005 wired Server Components to `fetch` this app's Route Handlers with `force-cache` tags. Production Dashboard and `/orders/[id]` then rendered `error.tsx` while `GET /api/*` from the browser returned 200. Orders list (client Query) worked.
+
+Problem: On Vercel, `VERCEL_URL` is the per-deployment host. A Server Component `fetch` to that origin is subject to Deployment Protection and does not get a reliable extra lambda. `force-cache` can also persist a miss. Self-HTTP is the wrong boundary for JSON that already lives in the same process.
+
+Options considered:
+
+1. Set `NEXT_PUBLIC_APP_URL` to the public production host and keep RSC `fetch`.
+2. Send `x-vercel-protection-bypass` on server fetches.
+3. RSC calls `lib/domain` in-process; Route Handlers remain the REST API for TanStack Query.
+
+Decision: Option 3 (`lib/api/rsc.ts`). Keep HTTP helpers for the Orders workspace. Prefer `VERCEL_PROJECT_PRODUCTION_URL` in `getApiBaseUrl` if anything still fetches on the server. Do not `force-cache` those fetches.
+
+Reason: Same DTOs as the REST API, no Vercel self-fetch, pages still do not import JSON.
+
+Trade-offs: Dashboard no longer exercises HTTP on the server. The Orders list still does, which is what the JD grades (REST + Query).
+
+Consequences: Production dashboard and details work without localhost. Documented in README and [system-design.md](./system-design.md).
+
+Origin: Engineering decision (TASK-014 production smoke).
+
 Status: accepted
 
 ---
@@ -615,7 +643,7 @@ Reason: Email is the submission contract. Native Next.js target. Early URL remov
 
 Trade-offs: Requires a Vercel account and GitHub remote.
 
-Consequences: TASK-014 verifies the production URL still works.
+Consequences: TASK-014 records the production URL in the README and verifies Dashboard, Orders, and details on that host.
 
 Origin: Company requirement (live link, email). Engineering decision (when/where).
 

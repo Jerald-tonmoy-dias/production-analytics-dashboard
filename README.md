@@ -2,6 +2,8 @@
 
 SaaS operations console for operators who need to see whether customers and orders are healthy, then find a specific order.
 
+**Live demo:** [https://production-analytics-dashboard.vercel.app](https://production-analytics-dashboard.vercel.app)
+
 ## Business purpose
 
 Internal operators (support, ops, founders) need two answers:
@@ -28,7 +30,7 @@ Loading skeletons, empty states, error states, and responsive layout are first-c
 | Server state (Orders list) | TanStack Query |
 | Charts | Recharts |
 | Component workshop | Storybook |
-| Tests | Vitest (domain); Storybook (UI states) |
+| Tests | Vitest (domain + API); Storybook (UI states) |
 | Hosting | Vercel |
 
 Why these, and what we refuse to add: [decisions.md](./docs/decisions.md).
@@ -47,22 +49,20 @@ Open [http://localhost:3000](http://localhost:3000) for the dashboard. [http://l
 ## Commands
 
 ```bash
-npm run dev          # Next.js app
+npm run dev          # Next.js app at http://localhost:3000
 npm run lint         # ESLint
 npm run typecheck    # TypeScript (`tsc --noEmit`)
 npm test             # Vitest
 npm run storybook    # Storybook at http://localhost:6006
 ```
 
-Domain tests land in TASK-004.
-
 ## Architecture overview
 
-JSON datasets are parsed with Zod, transformed in a framework-agnostic domain layer, exposed as REST Route Handlers, and consumed through `lib/api`.
+JSON datasets are parsed with Zod and transformed in a framework-agnostic domain layer. Next.js Route Handlers expose that data as REST. Pages never import the JSON files.
 
-- **Dashboard** is a Server Component (first paint).
-- **Orders list** is a Client island with URL search params + TanStack Query.
-- **Order details** is a Server Component at `/orders/[id]`.
+- **Dashboard** is a Server Component. It reads the same domain functions the Route Handlers use (`lib/api/rsc`) so the first paint does not HTTP-fetch this app.
+- **Orders list** is a Client island: URL search params + TanStack Query calling `GET /api/orders`.
+- **Order details** is a Server Component at `/orders/[id]`, also via `lib/api/rsc`.
 
 UI components receive DTOs. They do not fetch JSON or compute KPIs.
 
@@ -70,11 +70,20 @@ Target tree: [system design — folder structure](./docs/system-design.md#4-fold
 
 Work is **one GitHub Issue = one branch = one PR**. See [developer guidelines](./docs/developer-guidelines.md).
 
+## Performance
+
+- Domain math (KPIs, series, filters) runs once in `lib/domain`, not in each card.
+- Dashboard and details stay on the server; Recharts is dynamically imported so the chart library is a client island.
+- Orders list uses TanStack Query (`staleTime` 30s) keyed by the URL so back/forward does not refetch blindly.
+- Search is debounced (300ms) before it writes the query string.
+- `loading.tsx` skeletons match page layout.
+
 ## Deployment
 
-Vercel is configured manually later. This repository does not create or connect a Vercel project.
+Hosted on **Vercel**, connected to this GitHub repository. Pushes to `main` redeploy production.
 
-Live URL: _pending_
+- **Production URL:** [https://production-analytics-dashboard.vercel.app](https://production-analytics-dashboard.vercel.app)
+- **Env:** none required. Mock JSON ships in the repo. Optional `NEXT_PUBLIC_APP_URL` if you want the HTTP client to target a specific origin; RSC pages do not need it.
 
 ## Documentation
 

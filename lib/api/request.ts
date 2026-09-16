@@ -57,13 +57,14 @@ function throwApiError(payload: unknown): never {
 /**
  * GET JSON from a Route Handler and parse it with Zod.
  *
- * On the server, optional Next cache `tags` are attached so duplicate RSC
- * fetches collapse and a future mutation could `revalidateTag`. The browser
- * ignores `next`.
+ * On the server, fetches are `cache: "no-store"` so a protected-URL or
+ * build-time miss cannot stick in the Data Cache. Dashboard and order
+ * details skip HTTP (`lib/api/rsc`). The browser ignores `next`.
  *
  * @param path - Absolute-from-root path (`/api/analytics`).
  * @param schema - Success-body schema.
- * @param options - Query string and RSC cache tags.
+ * @param options - Query string. `tags` is accepted for call-site compatibility
+ *   and ignored (server fetches are `no-store`).
  * @returns Parsed success body.
  * @throws {ValidationError} On `400 VALIDATION_ERROR`.
  * @throws {NotFoundError} On `404 NOT_FOUND`.
@@ -75,14 +76,22 @@ export async function apiGet<T>(
   options: ApiGetOptions = {}
 ): Promise<T> {
   const url = resolveUrl(path, options.searchParams);
+  const headers: Record<string, string> = { Accept: "application/json" };
+  const bypass = process.env.VERCEL_AUTOMATION_BYPASS_SECRET?.trim();
+  if (typeof window === "undefined" && bypass) {
+    headers["x-vercel-protection-bypass"] = bypass;
+  }
+
   const init: CachedRequestInit = {
     method: "GET",
-    headers: { Accept: "application/json" },
+    headers,
   };
 
-  if (typeof window === "undefined" && options.tags?.length) {
-    init.next = { tags: options.tags };
-    init.cache = "force-cache";
+  if (typeof window === "undefined") {
+    // Do not `force-cache` self-fetches: a build-time or protected-URL miss
+    // would stick. Dashboard/details use `lib/api/rsc` and skip HTTP entirely.
+    // `cache: "no-store"` must not be paired with `next.tags` (Next ignores both).
+    init.cache = "no-store";
   }
 
   let response: Response;

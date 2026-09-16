@@ -6,7 +6,7 @@ import activitiesJson from "@/data/activities.json";
 /**
  * Load and validate the committed mock JSON.
  *
- * Pages must not import `data/*.json`; Route Handlers (TASK-005) call this.
+ * Pages must not import `data/*.json`. Route Handlers and `lib/api/rsc` call this.
  *
  * @throws {InternalError} When a file is corrupt or referentially inconsistent.
  */

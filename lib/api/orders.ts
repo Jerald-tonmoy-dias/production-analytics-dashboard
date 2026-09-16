@@ -16,7 +16,15 @@ export type GetOrdersParams = {
   pageSize?: number;
 };
 
-function ordersSearchParams(params: GetOrdersParams): URLSearchParams {
+/**
+ * Build `GET /api/orders` search params from a typed filter object.
+ *
+ * Omitted keys are left off the query string so the server applies defaults.
+ *
+ * @param params - Optional `q`, `status`, `from`, `to`, `page`, `pageSize`.
+ * @returns Query string builder (may be empty).
+ */
+export function ordersSearchParams(params: GetOrdersParams): URLSearchParams {
   const search = new URLSearchParams();
   if (params.q) {
     search.set("q", params.q);
@@ -42,7 +50,8 @@ function ordersSearchParams(params: GetOrdersParams): URLSearchParams {
 /**
  * Load a filtered, paginated order list (`GET /api/orders`).
  *
- * Intended for TanStack Query on the Orders workspace. RSC cache tag: `orders`.
+ * Intended for TanStack Query on the Orders workspace. Dashboard RSC uses
+ * `lib/api/rsc` so it does not HTTP-fetch this app on the server.
  *
  * @param params - Optional `q`, `status`, `from`, `to`, `page`, `pageSize`.
  * @throws {ValidationError} On `400` (invalid filters).
@@ -61,7 +70,7 @@ export async function getOrders(
 /**
  * Load a single order with line items and nested customer (`GET /api/orders/:id`).
  *
- * RSC cache tag: `orders`.
+ * HTTP client for `GET /api/orders/:id`. Details RSC uses `lib/api/rsc`.
  *
  * @param id - Order id (`ord_…`).
  * @throws {ValidationError} When `id` is empty.

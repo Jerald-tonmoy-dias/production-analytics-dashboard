@@ -387,20 +387,17 @@ GET /api/activities?limit=8 HTTP/1.1
 
 Pages must not import `data/*.json`. They call `lib/api`:
 
-| Function | Maps to |
-| --- | --- |
-| `getAnalytics()` | `GET /api/analytics` |
-| `getOrders(params)` | `GET /api/orders` |
-| `getOrder(id)` | `GET /api/orders/:id` |
-| `getActivities(limit?)` | `GET /api/activities` |
+| Function | Maps to | Used by |
+| --- | --- | --- |
+| `getAnalytics()` in `lib/api/rsc` | Same payload as `GET /api/analytics` | Dashboard RSC |
+| `getOrders(params)` in `lib/api/rsc` | Same payload as `GET /api/orders` | Dashboard RSC (recent orders) |
+| `getOrder(id)` in `lib/api/rsc` | Same payload as `GET /api/orders/:id` | Details RSC |
+| `getActivities(limit?)` in `lib/api/rsc` | Same payload as `GET /api/activities` | Dashboard RSC |
+| `getOrders(params)` in `lib/api/orders` | `GET /api/orders` | Orders table (TanStack Query) |
 
-Dashboard RSC uses `getAnalytics`, `getOrders` (first page, small `pageSize`), and `getActivities` via `Promise.all`. Order details uses `getOrder`. The Orders table uses `getOrders` inside TanStack Query (TASK-011).
+HTTP helpers (`lib/api/analytics.ts`, `activities.ts`, `orders.ts`) still parse JSON bodies with Zod. Envelope errors become `ValidationError` / `NotFoundError` / `InternalError` from `lib/errors.ts`.
 
-`lib/api` parses every JSON body with Zod. Envelope errors become `ValidationError` / `NotFoundError` / `InternalError` from `lib/errors.ts`.
-
-Server-side `fetch` needs an absolute origin (`getApiBaseUrl()` in `lib/api/base-url.ts`): `NEXT_PUBLIC_APP_URL`, then `https://$VERCEL_URL`, then `http://localhost:3000`. Browser calls use a relative `/api/...` URL so Client Components can import the helpers without `next/headers`.
-
-RSC `fetch` attaches Next cache tags `analytics` (`/api/analytics`, `/api/activities`) and `orders` (`/api/orders`, `/api/orders/:id`). The browser ignores those options.
+Server Components must not `fetch` this app's own origin. `getApiBaseUrl()` (`lib/api/base-url.ts`) remains for the HTTP client: `NEXT_PUBLIC_APP_URL`, then `VERCEL_PROJECT_PRODUCTION_URL`, then `https://$VERCEL_URL`, then `http://localhost:3000`. Browser calls use a relative `/api/...` URL so Client Components can import the helpers without `next/headers`.
 
 ---
 

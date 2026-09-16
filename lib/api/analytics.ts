@@ -7,7 +7,7 @@ import {
 /**
  * Load dashboard KPIs and the 30-day chart series (`GET /api/analytics`).
  *
- * RSC cache tag: `analytics`.
+ * HTTP client for the REST resource. Dashboard RSC uses `lib/api/rsc`.
  *
  * @throws {InternalError} On transport failure or an unexpected payload.
  */
