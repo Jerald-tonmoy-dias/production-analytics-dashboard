@@ -74,7 +74,7 @@ Target tree after foundation tickets. Not every file exists yet.
 ```text
 app/
   layout.tsx                     # root HTML, fonts, providers that must be global
-  (app)/                         # route group for Dashboard + Orders (URL is still /)
+  (shell)/                       # shared operator chrome; not a URL segment
     layout.tsx                   # AppShell (nav)
     page.tsx                     # Dashboard (Server Component)
     loading.tsx
@@ -122,7 +122,7 @@ docs/                            # this documentation set
 
 Stories are **colocated** next to the component they describe (`KpiCard.stories.tsx`), so a ticket’s UI and states ship in the same PR.
 
-Route group `(app)` exists so the operator shell layout does not wrap `/api`. Parentheses mean it is not a URL segment: `app/(app)/page.tsx` is still `/`.
+Route group `(shell)` exists so the operator chrome layout does not wrap `/api`. Parentheses mean it is not a URL segment: `app/(shell)/page.tsx` is still `/`. The UI component lives in `components/layout/AppShell.tsx`, not `components/shell/`.
 
 ---
 

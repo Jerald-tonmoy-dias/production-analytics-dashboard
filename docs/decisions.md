@@ -360,7 +360,7 @@ Problem: Modal vs `/orders/[id]`.
 
 Options considered: Dialog, drawer, dynamic route.
 
-Decision: `app/(app)/orders/[id]/page.tsx`.
+Decision: `app/(shell)/orders/[id]/page.tsx`.
 
 Reason: Shareable link, App Router dynamic segments, `not-found.tsx`, simpler a11y than a modal stacked on filters.
 
@@ -412,7 +412,7 @@ Problem: `components/index.ts` barrels and `utils.ts` become junk drawers.
 
 Options considered: Atomic design; feature folders; everything under `app/`.
 
-Decision: Feature folders (`dashboard`, `orders`, `shared`, `ui`, `layout`) + `lib/{schemas,domain,api}` + route group `(app)`. Colocated stories. No global `utils.ts`; name the module (`format-money.ts`).
+Decision: Feature folders (`dashboard`, `orders`, `shared`, `ui`, `layout`) + `lib/{schemas,domain,api}` + route group `(shell)`. Colocated stories. No global `utils.ts`; name the module (`format-money.ts`).
 
 Reason: Matches ticket boundaries. Reviewers can find a widget without a hunt.
 
@@ -448,6 +448,35 @@ Reason: Reviewers and future tickets will recognize `(app)` immediately. Parenth
 Trade-offs: The word “app” is generic. The comment in `system-design.md` explains why the group exists.
 
 Consequences: Later tickets use `app/(app)/page.tsx`, `app/(app)/orders/`, `app/(app)/orders/[id]/`. Product copy may still say “operations console.”
+
+Origin: Engineering decision (PR review on TASK-001).
+
+Status: superseded by “Route group named `(shell)`”
+
+---
+
+## Decision: Route group named `(shell)`
+
+Date: 2026-09-16
+
+Context: `(console)` was unclear. `(app)` is the common Next.js name for the product segment, but `app/(app)/` reads as duplication. The group’s job is shared operator chrome around Dashboard and Orders.
+
+Problem: Need a route-group name that is not URL-visible, not jargon, and not a second `app` folder.
+
+Options considered:
+
+1. `(app)` — template convention; visually `app/(app)/`.
+2. `(workspace)` / `(ops)` — product language.
+3. `(shell)` — names the layout reason; UI stays in `components/layout/AppShell`.
+4. Drop the group and put the shell in the root layout.
+
+Decision: `app/(shell)/`.
+
+Reason: It describes why the group exists (TASK-006 AppShell). It does not collide with the App Router `app/` directory. Components stay in `components/layout/`; we will not create `components/shell/`.
+
+Trade-offs: `(shell)` is less common in tutorials than `(app)`. Fine for this codebase.
+
+Consequences: Tickets use `app/(shell)/page.tsx`, `app/(shell)/orders/`, `app/(shell)/orders/[id]/`.
 
 Origin: Engineering decision (PR review on TASK-001).
 
