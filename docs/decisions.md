@@ -803,6 +803,20 @@ Status: accepted
 
 ---
 
+## Decision: Filter recovery keeps placeholder data (UX-018)
+
+Date: 2026-09-16
+
+Context: `keepPreviousData` already prevents an empty flash, but a refetch looked frozen. Empty filtered lists had no way back besides editing each control.
+
+Decision: Clear-all writes `clearedOrdersUrl()` (`writeOrdersSearch` → `""`). Date popovers get a Clear control. No-results includes the same clear action. While `isFetching && isPlaceholderData`, keep the previous rows and mute the table (`opacity-60` + `aria-busy`) instead of swapping to the skeleton.
+
+Origin: Engineering decision (UX-018).
+
+Status: accepted
+
+---
+
 ## Dependency register (summary)
 
 | Package | Class | When installed | Why |

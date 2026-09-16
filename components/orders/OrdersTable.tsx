@@ -27,6 +27,7 @@ type OrdersTableProps = {
   orders: OrderListItem[];
   state?: OrdersTableState;
   onRetry?: () => void;
+  onClearFilters?: () => void;
 };
 
 function OrdersTableSkeleton() {
@@ -74,6 +75,7 @@ export function OrdersTable({
   orders,
   state = "default",
   onRetry,
+  onClearFilters,
 }: OrdersTableProps) {
   if (state === "loading") {
     return (
@@ -103,7 +105,13 @@ export function OrdersTable({
       <EmptyState
         title="No orders match"
         description="Try a different search, status, or date range."
-      />
+      >
+        {onClearFilters ? (
+          <Button type="button" variant="outline" onClick={onClearFilters}>
+            Clear filters
+          </Button>
+        ) : null}
+      </EmptyState>
     );
   }
 

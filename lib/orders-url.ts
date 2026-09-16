@@ -60,6 +60,15 @@ export function writeOrdersSearch(state: OrdersUrlState): string {
 }
 
 /**
+ * Default workspace URL state (no filters, first page).
+ *
+ * `writeOrdersSearch` of this value is `""` (`/orders`).
+ */
+export function clearedOrdersUrl(): OrdersUrlState {
+  return { q: "", page: 1 };
+}
+
+/**
  * Whether any list filter is active (not pagination).
  *
  * @param state - URL filters.
