@@ -1,0 +1,29 @@
+# Assessment local files — never commit
+
+/job-description.txt
+/task-confirmation-mail.txt
+/Frontend_Task1_Analytics_Dashboard.md
+/docs/task-tracking.md
+
+# Dependencies and build (Next.js / Storybook land in later tickets)
+node_modules/
+.next/
+out/
+dist/
+build/
+coverage/
+storybook-static/
+*.tsbuildinfo
+
+# Environment and local tooling
+.env
+.env*.local
+.vercel
+.DS_Store
+*.log
+npm-debug.log*
+
+# Editors
+.idea/
+.vscode/
+*.swp
