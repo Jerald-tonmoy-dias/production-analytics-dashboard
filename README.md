@@ -51,7 +51,7 @@ npm run dev          # Next.js app
 npm run lint         # ESLint
 npm run typecheck    # TypeScript (`tsc --noEmit`)
 npm test             # Vitest
-npm run storybook    # Storybook (after TASK-003)
+npm run storybook    # Storybook at http://localhost:6006
 ```
 
 Domain tests land in TASK-004. Playwright, if added, is TASK-013.

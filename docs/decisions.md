@@ -150,6 +150,66 @@ Consequences: Feature UI tickets include Storybook requirements in their DoD.
 
 Origin: Engineering decision (Stage 2 direction). Not a company requirement.
 
+Status: superseded in part by “Catalog shadcn primitives in Storybook”
+
+---
+
+## Decision: Storybook Vite for Next 16; docs + a11y only
+
+Date: 2026-09-16
+
+Context: TASK-003 needs Storybook on Next.js 16. Current Storybook (10.6) recommends `@storybook/nextjs-vite`. The CLI also offers Webpack, Chromatic, and a Vitest/Playwright “test” feature.
+
+Problem: A recommended install can pull Playwright browsers and example Button/Header stories we do not own.
+
+Options considered:
+
+1. Webpack `@storybook/nextjs`.
+2. Vite + docs + a11y; skip `test` and Chromatic.
+3. Full recommended stack including component tests.
+
+Decision: Option 2.
+
+- Framework: `@storybook/nextjs-vite`. Preview imports `app/globals.css`, sets `nextjs.appDirectory`, and wraps stories in `TooltipProvider` (same client leaf as the root layout).
+- Addons: docs and a11y. No Chromatic. No Storybook Vitest addon — domain tests stay in Vitest; E2E stays TASK-013.
+- One smoke story (`.storybook/Smoke.stories.tsx`) proves theme wiring. Feature stories colocate with components in later tickets. Do not story uncustomized shadcn primitives.
+
+Reason: Matches Next 16, keeps the workshop useful for a11y states, and avoids a second test runner before we have widgets.
+
+Trade-offs: We do not demonstrate Storybook interaction tests in this ticket.
+
+Origin: Engineering decision (TASK-003).
+
+Status: superseded in part by “Catalog shadcn primitives in Storybook” (primitive stories). Vite + addons still apply.
+
+---
+
+## Decision: Catalog shadcn primitives in Storybook
+
+Date: 2026-09-16
+
+Context: TASK-003 originally shipped a theme smoke story only, matching the earlier “do not story uncustomized primitives” rule. Reviewers and later tickets still need to see Button, Table, Dialog, and the rest in one workshop.
+
+Problem: A smoke-only Storybook looks empty. A full controls matrix for every size/variant would duplicate shadcn docs and fight the three-day window.
+
+Options considered:
+
+1. Keep smoke-only; wait for feature widgets.
+2. Story every primitive permutation.
+3. Compact colocated catalog: representative variants, grouped under `Primitives/`.
+
+Decision: Option 3.
+
+- One story file next to each installed primitive (`components/ui/*.stories.tsx`).
+- Gallery or a single Default for interactive leaves (Select, Dialog, Dropdown, Tooltip). Not every size/state.
+- Feature widgets still own loading/empty/error stories. Do not restyle generated `components/ui` source for Storybook.
+
+Reason: The sidebar is the kit. Feature tickets stay about product states, not reinventing Button.
+
+Trade-offs: Catalog stories can drift if the CLI regenerates a primitive. Acceptable; we re-add the thin story, we do not fork the primitive.
+
+Origin: Engineering decision (TASK-003 amendment).
+
 Status: accepted
 
 ---
@@ -638,7 +698,7 @@ Status: accepted
 | TypeScript, ESLint, Tailwind | Required | TASK-001 | Company stack |
 | Vitest | Required | TASK-001 (config) / used TASK-004 | Domain tests |
 | shadcn/ui (`class-variance-authority`, `cn`, `lucide-react`, `radix-ui`, `shadcn`, `tw-animate-css`) | Required | TASK-002 | Primitive layer |
-| Storybook (+ Next integration) | Recommended | TASK-003 | Stateful UI review |
+| Storybook 10 (`@storybook/nextjs-vite`, addon-docs, addon-a11y, `vite`) | Recommended | TASK-003 | Stateful UI review |
 | `zod` | Recommended | TASK-004 | Unexpected data |
 | `@tanstack/react-query` | Recommended | TASK-011 | Interactive list server state |
 | `recharts` | Recommended | TASK-007 | Charts |

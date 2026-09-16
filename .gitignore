@@ -46,3 +46,5 @@ yarn-error.log*
 # Next.js may write these on first `next dev`; they are not part of TASK-001
 AGENTS.md
 CLAUDE.md
+
+*storybook.log

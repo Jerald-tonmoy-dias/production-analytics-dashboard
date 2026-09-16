@@ -306,6 +306,7 @@ Storybook is a **development and review tool**, not a second product.
 
 Write stories for:
 
+- shadcn primitives we installed (compact catalog under `Primitives/`)
 - reusable feature components
 - components with multiple visual states
 - accessibility-sensitive controls (filters, pagination, table)
@@ -314,7 +315,7 @@ Do not write stories for:
 
 - page-level route files
 - one-line wrappers
-- shadcn primitives we did not customize
+- every prop permutation of a primitive
 
 Required state matrix (minimum):
 

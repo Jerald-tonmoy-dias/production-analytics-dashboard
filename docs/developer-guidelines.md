@@ -141,8 +141,8 @@ Do not add tests that assert class names or copy that will churn.
 
 - Colocate `*.stories.tsx` with the component.
 - One story file per meaningful component.
-- Cover states, not every prop permutation.
-- Preview must include global CSS / shadcn theme so stories look like the app.
+- Cover states, not every prop permutation. Primitives: representative variants only (`Primitives/` in Storybook).
+- Preview must include global CSS / shadcn theme so stories look like the app. `.storybook/preview.tsx` already imports `app/globals.css` and wraps stories in `TooltipProvider`.
 
 ---
 
