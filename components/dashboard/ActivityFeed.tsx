@@ -39,7 +39,7 @@ export function ActivityFeed({
   const empty = state === "default" && activities.length === 0;
 
   return (
-    <Card>
+    <Card className="min-w-0">
       <CardHeader>
         <CardTitle>Activity</CardTitle>
         <CardDescription>Latest system events.</CardDescription>
@@ -76,7 +76,7 @@ export function ActivityFeed({
               const message = activity.orderId ? (
                 <Link
                   href={`/orders/${activity.orderId}`}
-                  className="text-sm underline-offset-4 hover:underline"
+                  className="rounded-sm text-sm underline-offset-4 outline-none hover:underline focus-visible:underline focus-visible:ring-3 focus-visible:ring-ring/50"
                 >
                   {activity.message}
                 </Link>

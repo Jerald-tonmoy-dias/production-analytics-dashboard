@@ -108,7 +108,7 @@ export function OrderDetails({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="min-w-0 space-y-4">
       <div className="grid gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader>
@@ -146,7 +146,9 @@ export function OrderDetails({
           <CardContent>
             <dl className="grid gap-4 sm:grid-cols-2">
               <DetailItem label="Name">{order.customer.name}</DetailItem>
-              <DetailItem label="Email">{order.customer.email}</DetailItem>
+              <DetailItem label="Email">
+                <span className="break-all">{order.customer.email}</span>
+              </DetailItem>
               <DetailItem label="Status">
                 <Badge variant="outline">
                   {customerStatusLabel(order.customer.status)}

@@ -124,14 +124,12 @@ Do not disable scrolling or trap focus except inside dialogs.
 
 - **Unit (Vitest):** `lib/domain` and `lib/schemas`. Conversion divide-by-zero, filter combinations, page bounds, invalid status.
 - **Storybook:** states listed in [system-design.md](./system-design.md#16-storybook-strategy).
-- **E2E (Playwright):** only if TASK-013 is pulled. Flows: dashboard load, filter, pagination, details, error.
 
 Run locally:
 
 ```bash
-npm test              # once scripts exist (TASK-001 / TASK-004)
-npm run storybook     # TASK-003+
-npx playwright test   # TASK-013 only
+npm test              # Vitest
+npm run storybook     # Storybook at http://localhost:6006
 ```
 
 Do not add tests that assert class names or copy that will churn.

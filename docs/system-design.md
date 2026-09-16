@@ -115,7 +115,6 @@ data/
   activities.json
 
 tests/                           # unit tests for lib/domain and lib/schemas
-e2e/                             # Playwright, added only if TASK-013 lands
 docs/                            # this documentation set
 .storybook/
 ```
@@ -296,7 +295,7 @@ shadcn primitives   →  shared states / layout  →  feature widgets  →  page
 - Feature widgets are presentational: props in, events out. They do not fetch.
 - Pages / thin client containers fetch or receive server data and pass DTOs down.
 
-Stories cover widget states (loading, empty, error, zero). Pages are tested with Playwright only for a few flows, if that ticket lands.
+Stories cover widget states (loading, empty, error, zero).
 
 ---
 
@@ -337,7 +336,6 @@ Optimize for meaningful coverage, not count.
 | --- | --- | --- |
 | Unit | Vitest | Zod schemas, KPI math, conversion (zero customers), filter/query builder, pagination bounds |
 | Visual / a11y states | Storybook | matrices above |
-| E2E | Playwright (TASK-013, should-have) | Dashboard load, orders filter, pagination, details, an API error path |
 
 Do not add Testing Library tests that duplicate Storybook states unless a behavior is easier to assert in code (e.g. debounce).
 

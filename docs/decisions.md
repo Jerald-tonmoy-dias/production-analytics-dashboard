@@ -159,9 +159,9 @@ Status: superseded in part by “Catalog shadcn primitives in Storybook”
 
 Date: 2026-09-16
 
-Context: TASK-003 needs Storybook on Next.js 16. Current Storybook (10.6) recommends `@storybook/nextjs-vite`. The CLI also offers Webpack, Chromatic, and a Vitest/Playwright “test” feature.
+Context: TASK-003 needs Storybook on Next.js 16. Current Storybook (10.6) recommends `@storybook/nextjs-vite`. The CLI also offers Webpack, Chromatic, and a Vitest “test” feature.
 
-Problem: A recommended install can pull Playwright browsers and example Button/Header stories we do not own.
+Problem: A recommended install can pull extra browsers and example Button/Header stories we do not own.
 
 Options considered:
 
@@ -172,7 +172,7 @@ Options considered:
 Decision: Option 2.
 
 - Framework: `@storybook/nextjs-vite`. Preview imports `app/globals.css`, sets `nextjs.appDirectory`, and wraps stories in `TooltipProvider` (same client leaf as the root layout).
-- Addons: docs and a11y. No Chromatic. No Storybook Vitest addon — domain tests stay in Vitest; E2E stays TASK-013.
+- Addons: docs and a11y. No Chromatic. No Storybook Vitest addon — domain tests stay in Vitest.
 - One smoke story (`.storybook/Smoke.stories.tsx`) proves theme wiring. Feature stories colocate with components in later tickets. Do not story uncustomized shadcn primitives.
 
 Reason: Matches Next 16, keeps the workshop useful for a11y states, and avoids a second test runner before we have widgets.
@@ -466,29 +466,28 @@ Status: accepted
 
 ---
 
-## Decision: Testing pyramid (Vitest + Storybook; Playwright if time)
+## Decision: Testing pyramid (Vitest + Storybook)
 
 Date: 2026-09-16
 
 Context: JD lists frontend testing. Task does not. Time is three days.
 
-Problem: Zero tests look weak; a huge E2E suite misses the deadline.
+Problem: Zero tests look weak; a large extra suite misses the deadline.
 
 Options considered:
 
 1. No tests.
 2. Unit + stories only.
-3. Unit + stories + small Playwright set.
 
-Decision: Unit tests are required for domain math (TASK-004). Stories are required for stateful UI. Playwright is **recommended** in TASK-013 and the first cut if the schedule slips.
+Decision: Unit tests are required for domain math (TASK-004). Stories are required for stateful UI.
 
-Reason: Domain bugs are cheap to catch in Vitest. Visual states are cheap in Storybook. E2E is high-value but costly.
+Reason: Domain bugs are cheap to catch in Vitest. Visual states are cheap in Storybook.
 
-Trade-offs: May ship without E2E.
+Trade-offs: No automated multi-page flows. Keyboard and viewport are checked by hand on UI tickets.
 
-Consequences: Do not block submission on Playwright.
+Consequences: The test layer is Vitest + Storybook.
 
-Origin: Engineering decision. JD preferred skill. Recommendation (Playwright).
+Origin: Engineering decision.
 
 Status: accepted
 
@@ -704,6 +703,5 @@ Status: accepted
 | `@tanstack/react-query` | Recommended | TASK-011 | Interactive list server state |
 | `recharts` | Recommended | TASK-007 | Charts |
 | `react-day-picker`, `date-fns` | Required | TASK-010 | shadcn Calendar for order date filters |
-| Playwright | Optional | TASK-013 | Critical-path E2E |
 | `nuqs` | Optional | only if URL encoding hurts | Not planned |
 | Zustand, Redux, axios, RHF, Framer Motion, next-auth, Prisma, Three.js, Docker | Avoid | never | No problem they uniquely solve here |

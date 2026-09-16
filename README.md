@@ -28,7 +28,7 @@ Loading skeletons, empty states, error states, and responsive layout are first-c
 | Server state (Orders list) | TanStack Query |
 | Charts | Recharts |
 | Component workshop | Storybook |
-| Tests | Vitest (domain); Playwright optional |
+| Tests | Vitest (domain); Storybook (UI states) |
 | Hosting | Vercel |
 
 Why these, and what we refuse to add: [decisions.md](./docs/decisions.md).
@@ -54,7 +54,7 @@ npm test             # Vitest
 npm run storybook    # Storybook at http://localhost:6006
 ```
 
-Domain tests land in TASK-004. Playwright, if added, is TASK-013.
+Domain tests land in TASK-004.
 
 ## Architecture overview
 

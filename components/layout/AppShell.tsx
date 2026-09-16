@@ -2,7 +2,7 @@ import { AppNav } from "@/components/layout/AppNav";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen overflow-x-hidden bg-background">
       <a
         href="#main-content"
         className="bg-background text-foreground sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-2 focus:rounded-md focus:px-3 focus:py-2 focus:ring-3 focus:ring-ring/50"
@@ -21,7 +21,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <main
           id="main-content"
           tabIndex={-1}
-          className="px-4 py-5 outline-none md:px-6 md:py-6"
+          className="min-w-0 max-w-full px-4 py-5 outline-none focus-visible:ring-3 focus-visible:ring-ring/50 md:px-6 md:py-6"
         >
           {children}
         </main>

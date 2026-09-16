@@ -71,10 +71,11 @@ function DateField({ id, label, value, onChange }: DateFieldProps) {
             {value ? formatIsoDate(value) : "Pick a date"}
           </Button>
         </PopoverTrigger>
-        <PopoverContent align="start" className="w-auto p-2">
+        <PopoverContent align="start" className="w-auto max-w-[calc(100vw-2rem)] p-2">
           <Calendar
             mode="single"
             selected={selected}
+            aria-label={`${label} calendar`}
             onSelect={(date) => {
               onChange(date ? localDateToIsoDate(date) : undefined);
               if (date) {
@@ -91,6 +92,7 @@ function DateField({ id, label, value, onChange }: DateFieldProps) {
 export function OrderFilters({ value, onChange }: OrderFiltersProps) {
   return (
     <form
+      aria-label="Order filters"
       className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4"
       onSubmit={(event) => event.preventDefault()}
     >

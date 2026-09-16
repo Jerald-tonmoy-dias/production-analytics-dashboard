@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/shared/PageHeader";
 
 export default function OrdersPage() {
   return (
-    <div className="space-y-6">
+    <div className="min-w-0 space-y-6">
       <PageHeader
         title="Orders"
         description="Search, filter, and inspect orders."

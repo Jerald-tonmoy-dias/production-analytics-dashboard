@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export default function OrderNotFound() {
   return (
-    <div className="space-y-6">
+    <div className="min-w-0 space-y-6">
       <PageHeader
         title="Order"
         description="This order could not be found."
