@@ -52,6 +52,47 @@ export function formatChartDay(isoDate: string): string {
 }
 
 /**
+ * Operator-facing UTC calendar date (`YYYY-MM-DD`).
+ *
+ * @param isoDate - `YYYY-MM-DD`.
+ * @returns e.g. `Sep 16, 2026`.
+ */
+export function formatIsoDate(isoDate: string): string {
+  const [year, month, day] = isoDate.split("-").map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(date);
+}
+
+/**
+ * Convert a `YYYY-MM-DD` calendar day to a local `Date` for date pickers.
+ *
+ * Uses local Y-M-D so the selected day does not shift across time zones.
+ *
+ * @param isoDate - `YYYY-MM-DD`.
+ */
+export function isoDateToLocalDate(isoDate: string): Date {
+  const [year, month, day] = isoDate.split("-").map(Number);
+  return new Date(year, month - 1, day);
+}
+
+/**
+ * Convert a local picker `Date` back to `YYYY-MM-DD`.
+ *
+ * @param date - Local calendar date from the picker.
+ */
+export function localDateToIsoDate(date: Date): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+/**
  * Format an ISO-8601 timestamp for operator tables and feeds (UTC).
  *
  * @param iso - Instant such as `2026-09-16T12:00:00.000Z`.

@@ -112,6 +112,7 @@ Options considered:
 Decision: Option 2.
 
 - Primitives added (set matches the ticket): Button, Card, Input, Select, Badge, Table, Dialog, Skeleton, Dropdown Menu, Tooltip, Separator, Label.
+- TASK-010 later added Calendar (`react-day-picker`) and Popover for order date filters. There is no standalone `date-picker` item in the Nova registry; the picker is Popover + Calendar.
 - `lib/utils.ts` is the shadcn `cn` re-export only — not a dumping-ground `utils` module. App code imports `cn` from `@/lib/utils`. Generated `components/ui` files may import `cn` directly; do not rewrite them.
 - Root layout wraps children in `TooltipProvider` so Tooltip works without a second provider in later tickets. The provider is a client leaf; RSC pages still pass through as `children`.
 - `--radius: 0.4rem` for a denser ops console than Nova’s `0.625rem` default.
@@ -702,6 +703,7 @@ Status: accepted
 | `zod` | Recommended | TASK-004 | Unexpected data |
 | `@tanstack/react-query` | Recommended | TASK-011 | Interactive list server state |
 | `recharts` | Recommended | TASK-007 | Charts |
+| `react-day-picker`, `date-fns` | Required | TASK-010 | shadcn Calendar for order date filters |
 | Playwright | Optional | TASK-013 | Critical-path E2E |
 | `nuqs` | Optional | only if URL encoding hurts | Not planned |
 | Zustand, Redux, axios, RHF, Framer Motion, next-auth, Prisma, Three.js, Docker | Avoid | never | No problem they uniquely solve here |

@@ -1,7 +1,16 @@
 "use client";
 
+import { useState } from "react";
+import { CalendarIcon } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -12,6 +21,12 @@ import {
 import { ORDER_STATUSES } from "@/lib/constants";
 import type { OrderStatus } from "@/lib/schemas/order";
 import { orderStatusLabel } from "@/components/orders/OrderStatusBadge";
+import {
+  formatIsoDate,
+  isoDateToLocalDate,
+  localDateToIsoDate,
+} from "@/lib/format";
+import { cn } from "@/lib/utils";
 
 const ALL_STATUSES = "all";
 
@@ -26,6 +41,52 @@ type OrderFiltersProps = {
   value: OrderFiltersValue;
   onChange: (value: OrderFiltersValue) => void;
 };
+
+type DateFieldProps = {
+  id: string;
+  label: string;
+  value?: string;
+  onChange: (next?: string) => void;
+};
+
+function DateField({ id, label, value, onChange }: DateFieldProps) {
+  const [open, setOpen] = useState(false);
+  const selected = value ? isoDateToLocalDate(value) : undefined;
+
+  return (
+    <div className="flex min-w-0 flex-col gap-1.5">
+      <Label htmlFor={id}>{label}</Label>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            id={id}
+            type="button"
+            variant="outline"
+            className={cn(
+              "w-full justify-start font-normal",
+              !value && "text-muted-foreground"
+            )}
+          >
+            <CalendarIcon data-icon="inline-start" />
+            {value ? formatIsoDate(value) : "Pick a date"}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent align="start" className="w-auto p-2">
+          <Calendar
+            mode="single"
+            selected={selected}
+            onSelect={(date) => {
+              onChange(date ? localDateToIsoDate(date) : undefined);
+              if (date) {
+                setOpen(false);
+              }
+            }}
+          />
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+}
 
 export function OrderFilters({ value, onChange }: OrderFiltersProps) {
   return (
@@ -71,34 +132,18 @@ export function OrderFilters({ value, onChange }: OrderFiltersProps) {
           </SelectContent>
         </Select>
       </div>
-      <div className="flex min-w-0 flex-col gap-1.5">
-        <Label htmlFor="order-from">From</Label>
-        <Input
-          id="order-from"
-          type="date"
-          value={value.from ?? ""}
-          onChange={(event) =>
-            onChange({
-              ...value,
-              from: event.target.value || undefined,
-            })
-          }
-        />
-      </div>
-      <div className="flex min-w-0 flex-col gap-1.5">
-        <Label htmlFor="order-to">To</Label>
-        <Input
-          id="order-to"
-          type="date"
-          value={value.to ?? ""}
-          onChange={(event) =>
-            onChange({
-              ...value,
-              to: event.target.value || undefined,
-            })
-          }
-        />
-      </div>
+      <DateField
+        id="order-from"
+        label="From"
+        value={value.from}
+        onChange={(from) => onChange({ ...value, from })}
+      />
+      <DateField
+        id="order-to"
+        label="To"
+        value={value.to}
+        onChange={(to) => onChange({ ...value, to })}
+      />
     </form>
   );
 }
