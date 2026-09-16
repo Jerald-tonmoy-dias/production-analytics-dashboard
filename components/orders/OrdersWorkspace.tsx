@@ -15,11 +15,13 @@ import {
 import { getOrders } from "@/lib/api/orders";
 import { DEFAULT_PAGE_SIZE } from "@/lib/constants";
 import {
+  clearedOrdersUrl,
   hasOrdersFilters,
   readOrdersUrl,
   writeOrdersSearch,
   type OrdersUrlState,
 } from "@/lib/orders-url";
+import { cn } from "@/lib/utils";
 
 const SEARCH_DEBOUNCE_MS = 300;
 
@@ -76,6 +78,11 @@ export function OrdersWorkspace() {
     router.push(href, { scroll: false });
   }
 
+  function clearFilters() {
+    setQDraft("");
+    pushState(clearedOrdersUrl());
+  }
+
   const listQuery = useQuery({
     queryKey: [
       "orders",
@@ -113,10 +120,13 @@ export function OrdersWorkspace() {
     tableState = hasOrdersFilters(urlState) ? "noResults" : "empty";
   }
 
+  const isRefreshing = listQuery.isFetching && listQuery.isPlaceholderData;
+
   return (
     <div className="min-w-0 space-y-4">
       <OrderFilters
         value={filters}
+        onClear={clearFilters}
         onChange={(next) => {
           setQDraft(next.q);
           if (
@@ -134,13 +144,19 @@ export function OrdersWorkspace() {
           }
         }}
       />
-      <OrdersTable
-        orders={listQuery.data?.data ?? []}
-        state={tableState}
-        onRetry={() => {
-          void listQuery.refetch();
-        }}
-      />
+      <div
+        aria-busy={isRefreshing || undefined}
+        className={cn(isRefreshing && "opacity-60")}
+      >
+        <OrdersTable
+          orders={listQuery.data?.data ?? []}
+          state={tableState}
+          onClearFilters={clearFilters}
+          onRetry={() => {
+            void listQuery.refetch();
+          }}
+        />
+      </div>
       {listQuery.data ? (
         <OrderPagination
           pagination={listQuery.data.pagination}

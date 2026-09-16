@@ -20,7 +20,13 @@ function FiltersPlayground({
   initial: OrderFiltersValue;
 }) {
   const [value, setValue] = useState(initial);
-  return <OrderFilters value={value} onChange={setValue} />;
+  return (
+    <OrderFilters
+      value={value}
+      onChange={setValue}
+      onClear={() => setValue({ q: "" })}
+    />
+  );
 }
 
 export const Default: Story = {

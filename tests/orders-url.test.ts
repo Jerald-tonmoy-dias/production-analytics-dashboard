@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  clearedOrdersUrl,
   hasOrdersFilters,
   readOrdersUrl,
   writeOrdersSearch,
@@ -48,5 +49,11 @@ describe("hasOrdersFilters", () => {
   it("is false when only q is blank", () => {
     expect(hasOrdersFilters({ q: "" })).toBe(false);
     expect(hasOrdersFilters({ q: "acme" })).toBe(true);
+  });
+});
+
+describe("clearedOrdersUrl", () => {
+  it("serializes to an empty query string", () => {
+    expect(writeOrdersSearch(clearedOrdersUrl())).toBe("");
   });
 });

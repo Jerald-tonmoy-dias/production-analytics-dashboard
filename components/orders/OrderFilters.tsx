@@ -26,6 +26,7 @@ import {
   isoDateToLocalDate,
   localDateToIsoDate,
 } from "@/lib/format";
+import { hasOrdersFilters } from "@/lib/orders-url";
 import { cn } from "@/lib/utils";
 
 const ALL_STATUSES = "all";
@@ -40,6 +41,7 @@ export type OrderFiltersValue = {
 type OrderFiltersProps = {
   value: OrderFiltersValue;
   onChange: (value: OrderFiltersValue) => void;
+  onClear?: () => void;
 };
 
 type DateFieldProps = {
@@ -83,13 +85,29 @@ function DateField({ id, label, value, onChange }: DateFieldProps) {
               }
             }}
           />
+          {value ? (
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              className="mt-1 w-full"
+              onClick={() => {
+                onChange(undefined);
+                setOpen(false);
+              }}
+            >
+              Clear
+            </Button>
+          ) : null}
         </PopoverContent>
       </Popover>
     </div>
   );
 }
 
-export function OrderFilters({ value, onChange }: OrderFiltersProps) {
+export function OrderFilters({ value, onChange, onClear }: OrderFiltersProps) {
+  const canClear = Boolean(onClear) && hasOrdersFilters(value);
+
   return (
     <form
       aria-label="Order filters"
@@ -146,6 +164,13 @@ export function OrderFilters({ value, onChange }: OrderFiltersProps) {
         value={value.to}
         onChange={(to) => onChange({ ...value, to })}
       />
+      {canClear ? (
+        <div className="flex items-end sm:col-span-2 xl:col-span-4">
+          <Button type="button" variant="ghost" size="sm" onClick={onClear}>
+            Clear filters
+          </Button>
+        </div>
+      ) : null}
     </form>
   );
 }

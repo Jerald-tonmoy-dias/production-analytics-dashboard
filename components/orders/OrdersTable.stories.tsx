@@ -87,7 +87,7 @@ export const Empty: Story = {
 };
 
 export const NoResults: Story = {
-  args: { orders: [], state: "noResults" },
+  args: { orders: [], state: "noResults", onClearFilters: () => {} },
 };
 
 export const Error: Story = {
