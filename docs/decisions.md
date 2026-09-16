@@ -845,6 +845,20 @@ Status: accepted
 
 ---
 
+## Decision: Motion scale and KPI icon conventions (UX-022)
+
+Date: 2026-09-16
+
+Context: The console was correct but flat. KPI cards were type-only. Hover timing was inconsistent. A second animation library would fight `tw-animate-css`.
+
+Decision: Duration tokens `--motion-instant` (0ms), `--motion-fast` (120ms), `--motion-default` (180ms) with one `--motion-ease`. Rest elevation stays the Card ring; hover is `--elevation-hover` plus `1px` lift on KPIs only (no scale). Skeletons shimmer via a `::after` sweep; dashboard root uses a 180ms fade/translate enter. `prefers-reduced-motion` zeroes the durations and disables those animations. KPI meaning uses lucide (`CircleDollarSign`, `ShoppingBag`, `Users`, `Percent`) in semantic containers (`chart-revenue`, `chart-orders`, `info`, `success`). No table/activity icons. Chart geometry stays `isAnimationActive={false}`; tooltip chrome uses the hover elevation token.
+
+Origin: Engineering decision (UX-022).
+
+Status: accepted
+
+---
+
 ## Dependency register (summary)
 
 | Package | Class | When installed | Why |

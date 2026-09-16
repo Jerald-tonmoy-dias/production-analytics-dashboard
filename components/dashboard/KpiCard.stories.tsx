@@ -16,6 +16,8 @@ export const Default: Story = {
     hint: "Completed orders, all time",
     value: 321752,
     format: "currency",
+    tone: "revenue",
+    className: "border-chart-revenue/40",
   },
 };
 
@@ -24,6 +26,7 @@ export const Loading: Story = {
     label: "Total revenue",
     format: "currency",
     state: "loading",
+    tone: "revenue",
   },
 };
 
@@ -33,6 +36,7 @@ export const ZeroValue: Story = {
     hint: "Customers with a completed order",
     value: 0,
     format: "percent",
+    tone: "conversion",
   },
 };
 
@@ -41,6 +45,7 @@ export const Error: Story = {
     label: "Active customers",
     format: "number",
     state: "error",
+    tone: "customers",
   },
 };
 
@@ -49,6 +54,7 @@ export const TwoByTwo: Story = {
     label: "Total revenue",
     format: "currency",
     value: 321752,
+    tone: "revenue",
   },
   render: () => (
     <div className="grid max-w-[390px] grid-cols-2 gap-3">
@@ -57,6 +63,7 @@ export const TwoByTwo: Story = {
         hint="Completed orders, all time"
         value={321752}
         format="currency"
+        tone="revenue"
         className="border-chart-revenue/40"
       />
       <KpiCard
@@ -64,18 +71,21 @@ export const TwoByTwo: Story = {
         hint="All orders, all time"
         value={120}
         format="number"
+        tone="orders"
       />
       <KpiCard
         label="Active customers"
         hint="Customers with status active"
         value={32}
         format="number"
+        tone="customers"
       />
       <KpiCard
         label="Conversion rate"
         hint="Customers with a completed order"
         value={0.8}
         format="percent"
+        tone="conversion"
       />
     </div>
   ),

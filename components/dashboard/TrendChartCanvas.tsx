@@ -56,6 +56,7 @@ export function TrendChartCanvas({ series, format }: TrendChartCanvasProps) {
           tickMargin={4}
         />
         <Tooltip
+          isAnimationActive={false}
           formatter={(value) => [
             tooltipValue(Number(value), format),
             format === "currency" ? "Revenue" : "Orders",
@@ -65,6 +66,7 @@ export function TrendChartCanvas({ series, format }: TrendChartCanvasProps) {
             background: "var(--popover)",
             border: "1px solid var(--border)",
             borderRadius: "var(--radius)",
+            boxShadow: "var(--elevation-hover)",
             color: "var(--popover-foreground)",
             fontSize: 12,
           }}
