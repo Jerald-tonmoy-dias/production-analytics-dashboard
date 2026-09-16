@@ -3,8 +3,11 @@ import {
   formatChartDay,
   formatDateTime,
   formatInteger,
+  formatIsoDate,
   formatPercent,
   formatUsd,
+  isoDateToLocalDate,
+  localDateToIsoDate,
 } from "@/lib/format";
 
 describe("formatUsd", () => {
@@ -34,6 +37,20 @@ describe("formatPercent", () => {
 describe("formatChartDay", () => {
   it("labels a UTC calendar date without shifting the day", () => {
     expect(formatChartDay("2026-08-18")).toBe("Aug 18");
+  });
+});
+
+describe("formatIsoDate", () => {
+  it("labels a UTC calendar date with year", () => {
+    expect(formatIsoDate("2026-09-16")).toBe("Sep 16, 2026");
+  });
+});
+
+describe("isoDateToLocalDate / localDateToIsoDate", () => {
+  it("round-trips a calendar day without shifting", () => {
+    expect(localDateToIsoDate(isoDateToLocalDate("2026-09-16"))).toBe(
+      "2026-09-16"
+    );
   });
 });
 

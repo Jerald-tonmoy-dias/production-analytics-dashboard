@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { ErrorState } from "@/components/shared/ErrorState";
-import { Badge } from "@/components/ui/badge";
+import { OrderStatusBadge } from "@/components/orders/OrderStatusBadge";
 import {
   Card,
   CardContent,
@@ -19,7 +19,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { formatDateTime, formatUsd } from "@/lib/format";
-import type { OrderListItem, OrderStatus } from "@/lib/schemas/order";
+import type { OrderListItem } from "@/lib/schemas/order";
 
 type DashboardListState = "default" | "loading" | "error";
 
@@ -27,20 +27,6 @@ type RecentOrdersProps = {
   orders: OrderListItem[];
   state?: DashboardListState;
 };
-
-const STATUS_VARIANT: Record<
-  OrderStatus,
-  "default" | "secondary" | "outline"
-> = {
-  pending: "outline",
-  processing: "secondary",
-  completed: "default",
-  cancelled: "outline",
-};
-
-function statusLabel(status: OrderStatus): string {
-  return status.charAt(0).toUpperCase() + status.slice(1);
-}
 
 function RecentOrdersSkeleton() {
   return (
@@ -113,16 +99,7 @@ export function RecentOrders({
                     {formatUsd(order.amount)}
                   </TableCell>
                   <TableCell>
-                    <Badge
-                      variant={STATUS_VARIANT[order.status]}
-                      className={
-                        order.status === "cancelled"
-                          ? "text-destructive"
-                          : undefined
-                      }
-                    >
-                      {statusLabel(order.status)}
-                    </Badge>
+                    <OrderStatusBadge status={order.status} />
                   </TableCell>
                   <TableCell className="text-muted-foreground">
                     {formatDateTime(order.createdAt)}
