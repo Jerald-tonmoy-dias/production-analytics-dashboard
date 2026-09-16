@@ -38,6 +38,7 @@ function OrdersTableSkeleton() {
           <TableHead>Amount</TableHead>
           <TableHead>Status</TableHead>
           <TableHead>Created</TableHead>
+          <TableHead className="text-right">Action</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -57,6 +58,9 @@ function OrdersTableSkeleton() {
             </TableCell>
             <TableCell>
               <Skeleton className="h-4 w-32" />
+            </TableCell>
+            <TableCell className="text-right">
+              <Skeleton className="ml-auto h-7 w-12" />
             </TableCell>
           </TableRow>
         ))}
@@ -120,6 +124,7 @@ export function OrdersTable({
           <TableHead>Amount</TableHead>
           <TableHead>Status</TableHead>
           <TableHead>Created</TableHead>
+          <TableHead className="text-right">Action</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -147,6 +152,13 @@ export function OrdersTable({
             </TableCell>
             <TableCell className="text-muted-foreground">
               {formatDateTime(order.createdAt)}
+            </TableCell>
+            <TableCell className="text-right">
+              <Button asChild variant="outline" size="sm">
+                <Link href={`/orders/${order.id}`} aria-label={`View ${order.id}`}>
+                  View
+                </Link>
+              </Button>
             </TableCell>
           </TableRow>
         ))}
