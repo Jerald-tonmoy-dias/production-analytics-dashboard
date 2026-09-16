@@ -290,9 +290,9 @@ shadcn primitives   →  shared states / layout  →  feature widgets  →  page
 ```
 
 - **Do not** wrap every shadcn primitive in a second identity-less wrapper.
-- **Do** build `OrderStatusBadge` (maps domain status → semantic tokens + label) and `KpiCard` (KPI semantics on top of Card).
+- **Do** build `OrderStatusBadge` (maps domain status → semantic tokens + label) and `KpiCard` (KPI semantics on top of Card, including lucide `tone` icons).
 
-Status and chart hues live in `app/globals.css` (`--success`, `--warning`, `--info`, `--destructive`, `--chart-revenue`, `--chart-orders`). Do not hardcode hex in feature widgets.
+Status and chart hues live in `app/globals.css` (`--success`, `--warning`, `--info`, `--destructive`, `--chart-revenue`, `--chart-orders`). Motion durations and elevation live there too (`--motion-fast`, `--motion-default`, `--elevation-hover`). Do not hardcode hex in feature widgets.
 - Feature widgets are presentational: props in, events out. They do not fetch.
 - Pages / thin client containers fetch or receive server data and pass DTOs down.
 
@@ -364,6 +364,7 @@ No invented LCP budget. The spec grades **architectural** performance.
 - Status is not color-only (`OrderStatusBadge` includes text).
 - Charts have a text summary or table alternative for the same series (minimum: aria label + KPI totals already on the page).
 - Focus visible; do not `outline-none` without a replacement.
+- UX-022 motion (shimmer, dashboard enter, duration tokens) respects `prefers-reduced-motion`. UX-021 audits the rest.
 
 ---
 

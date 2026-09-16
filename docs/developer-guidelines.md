@@ -100,7 +100,9 @@ If a file mixes fetching, filtering, and markup, split it. If a file is a 15-lin
 
 - Tailwind utility classes. Use `cn()` from `@/lib/utils` for conditional classes.
 - Tokens come from the shadcn theme (CSS variables). Semantic hues: `success`, `warning`, `info`, `destructive`; chart series: `chart-revenue`, `chart-orders`. Do not scatter raw hex in feature files.
-- Responsive: mobile-first. KPIs stack. Tables keep a min-width (`min-w-[40rem]` on `Table`) and scroll horizontally; they do not reflow into a card list.
+- Motion: `duration-[var(--motion-fast)]` (120ms, hover color/border/rows) and `duration-[var(--motion-default)]` (180ms, card lift, buttons). Easing is `ease-standard`. Charts stay `isAnimationActive={false}`. Search typing and URL list replace stay instant. `prefers-reduced-motion` zeroes those durations and disables skeleton shimmer / dashboard enter.
+- Icons: lucide only. KPIs use `size-4` in a `size-8` rounded container (`KpiCard` `tone`). Nav stays `size-4`. Do **not** icon table cells, status badges, or activity rows.
+- Responsive: mobile-first. KPI grids are `grid-cols-2` from `xs`, `xl:grid-cols-4`. Tables keep a min-width (`min-w-[40rem]` on `Table`) and scroll horizontally; they do not reflow into a card list.
 - Density: this is an ops console. Prefer compact tables over large marketing cards.
 
 ---

@@ -22,7 +22,7 @@ export default async function DashboardPage() {
   const chartHint = `Last ${CHART_WINDOW_DAYS} UTC days`;
 
   return (
-    <div className="min-w-0 space-y-6">
+    <div className="motion-enter min-w-0 space-y-6">
       <PageHeader
         title="Dashboard"
         description="Revenue, orders, customers, and recent activity."
@@ -36,6 +36,7 @@ export default async function DashboardPage() {
           hint="Completed orders, all time"
           value={kpis.totalRevenue}
           format="currency"
+          tone="revenue"
           className="border-chart-revenue/40"
         />
         <KpiCard
@@ -43,18 +44,21 @@ export default async function DashboardPage() {
           hint="All orders, all time"
           value={kpis.orderCount}
           format="number"
+          tone="orders"
         />
         <KpiCard
           label="Active customers"
           hint="Customers with status active"
           value={kpis.activeCustomers}
           format="number"
+          tone="customers"
         />
         <KpiCard
           label="Conversion rate"
           hint="Customers with a completed order"
           value={kpis.conversionRate}
           format="percent"
+          tone="conversion"
         />
       </section>
       <section aria-label="Trends" className="grid gap-4 lg:grid-cols-2">

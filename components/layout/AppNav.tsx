@@ -33,7 +33,7 @@ export function AppNav() {
                 href={item.href}
                 aria-current={current ? "page" : undefined}
                 className={cn(
-                  "flex items-center gap-2 rounded-md border border-transparent px-2.5 py-1.5 text-sm font-medium outline-none transition-colors",
+                  "flex items-center gap-2 rounded-md border border-transparent px-2.5 py-1.5 text-sm font-medium outline-none transition-colors duration-[var(--motion-fast)] ease-standard",
                   "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
                   current
                     ? "bg-sidebar-accent text-sidebar-accent-foreground"

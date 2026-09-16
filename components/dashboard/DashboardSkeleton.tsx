@@ -38,11 +38,27 @@ export function DashboardSkeleton() {
           label="Total revenue"
           format="currency"
           state="loading"
+          tone="revenue"
           className="border-chart-revenue/40"
         />
-        <KpiCard label="Orders" format="number" state="loading" />
-        <KpiCard label="Active customers" format="number" state="loading" />
-        <KpiCard label="Conversion rate" format="percent" state="loading" />
+        <KpiCard
+          label="Orders"
+          format="number"
+          state="loading"
+          tone="orders"
+        />
+        <KpiCard
+          label="Active customers"
+          format="number"
+          state="loading"
+          tone="customers"
+        />
+        <KpiCard
+          label="Conversion rate"
+          format="percent"
+          state="loading"
+          tone="conversion"
+        />
       </section>
       <section aria-label="Trends" className="grid gap-4 lg:grid-cols-2">
         <ChartSkeleton title="Revenue" />
