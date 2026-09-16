@@ -164,7 +164,7 @@ Practical split:
 | Orders filters, table interactions | Client | URL updates, Query |
 | Order details | Server | One in-process load by id |
 
-The Query provider is mounted on the **orders segment layout**, not the root layout, so the Dashboard does not pay for a client provider it does not use. `ThemeProvider` (`next-themes`, class strategy) is a leaf around `{children}` in the root layout so `.dark` is available everywhere without marking that layout `"use client"`.
+The Query provider is mounted on the **orders segment layout**, not the root layout, so the Dashboard does not pay for a client provider it does not use. `ThemeProvider` (`next-themes`, class strategy, `defaultTheme="dark"`) is a leaf around `{children}` in the root layout so `.dark` is available everywhere without marking that layout `"use client"`.
 
 ---
 

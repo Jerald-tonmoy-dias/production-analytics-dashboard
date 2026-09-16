@@ -68,7 +68,7 @@ UI components receive DTOs. They do not fetch JSON or compute KPIs.
 
 ## Theme
 
-Light, Dark, and System. `next-themes` sets a `.dark` class on `<html>` (`attribute="class"`, `defaultTheme="system"`). Tokens stay in `app/globals.css` (`:root` / `.dark`); there is no parallel hex theme. The shell menu persists the choice in `localStorage` (`theme`). Storybook has a Light / Dark toolbar on the same tokens.
+Light, Dark, and System. Default is **dark** (including first paint: `class="dark"` on `<html>`). `next-themes` then keeps `.dark` in sync (`attribute="class"`, `defaultTheme="dark"`). Tokens stay in `app/globals.css` (`:root` / `.dark`); there is no parallel hex theme. The shell menu persists the choice in `localStorage` (`theme`). Storybook has a Light / Dark toolbar on the same tokens (starts in dark).
 
 Target tree: [system design — folder structure](./docs/system-design.md#4-folder--module-structure).
 
