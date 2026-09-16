@@ -1,14 +1,14 @@
 import { PageHeader } from "@/components/shared/PageHeader";
 
-export default function DashboardPage() {
+export default function OrdersPage() {
   return (
     <div className="space-y-6">
       <PageHeader
-        title="Dashboard"
-        description="Revenue, orders, customers, and recent activity."
+        title="Orders"
+        description="Search, filter, and inspect orders."
       />
       <p className="text-muted-foreground text-sm">
-        Analytics widgets will be composed here.
+        The orders table will be composed here.
       </p>
     </div>
   );

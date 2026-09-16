@@ -42,7 +42,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). You should see the dashboard placeholder.
+Open [http://localhost:3000](http://localhost:3000). You should see the operator shell (Dashboard / Orders nav) with a dashboard placeholder.
 
 ## Commands
 
