@@ -72,3 +72,30 @@ export const AllZero: Story = {
     format: "currency",
   },
 };
+
+export const Pair: Story = {
+  args: {
+    title: "Revenue",
+    series: SAMPLE_REVENUE,
+    format: "currency",
+  },
+  render: () => (
+    <div className="grid gap-4 lg:grid-cols-2">
+      <TrendChart
+        title="Revenue"
+        description="Completed order amount, last 30 days"
+        series={SAMPLE_REVENUE}
+        format="currency"
+      />
+      <TrendChart
+        title="Orders"
+        description="Orders created, last 30 days"
+        series={SAMPLE_REVENUE.map((point) => ({
+          ...point,
+          value: Math.round(point.value / 800),
+        }))}
+        format="number"
+      />
+    </div>
+  ),
+};

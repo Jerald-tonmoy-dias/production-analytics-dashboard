@@ -32,9 +32,14 @@ export function DashboardSkeleton() {
       <PageHeaderSkeleton />
       <section
         aria-label="Key metrics"
-        className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4"
+        className="grid grid-cols-2 gap-3 xl:grid-cols-4"
       >
-        <KpiCard label="Total revenue" format="currency" state="loading" />
+        <KpiCard
+          label="Total revenue"
+          format="currency"
+          state="loading"
+          className="border-chart-revenue/40"
+        />
         <KpiCard label="Orders" format="number" state="loading" />
         <KpiCard label="Active customers" format="number" state="loading" />
         <KpiCard label="Conversion rate" format="percent" state="loading" />

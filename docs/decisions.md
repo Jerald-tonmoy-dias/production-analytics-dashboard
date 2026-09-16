@@ -831,6 +831,20 @@ Status: accepted
 
 ---
 
+## Decision: Dashboard 2×2 from the smallest phone (UX-019)
+
+Date: 2026-09-16
+
+Context: `sm:grid-cols-2` stacked KPIs on phones under 640px. Chart Y-axis ticks sat too close to the plot.
+
+Decision: KPI grids use `grid-cols-2 xl:grid-cols-4` from `xs`. Revenue uses `border-chart-revenue/40` (UX-015 token), not a new emphasis API. Y-axis width `60` with a small left/bottom margin; tooltip text uses `--popover-foreground`.
+
+Origin: Engineering decision (UX-019).
+
+Status: accepted
+
+---
+
 ## Dependency register (summary)
 
 | Package | Class | When installed | Why |

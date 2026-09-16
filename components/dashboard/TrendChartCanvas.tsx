@@ -36,7 +36,7 @@ export function TrendChartCanvas({ series, format }: TrendChartCanvasProps) {
     <ResponsiveContainer width="100%" height="100%">
       <AreaChart
         data={series}
-        margin={{ top: 8, right: 8, left: 0, bottom: 0 }}
+        margin={{ top: 8, right: 12, left: 4, bottom: 4 }}
       >
         <CartesianGrid stroke="var(--border)" vertical={false} />
         <XAxis
@@ -52,7 +52,8 @@ export function TrendChartCanvas({ series, format }: TrendChartCanvasProps) {
           tick={{ fontSize: 11, fill: "var(--muted-foreground)" }}
           tickLine={false}
           axisLine={false}
-          width={52}
+          width={60}
+          tickMargin={4}
         />
         <Tooltip
           formatter={(value) => [
@@ -64,8 +65,11 @@ export function TrendChartCanvas({ series, format }: TrendChartCanvasProps) {
             background: "var(--popover)",
             border: "1px solid var(--border)",
             borderRadius: "var(--radius)",
+            color: "var(--popover-foreground)",
             fontSize: 12,
           }}
+          labelStyle={{ color: "var(--muted-foreground)" }}
+          itemStyle={{ color: "var(--foreground)" }}
         />
         <Area
           type="monotone"

@@ -29,13 +29,14 @@ export default async function DashboardPage() {
       />
       <section
         aria-label="Key metrics"
-        className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4"
+        className="grid grid-cols-2 gap-3 xl:grid-cols-4"
       >
         <KpiCard
           label="Total revenue"
           hint="Completed orders, all time"
           value={kpis.totalRevenue}
           format="currency"
+          className="border-chart-revenue/40"
         />
         <KpiCard
           label="Orders"
