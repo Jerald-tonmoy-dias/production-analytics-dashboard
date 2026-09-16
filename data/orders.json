@@ -1,0 +1,2732 @@
+[
+  {
+    "id": "ord_1001",
+    "customerId": "cus_01",
+    "amount": 9688.5,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-09-04T10:15:00.000Z",
+    "updatedAt": "2026-09-04T10:15:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1002",
+    "customerId": "cus_02",
+    "amount": 9600,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-09-04T11:15:00.000Z",
+    "updatedAt": "2026-09-04T13:15:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1003",
+    "customerId": "cus_03",
+    "amount": 14467,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-09-04T12:15:00.000Z",
+    "updatedAt": "2026-09-04T14:15:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 1,
+        "unitPrice": 49
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 1,
+        "unitPrice": 18
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 3,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1004",
+    "customerId": "cus_01",
+    "amount": 6290,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-22T15:26:00.000Z",
+    "updatedAt": "2026-08-22T17:26:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1005",
+    "customerId": "cus_02",
+    "amount": 4888.5,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-10T08:18:00.000Z",
+    "updatedAt": "2026-08-10T10:18:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1006",
+    "customerId": "cus_03",
+    "amount": 19200,
+    "currency": "USD",
+    "status": "processing",
+    "createdAt": "2026-08-04T17:26:00.000Z",
+    "updatedAt": "2026-08-04T19:26:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 3,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1007",
+    "customerId": "cus_04",
+    "amount": 4947.5,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-08-11T16:55:00.000Z",
+    "updatedAt": "2026-08-11T16:55:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 2,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1008",
+    "customerId": "cus_05",
+    "amount": 7927,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-08-19T18:33:00.000Z",
+    "updatedAt": "2026-08-19T20:33:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 3,
+        "unitPrice": 49
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1009",
+    "customerId": "cus_06",
+    "amount": 6048.5,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-09-14T09:52:00.000Z",
+    "updatedAt": "2026-09-14T09:52:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1010",
+    "customerId": "cus_09",
+    "amount": 49,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-07T12:28:00.000Z",
+    "updatedAt": "2026-08-07T14:28:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 1,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1011",
+    "customerId": "cus_10",
+    "amount": 29.5,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-05T10:17:00.000Z",
+    "updatedAt": "2026-08-05T12:17:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 1,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1012",
+    "customerId": "cus_11",
+    "amount": 9288,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-01T17:47:00.000Z",
+    "updatedAt": "2026-09-01T19:47:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 1,
+        "unitPrice": 18
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 3,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1013",
+    "customerId": "cus_12",
+    "amount": 14400,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-31T09:26:00.000Z",
+    "updatedAt": "2026-08-31T11:26:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 3,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1014",
+    "customerId": "cus_13",
+    "amount": 54,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-18T08:05:00.000Z",
+    "updatedAt": "2026-08-18T10:05:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 3,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1015",
+    "customerId": "cus_14",
+    "amount": 265,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-06T17:05:00.000Z",
+    "updatedAt": "2026-09-06T19:05:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 2,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 3,
+        "unitPrice": 49
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 2,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1016",
+    "customerId": "cus_15",
+    "amount": 103,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-09-17T13:19:00.000Z",
+    "updatedAt": "2026-09-17T15:19:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 3,
+        "unitPrice": 18
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 1,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1017",
+    "customerId": "cus_16",
+    "amount": 2980,
+    "currency": "USD",
+    "status": "processing",
+    "createdAt": "2026-08-31T08:07:00.000Z",
+    "updatedAt": "2026-08-31T10:07:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1018",
+    "customerId": "cus_17",
+    "amount": 9636,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-23T11:51:00.000Z",
+    "updatedAt": "2026-08-23T13:51:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1019",
+    "customerId": "cus_18",
+    "amount": 88.5,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-05T16:02:00.000Z",
+    "updatedAt": "2026-09-05T18:02:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1020",
+    "customerId": "cus_19",
+    "amount": 59,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-22T16:35:00.000Z",
+    "updatedAt": "2026-08-22T18:35:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 2,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1021",
+    "customerId": "cus_20",
+    "amount": 98,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-31T12:04:00.000Z",
+    "updatedAt": "2026-08-31T14:04:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 2,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1022",
+    "customerId": "cus_21",
+    "amount": 15560,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-12T09:01:00.000Z",
+    "updatedAt": "2026-08-12T11:01:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 3,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1023",
+    "customerId": "cus_22",
+    "amount": 3009.5,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-09-02T11:12:00.000Z",
+    "updatedAt": "2026-09-02T13:12:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 1,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1024",
+    "customerId": "cus_23",
+    "amount": 4470,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-08-21T13:40:00.000Z",
+    "updatedAt": "2026-08-21T13:40:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 3,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1025",
+    "customerId": "cus_24",
+    "amount": 14565,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-03T12:23:00.000Z",
+    "updatedAt": "2026-08-03T14:23:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 1,
+        "unitPrice": 18
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 3,
+        "unitPrice": 49
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 3,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1026",
+    "customerId": "cus_25",
+    "amount": 59,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-19T09:51:00.000Z",
+    "updatedAt": "2026-08-19T11:51:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 2,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1027",
+    "customerId": "cus_26",
+    "amount": 23670,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-04T11:51:00.000Z",
+    "updatedAt": "2026-08-04T13:51:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 3,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 3,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1028",
+    "customerId": "cus_27",
+    "amount": 88.5,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-08-16T17:56:00.000Z",
+    "updatedAt": "2026-08-16T19:56:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1029",
+    "customerId": "cus_28",
+    "amount": 3029,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-13T09:58:00.000Z",
+    "updatedAt": "2026-09-13T11:58:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 1,
+        "unitPrice": 49
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1030",
+    "customerId": "cus_29",
+    "amount": 142.5,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-09-12T09:31:00.000Z",
+    "updatedAt": "2026-09-12T11:31:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 3,
+        "unitPrice": 18
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1031",
+    "customerId": "cus_30",
+    "amount": 4470,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-16T18:49:00.000Z",
+    "updatedAt": "2026-09-16T20:49:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 3,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1032",
+    "customerId": "cus_31",
+    "amount": 2998,
+    "currency": "USD",
+    "status": "processing",
+    "createdAt": "2026-09-15T09:02:00.000Z",
+    "updatedAt": "2026-09-15T11:02:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 1,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1033",
+    "customerId": "cus_32",
+    "amount": 5978,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-19T16:34:00.000Z",
+    "updatedAt": "2026-08-19T18:34:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 1,
+        "unitPrice": 18
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 3,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1034",
+    "customerId": "cus_33",
+    "amount": 12629,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-15T17:50:00.000Z",
+    "updatedAt": "2026-09-15T19:50:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 1,
+        "unitPrice": 49
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1035",
+    "customerId": "cus_34",
+    "amount": 4547,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-22T10:58:00.000Z",
+    "updatedAt": "2026-08-22T12:58:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 2,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 3,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 1,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1036",
+    "customerId": "cus_35",
+    "amount": 11178.5,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-09-17T14:59:00.000Z",
+    "updatedAt": "2026-09-17T16:59:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1037",
+    "customerId": "cus_01",
+    "amount": 36,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-30T11:14:00.000Z",
+    "updatedAt": "2026-08-30T13:14:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1038",
+    "customerId": "cus_02",
+    "amount": 29.5,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-08-17T09:20:00.000Z",
+    "updatedAt": "2026-08-17T11:20:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 1,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1039",
+    "customerId": "cus_03",
+    "amount": 1539,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-03T08:19:00.000Z",
+    "updatedAt": "2026-08-03T10:19:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 1,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1040",
+    "customerId": "cus_04",
+    "amount": 36,
+    "currency": "USD",
+    "status": "processing",
+    "createdAt": "2026-09-18T14:35:00.000Z",
+    "updatedAt": "2026-09-18T16:35:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1041",
+    "customerId": "cus_05",
+    "amount": 1490,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-02T10:28:00.000Z",
+    "updatedAt": "2026-09-02T12:28:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1042",
+    "customerId": "cus_06",
+    "amount": 3127,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-12T10:43:00.000Z",
+    "updatedAt": "2026-08-12T12:43:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 2,
+        "unitPrice": 49
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 1,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1043",
+    "customerId": "cus_09",
+    "amount": 36,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-08-14T10:24:00.000Z",
+    "updatedAt": "2026-08-14T10:24:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1044",
+    "customerId": "cus_10",
+    "amount": 4800,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-09-16T16:43:00.000Z",
+    "updatedAt": "2026-09-16T18:43:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1045",
+    "customerId": "cus_11",
+    "amount": 4854,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-21T15:59:00.000Z",
+    "updatedAt": "2026-08-21T17:59:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 3,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1046",
+    "customerId": "cus_12",
+    "amount": 1519.5,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-08-22T10:49:00.000Z",
+    "updatedAt": "2026-08-22T10:49:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 1,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1047",
+    "customerId": "cus_13",
+    "amount": 147,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-09-18T14:55:00.000Z",
+    "updatedAt": "2026-09-18T16:55:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 3,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1048",
+    "customerId": "cus_14",
+    "amount": 14400,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-09T12:14:00.000Z",
+    "updatedAt": "2026-09-09T14:14:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1049",
+    "customerId": "cus_15",
+    "amount": 3274,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-27T14:01:00.000Z",
+    "updatedAt": "2026-08-27T16:01:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 3,
+        "unitPrice": 49
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 3,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1050",
+    "customerId": "cus_16",
+    "amount": 213,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-01T14:40:00.000Z",
+    "updatedAt": "2026-09-01T16:40:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1051",
+    "customerId": "cus_17",
+    "amount": 36,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-08-20T16:56:00.000Z",
+    "updatedAt": "2026-08-20T16:56:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1052",
+    "customerId": "cus_18",
+    "amount": 9703,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-16T14:12:00.000Z",
+    "updatedAt": "2026-09-16T16:12:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 1,
+        "unitPrice": 49
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 3,
+        "unitPrice": 18
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1053",
+    "customerId": "cus_19",
+    "amount": 88.5,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-06T11:24:00.000Z",
+    "updatedAt": "2026-09-06T13:24:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1054",
+    "customerId": "cus_20",
+    "amount": 54,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-08-19T16:28:00.000Z",
+    "updatedAt": "2026-08-19T16:28:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 3,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1055",
+    "customerId": "cus_21",
+    "amount": 118,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-08-17T16:24:00.000Z",
+    "updatedAt": "2026-08-17T16:24:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 1,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1056",
+    "customerId": "cus_22",
+    "amount": 98,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-08-26T08:04:00.000Z",
+    "updatedAt": "2026-08-26T10:04:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 2,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1057",
+    "customerId": "cus_23",
+    "amount": 4934,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-07T19:53:00.000Z",
+    "updatedAt": "2026-09-07T21:53:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 2,
+        "unitPrice": 49
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1058",
+    "customerId": "cus_24",
+    "amount": 14070,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-11T19:28:00.000Z",
+    "updatedAt": "2026-08-11T21:28:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 3,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1059",
+    "customerId": "cus_25",
+    "amount": 9786.5,
+    "currency": "USD",
+    "status": "processing",
+    "createdAt": "2026-08-13T08:53:00.000Z",
+    "updatedAt": "2026-08-13T10:53:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 2,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1060",
+    "customerId": "cus_26",
+    "amount": 1691,
+    "currency": "USD",
+    "status": "processing",
+    "createdAt": "2026-08-27T18:33:00.000Z",
+    "updatedAt": "2026-08-27T20:33:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 3,
+        "unitPrice": 18
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 3,
+        "unitPrice": 49
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1061",
+    "customerId": "cus_27",
+    "amount": 18870,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-09-02T16:28:00.000Z",
+    "updatedAt": "2026-09-02T18:28:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 3,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1062",
+    "customerId": "cus_28",
+    "amount": 14488.5,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-02T10:01:00.000Z",
+    "updatedAt": "2026-09-02T12:01:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 3,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1063",
+    "customerId": "cus_29",
+    "amount": 14498,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-30T14:22:00.000Z",
+    "updatedAt": "2026-08-30T16:22:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 3,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 2,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1064",
+    "customerId": "cus_30",
+    "amount": 9600,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-28T16:31:00.000Z",
+    "updatedAt": "2026-08-28T18:31:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1065",
+    "customerId": "cus_31",
+    "amount": 83.5,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-13T16:48:00.000Z",
+    "updatedAt": "2026-08-13T18:48:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 3,
+        "unitPrice": 18
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 1,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1066",
+    "customerId": "cus_32",
+    "amount": 9747.5,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-26T10:25:00.000Z",
+    "updatedAt": "2026-08-26T12:25:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 2,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1067",
+    "customerId": "cus_33",
+    "amount": 49,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-08-28T10:29:00.000Z",
+    "updatedAt": "2026-08-28T12:29:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 1,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1068",
+    "customerId": "cus_34",
+    "amount": 245.5,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-08-28T12:21:00.000Z",
+    "updatedAt": "2026-08-28T12:21:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 2,
+        "unitPrice": 49
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 2,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1069",
+    "customerId": "cus_35",
+    "amount": 9688.5,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-08-31T16:01:00.000Z",
+    "updatedAt": "2026-08-31T18:01:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1070",
+    "customerId": "cus_01",
+    "amount": 4829.5,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-09-05T11:37:00.000Z",
+    "updatedAt": "2026-09-05T11:37:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 1,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1071",
+    "customerId": "cus_02",
+    "amount": 15890,
+    "currency": "USD",
+    "status": "processing",
+    "createdAt": "2026-08-10T18:12:00.000Z",
+    "updatedAt": "2026-08-10T20:12:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 3,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1072",
+    "customerId": "cus_03",
+    "amount": 4470,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-07T16:37:00.000Z",
+    "updatedAt": "2026-08-07T18:37:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 3,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1073",
+    "customerId": "cus_04",
+    "amount": 4604,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-03T12:56:00.000Z",
+    "updatedAt": "2026-08-03T14:56:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 2,
+        "unitPrice": 49
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 3,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1074",
+    "customerId": "cus_05",
+    "amount": 12580,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-09-07T15:20:00.000Z",
+    "updatedAt": "2026-09-07T15:20:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1075",
+    "customerId": "cus_06",
+    "amount": 4519,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-08-18T16:00:00.000Z",
+    "updatedAt": "2026-08-18T16:00:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 1,
+        "unitPrice": 49
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 3,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1076",
+    "customerId": "cus_09",
+    "amount": 1588,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-08-27T13:52:00.000Z",
+    "updatedAt": "2026-08-27T13:52:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 2,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1077",
+    "customerId": "cus_10",
+    "amount": 14400,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-08-21T13:15:00.000Z",
+    "updatedAt": "2026-08-21T13:15:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1078",
+    "customerId": "cus_11",
+    "amount": 49,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-03T11:13:00.000Z",
+    "updatedAt": "2026-08-03T13:13:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 1,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1079",
+    "customerId": "cus_12",
+    "amount": 4883.5,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-08-07T14:54:00.000Z",
+    "updatedAt": "2026-08-07T16:54:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 3,
+        "unitPrice": 18
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 1,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1080",
+    "customerId": "cus_13",
+    "amount": 4836,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-08-21T08:34:00.000Z",
+    "updatedAt": "2026-08-21T08:34:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1081",
+    "customerId": "cus_14",
+    "amount": 147,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-06T10:04:00.000Z",
+    "updatedAt": "2026-09-06T12:04:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 3,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1082",
+    "customerId": "cus_15",
+    "amount": 1544,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-15T17:40:00.000Z",
+    "updatedAt": "2026-08-15T19:40:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 3,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1083",
+    "customerId": "cus_16",
+    "amount": 4524,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-08-29T09:24:00.000Z",
+    "updatedAt": "2026-08-29T09:24:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 3,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 3,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1084",
+    "customerId": "cus_17",
+    "amount": 36,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-08-25T15:51:00.000Z",
+    "updatedAt": "2026-08-25T15:51:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1085",
+    "customerId": "cus_18",
+    "amount": 4470,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-04T09:06:00.000Z",
+    "updatedAt": "2026-08-04T11:06:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1086",
+    "customerId": "cus_19",
+    "amount": 12250,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-23T08:26:00.000Z",
+    "updatedAt": "2026-08-23T10:26:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 3,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1087",
+    "customerId": "cus_20",
+    "amount": 18,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-09-17T12:16:00.000Z",
+    "updatedAt": "2026-09-17T12:16:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 1,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1088",
+    "customerId": "cus_21",
+    "amount": 59,
+    "currency": "USD",
+    "status": "processing",
+    "createdAt": "2026-08-25T08:31:00.000Z",
+    "updatedAt": "2026-08-25T10:31:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 2,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1089",
+    "customerId": "cus_22",
+    "amount": 4470,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-08-02T18:05:00.000Z",
+    "updatedAt": "2026-08-02T20:05:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 3,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1090",
+    "customerId": "cus_23",
+    "amount": 165,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-18T11:19:00.000Z",
+    "updatedAt": "2026-09-18T13:19:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 1,
+        "unitPrice": 18
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 3,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1091",
+    "customerId": "cus_24",
+    "amount": 9600,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-12T16:53:00.000Z",
+    "updatedAt": "2026-08-12T18:53:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1092",
+    "customerId": "cus_25",
+    "amount": 18,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-27T14:25:00.000Z",
+    "updatedAt": "2026-08-27T16:25:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 1,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1093",
+    "customerId": "cus_26",
+    "amount": 7839,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-08-25T14:38:00.000Z",
+    "updatedAt": "2026-08-25T16:38:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 2,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1094",
+    "customerId": "cus_27",
+    "amount": 160.5,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-28T15:57:00.000Z",
+    "updatedAt": "2026-08-28T17:57:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1095",
+    "customerId": "cus_28",
+    "amount": 6014,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-18T19:44:00.000Z",
+    "updatedAt": "2026-09-18T21:44:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 3,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 3,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1096",
+    "customerId": "cus_29",
+    "amount": 183,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-08-06T13:02:00.000Z",
+    "updatedAt": "2026-08-06T15:02:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 3,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1097",
+    "customerId": "cus_30",
+    "amount": 59,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-31T14:47:00.000Z",
+    "updatedAt": "2026-08-31T16:47:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 2,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1098",
+    "customerId": "cus_31",
+    "amount": 147.5,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-08T14:17:00.000Z",
+    "updatedAt": "2026-08-08T16:17:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 2,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1099",
+    "customerId": "cus_32",
+    "amount": 9600,
+    "currency": "USD",
+    "status": "processing",
+    "createdAt": "2026-08-22T12:20:00.000Z",
+    "updatedAt": "2026-08-22T14:20:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1100",
+    "customerId": "cus_33",
+    "amount": 4996,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-09T11:31:00.000Z",
+    "updatedAt": "2026-08-09T13:31:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 2,
+        "unitPrice": 49
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 2,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1101",
+    "customerId": "cus_34",
+    "amount": 36,
+    "currency": "USD",
+    "status": "processing",
+    "createdAt": "2026-08-01T12:41:00.000Z",
+    "updatedAt": "2026-08-01T14:41:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1102",
+    "customerId": "cus_35",
+    "amount": 186.5,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-15T12:10:00.000Z",
+    "updatedAt": "2026-09-15T14:10:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 1,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 2,
+        "unitPrice": 49
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 2,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1103",
+    "customerId": "cus_01",
+    "amount": 4800,
+    "currency": "USD",
+    "status": "processing",
+    "createdAt": "2026-09-11T08:29:00.000Z",
+    "updatedAt": "2026-09-11T10:29:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1104",
+    "customerId": "cus_02",
+    "amount": 95,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-28T11:31:00.000Z",
+    "updatedAt": "2026-08-28T13:31:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 1,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 1,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1105",
+    "customerId": "cus_03",
+    "amount": 9688.5,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-09-07T19:22:00.000Z",
+    "updatedAt": "2026-09-07T21:22:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1106",
+    "customerId": "cus_04",
+    "amount": 181.5,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-11T16:17:00.000Z",
+    "updatedAt": "2026-09-11T18:17:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 1,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 2,
+        "unitPrice": 49
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 3,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1107",
+    "customerId": "cus_05",
+    "amount": 3117.5,
+    "currency": "USD",
+    "status": "processing",
+    "createdAt": "2026-09-06T16:33:00.000Z",
+    "updatedAt": "2026-09-06T18:33:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 1,
+        "unitPrice": 49
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1108",
+    "customerId": "cus_06",
+    "amount": 36,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-08T17:48:00.000Z",
+    "updatedAt": "2026-08-08T19:48:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1109",
+    "customerId": "cus_09",
+    "amount": 137.5,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-08-06T13:07:00.000Z",
+    "updatedAt": "2026-08-06T13:07:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 1,
+        "unitPrice": 49
+      }
+    ]
+  },
+  {
+    "id": "ord_1110",
+    "customerId": "cus_10",
+    "amount": 14506.5,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-02T10:08:00.000Z",
+    "updatedAt": "2026-09-02T12:08:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 1,
+        "unitPrice": 18
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 3,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1111",
+    "customerId": "cus_11",
+    "amount": 183,
+    "currency": "USD",
+    "status": "processing",
+    "createdAt": "2026-09-10T19:50:00.000Z",
+    "updatedAt": "2026-09-10T21:50:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 3,
+        "unitPrice": 49
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1112",
+    "customerId": "cus_12",
+    "amount": 88.5,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-04T11:26:00.000Z",
+    "updatedAt": "2026-08-04T13:26:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 3,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1113",
+    "customerId": "cus_13",
+    "amount": 1637,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-22T11:09:00.000Z",
+    "updatedAt": "2026-08-22T13:09:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 3,
+        "unitPrice": 49
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1114",
+    "customerId": "cus_14",
+    "amount": 17380,
+    "currency": "USD",
+    "status": "cancelled",
+    "createdAt": "2026-08-08T15:59:00.000Z",
+    "updatedAt": "2026-08-08T17:59:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1115",
+    "customerId": "cus_15",
+    "amount": 4470,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-17T12:03:00.000Z",
+    "updatedAt": "2026-09-17T14:03:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 3,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1116",
+    "customerId": "cus_16",
+    "amount": 9600,
+    "currency": "USD",
+    "status": "pending",
+    "createdAt": "2026-08-11T14:27:00.000Z",
+    "updatedAt": "2026-08-11T14:27:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 2,
+        "unitPrice": 4800
+      }
+    ]
+  },
+  {
+    "id": "ord_1117",
+    "customerId": "cus_17",
+    "amount": 7878,
+    "currency": "USD",
+    "status": "processing",
+    "createdAt": "2026-08-26T17:09:00.000Z",
+    "updatedAt": "2026-08-26T19:09:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 1,
+        "unitPrice": 4800
+      },
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 2,
+        "unitPrice": 49
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 2,
+        "unitPrice": 1490
+      }
+    ]
+  },
+  {
+    "id": "ord_1118",
+    "customerId": "cus_18",
+    "amount": 90,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-08-20T15:14:00.000Z",
+    "updatedAt": "2026-08-20T17:14:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 2,
+        "unitPrice": 18
+      },
+      {
+        "sku": "ADDON-SEAT",
+        "name": "Extra seat",
+        "quantity": 3,
+        "unitPrice": 18
+      }
+    ]
+  },
+  {
+    "id": "ord_1119",
+    "customerId": "cus_19",
+    "amount": 29.5,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-14T14:14:00.000Z",
+    "updatedAt": "2026-09-14T16:14:00.000Z",
+    "items": [
+      {
+        "sku": "ADDON-STORE",
+        "name": "Storage pack",
+        "quantity": 1,
+        "unitPrice": 29.5
+      }
+    ]
+  },
+  {
+    "id": "ord_1120",
+    "customerId": "cus_20",
+    "amount": 15939,
+    "currency": "USD",
+    "status": "completed",
+    "createdAt": "2026-09-17T09:29:00.000Z",
+    "updatedAt": "2026-09-17T11:29:00.000Z",
+    "items": [
+      {
+        "sku": "PLAN-START",
+        "name": "Starter plan — monthly",
+        "quantity": 1,
+        "unitPrice": 49
+      },
+      {
+        "sku": "PLAN-PRO",
+        "name": "Pro plan — annual",
+        "quantity": 1,
+        "unitPrice": 1490
+      },
+      {
+        "sku": "PLAN-ENT",
+        "name": "Enterprise plan — annual",
+        "quantity": 3,
+        "unitPrice": 4800
+      }
+    ]
+  }
+]

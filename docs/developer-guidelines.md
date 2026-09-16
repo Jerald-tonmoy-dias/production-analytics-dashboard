@@ -29,6 +29,7 @@ Do not start feature work that is not a GitHub Issue. One issue = one branch = o
 - Name types after the domain (`Order`, `OrderStatus`, `AnalyticsKpis`), not after UI (`IOrderDataProps`).
 - Do not prefix with `I`. Do not export `Props` types from pages.
 - Functions that can fail return/throw typed errors from `lib/errors.ts`. Do not return `null` for “order not found” at the HTTP boundary — throw `NotFoundError`.
+- Exported functions in `lib/` use JSDoc (`@param`, `@returns`, `@throws` when it throws). Document formulas and edge cases, not the loop-by-loop implementation.
 
 ---
 
