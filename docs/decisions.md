@@ -150,7 +150,7 @@ Consequences: Feature UI tickets include Storybook requirements in their DoD.
 
 Origin: Engineering decision (Stage 2 direction). Not a company requirement.
 
-Status: accepted
+Status: superseded in part by “Catalog shadcn primitives in Storybook”
 
 ---
 
@@ -179,6 +179,36 @@ Reason: Matches Next 16, keeps the workshop useful for a11y states, and avoids a
 Trade-offs: We do not demonstrate Storybook interaction tests in this ticket.
 
 Origin: Engineering decision (TASK-003).
+
+Status: superseded in part by “Catalog shadcn primitives in Storybook” (primitive stories). Vite + addons still apply.
+
+---
+
+## Decision: Catalog shadcn primitives in Storybook
+
+Date: 2026-09-16
+
+Context: TASK-003 originally shipped a theme smoke story only, matching the earlier “do not story uncustomized primitives” rule. Reviewers and later tickets still need to see Button, Table, Dialog, and the rest in one workshop.
+
+Problem: A smoke-only Storybook looks empty. A full controls matrix for every size/variant would duplicate shadcn docs and fight the three-day window.
+
+Options considered:
+
+1. Keep smoke-only; wait for feature widgets.
+2. Story every primitive permutation.
+3. Compact colocated catalog: representative variants, grouped under `Primitives/`.
+
+Decision: Option 3.
+
+- One story file next to each installed primitive (`components/ui/*.stories.tsx`).
+- Gallery or a single Default for interactive leaves (Select, Dialog, Dropdown, Tooltip). Not every size/state.
+- Feature widgets still own loading/empty/error stories. Do not restyle generated `components/ui` source for Storybook.
+
+Reason: The sidebar is the kit. Feature tickets stay about product states, not reinventing Button.
+
+Trade-offs: Catalog stories can drift if the CLI regenerates a primitive. Acceptable; we re-add the thin story, we do not fork the primitive.
+
+Origin: Engineering decision (TASK-003 amendment).
 
 Status: accepted
 
