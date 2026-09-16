@@ -52,6 +52,23 @@ export function formatChartDay(isoDate: string): string {
 }
 
 /**
+ * Format an ISO-8601 timestamp for operator tables and feeds (UTC).
+ *
+ * @param iso - Instant such as `2026-09-16T12:00:00.000Z`.
+ */
+export function formatDateTime(iso: string): string {
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZone: "UTC",
+    timeZoneName: "short",
+  }).format(new Date(iso));
+}
+
+/**
  * Compact axis tick for crowded chart Y axes.
  *
  * @param value - Raw series value.

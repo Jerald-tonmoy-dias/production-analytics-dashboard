@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   formatChartDay,
+  formatDateTime,
   formatInteger,
   formatPercent,
   formatUsd,
@@ -33,5 +34,13 @@ describe("formatPercent", () => {
 describe("formatChartDay", () => {
   it("labels a UTC calendar date without shifting the day", () => {
     expect(formatChartDay("2026-08-18")).toBe("Aug 18");
+  });
+});
+
+describe("formatDateTime", () => {
+  it("formats an instant in UTC", () => {
+    expect(formatDateTime("2026-09-16T12:00:00.000Z")).toBe(
+      "Sep 16, 2026, 12:00 PM UTC"
+    );
   });
 });
