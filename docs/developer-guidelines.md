@@ -97,7 +97,7 @@ If a file mixes fetching, filtering, and markup, split it. If a file is a 15-lin
 
 ## Styling
 
-- Tailwind utility classes. Use `cn()` (shadcn helper) for conditional classes.
+- Tailwind utility classes. Use `cn()` from `@/lib/utils` for conditional classes.
 - Tokens come from the shadcn theme (CSS variables). Do not scatter raw hex in feature files.
 - Responsive: mobile-first. KPIs stack; tables may scroll horizontally **or** collapse to cards — pick one in the ticket and stick to it.
 - Density: this is an ops console. Prefer compact tables over large marketing cards.

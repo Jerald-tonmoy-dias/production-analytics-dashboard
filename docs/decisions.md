@@ -96,6 +96,37 @@ Status: accepted
 
 ---
 
+## Decision: shadcn CLI Nova + official `cn` package
+
+Date: 2026-09-16
+
+Context: TASK-002 ran the current shadcn CLI. That CLI defaults to style `radix-nova`, the `cn` package (not a hand-written `clsx` + `tailwind-merge` helper), the `radix-ui` umbrella, and runtime `shadcn` + `tw-animate-css`.
+
+Problem: Stage 2 docs assumed the older peer set. Fighting the CLI would fork the primitive layer.
+
+Options considered:
+
+1. Force `clsx` + `tailwind-merge` and per-package `@radix-ui/*`.
+2. Keep the generated Nova stack.
+
+Decision: Option 2.
+
+- Primitives added (set matches the ticket): Button, Card, Input, Select, Badge, Table, Dialog, Skeleton, Dropdown Menu, Tooltip, Separator, Label.
+- `lib/utils.ts` is the shadcn `cn` re-export only — not a dumping-ground `utils` module. App code imports `cn` from `@/lib/utils`. Generated `components/ui` files may import `cn` directly; do not rewrite them.
+- Root layout wraps children in `TooltipProvider` so Tooltip works without a second provider in later tickets. The provider is a client leaf; RSC pages still pass through as `children`.
+- `--radius: 0.4rem` for a denser ops console than Nova’s `0.625rem` default.
+- `@theme` font families use the literal Geist names. Tailwind v4 `@theme inline` cannot depend on next/font’s runtime `--font-geist-*` variables.
+
+Reason: Own the files the CLI actually emits. Reviewers see a current shadcn setup, not a reconstructed 2024 one.
+
+Trade-offs: Older notes that named `clsx` / `tailwind-merge` as direct dependencies are outdated; this record replaces that expectation.
+
+Origin: Engineering decision (TASK-002).
+
+Status: accepted
+
+---
+
 ## Decision: Storybook from the beginning
 
 Date: 2026-09-16
@@ -606,7 +637,7 @@ Status: accepted
 | `next`, `react`, `react-dom` | Required | TASK-001 | Company stack |
 | TypeScript, ESLint, Tailwind | Required | TASK-001 | Company stack |
 | Vitest | Required | TASK-001 (config) / used TASK-004 | Domain tests |
-| shadcn/ui + Radix peers (`class-variance-authority`, `clsx`, `tailwind-merge`, `lucide-react`) | Required | TASK-002 | Primitive layer |
+| shadcn/ui (`class-variance-authority`, `cn`, `lucide-react`, `radix-ui`, `shadcn`, `tw-animate-css`) | Required | TASK-002 | Primitive layer |
 | Storybook (+ Next integration) | Recommended | TASK-003 | Stateful UI review |
 | `zod` | Recommended | TASK-004 | Unexpected data |
 | `@tanstack/react-query` | Recommended | TASK-011 | Interactive list server state |
