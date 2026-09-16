@@ -5,25 +5,44 @@
 /Frontend_Task1_Analytics_Dashboard.md
 /docs/task-tracking.md
 
-# Dependencies and build (Next.js / Storybook land in later tickets)
+# dependencies
 node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# next.js
 .next/
 out/
-dist/
+
+# production / test
 build/
+dist/
 coverage/
 storybook-static/
-*.tsbuildinfo
 
-# Environment and local tooling
+# env — keep .env.example tracked
 .env
 .env*.local
+
+# vercel CLI artifacts (do not configure Vercel in TASK-001)
 .vercel
+
+# typescript / debug / misc
+*.tsbuildinfo
+next-env.d.ts
 .DS_Store
+*.pem
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
-# Editors
-.idea/
-.vscode/
-*.swp
+# Next.js may write these on first `next dev`; they are not part of TASK-001
+AGENTS.md
+CLAUDE.md

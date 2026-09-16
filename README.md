@@ -35,19 +35,21 @@ Why these, and what we refuse to add: [decisions.md](./docs/decisions.md).
 
 ## Local setup
 
-Application scaffold lands in TASK-001. After that ticket:
+Requires Node.js 20+.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000). You should see the dashboard placeholder.
 
 ## Commands
 
 ```bash
 npm run dev          # Next.js app
+npm run lint         # ESLint
+npm run typecheck    # TypeScript (`tsc --noEmit`)
 npm test             # Vitest
 npm run storybook    # Storybook (after TASK-003)
 ```
@@ -70,9 +72,9 @@ Work is **one GitHub Issue = one branch = one PR**. See [developer guidelines](.
 
 ## Deployment
 
-Vercel. TASK-001 publishes the first live URL. TASK-014 verifies production against the submission checklist.
+Vercel is configured manually later. This repository does not create or connect a Vercel project.
 
-Live URL: _pending TASK-001_
+Live URL: _pending_
 
 ## Documentation
 
