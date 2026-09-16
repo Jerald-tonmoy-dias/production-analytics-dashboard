@@ -42,7 +42,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). You should see the operator shell (Dashboard / Orders nav) with a dashboard placeholder.
+Open [http://localhost:3000](http://localhost:3000). You should see the operator shell with mock KPIs, 30-day charts, recent orders, and activity.
 
 ## Commands
 

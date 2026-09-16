@@ -394,7 +394,7 @@ Pages must not import `data/*.json`. They call `lib/api`:
 | `getOrder(id)` | `GET /api/orders/:id` |
 | `getActivities(limit?)` | `GET /api/activities` |
 
-RSC uses `getAnalytics` / `getActivities` / `getOrder`. The Orders table uses `getOrders` inside TanStack Query.
+Dashboard RSC uses `getAnalytics`, `getOrders` (first page, small `pageSize`), and `getActivities` via `Promise.all`. Order details uses `getOrder`. The Orders table uses `getOrders` inside TanStack Query (TASK-011).
 
 `lib/api` parses every JSON body with Zod. Envelope errors become `ValidationError` / `NotFoundError` / `InternalError` from `lib/errors.ts`.
 
