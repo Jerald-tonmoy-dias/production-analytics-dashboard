@@ -22,5 +22,8 @@ export const MAX_PAGE_SIZE = 50;
 export const DEFAULT_ACTIVITY_LIMIT = 8;
 export const MAX_ACTIVITY_LIMIT = 50;
 
+/** Short product name shown in the operator shell. */
+export const PRODUCT_NAME = "Production Analytics";
+
 /** UTC calendar day the mock dataset is built around. Series tests freeze `now` to this. */
 export const DATASET_AS_OF_UTC = "2026-09-16T12:00:00.000Z";

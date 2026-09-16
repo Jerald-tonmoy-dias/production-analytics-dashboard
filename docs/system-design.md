@@ -97,7 +97,7 @@ app/
 components/
   ui/                            # shadcn primitives only
   shared/                        # EmptyState, ErrorState, PageHeader, skeletons
-  layout/                        # AppShell, Sidebar, Header
+  layout/                        # AppShell, AppNav (theme control slot on AppShell)
   dashboard/                     # KPI, charts, recent orders, activity feed
   orders/                        # filters, table, pagination, status badge, details
   providers/                     # QueryClientProvider (orders segment only)
