@@ -21,17 +21,14 @@ type MobileNavProps = {
 
 export function MobileNav({ actions }: MobileNavProps) {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  const [openPath, setOpenPath] = useState<string | null>(null);
+  const open = openPath === pathname;
 
   useEffect(() => {
     const media = window.matchMedia(MD_MEDIA_QUERY);
     function onChange() {
       if (media.matches) {
-        setOpen(false);
+        setOpenPath(null);
       }
     }
     media.addEventListener("change", onChange);
@@ -40,7 +37,10 @@ export function MobileNav({ actions }: MobileNavProps) {
 
   return (
     <header className="border-sidebar-border bg-sidebar text-sidebar-foreground sticky top-0 z-40 flex items-center gap-2 border-b px-3 py-2 md:hidden">
-      <Sheet open={open} onOpenChange={setOpen}>
+      <Sheet
+        open={open}
+        onOpenChange={(next) => setOpenPath(next ? pathname : null)}
+      >
         <SheetTrigger asChild>
           <Button
             type="button"
