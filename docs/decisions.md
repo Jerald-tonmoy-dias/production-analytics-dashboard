@@ -789,6 +789,20 @@ Status: accepted
 
 ---
 
+## Decision: Tables scroll at a shared min-width (UX-020)
+
+Date: 2026-09-16
+
+Context: `overflow-x-auto` already wrapped tables, but customer cells used `whitespace-normal` + `break-all`, so the table shrank at ~390px and emails split mid-token.
+
+Decision: One inherited rule: `min-w-[40rem]` on the shared `Table` element. Drop the wrapping/break overrides so cells keep nowrap. No card-list layout for rows. Desktop surfaces wider than 40rem stay `w-full`.
+
+Origin: Engineering decision (UX-020).
+
+Status: accepted
+
+---
+
 ## Dependency register (summary)
 
 | Package | Class | When installed | Why |

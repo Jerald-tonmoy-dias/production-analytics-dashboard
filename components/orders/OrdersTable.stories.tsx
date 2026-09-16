@@ -58,6 +58,26 @@ export const Default: Story = {
   args: { orders: ORDERS },
 };
 
+export const Narrow: Story = {
+  args: {
+    orders: [
+      {
+        ...ORDERS[0],
+        customerName: "Beacon Pharma",
+        customerEmail: "ops@beacon-pharma.test",
+      },
+      ...ORDERS.slice(1),
+    ],
+  },
+  decorators: [
+    (Story) => (
+      <div className="max-w-[390px] overflow-hidden rounded-md border border-border">
+        <Story />
+      </div>
+    ),
+  ],
+};
+
 export const Loading: Story = {
   args: { orders: [], state: "loading" },
 };

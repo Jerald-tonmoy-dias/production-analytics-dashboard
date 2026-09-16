@@ -140,9 +140,9 @@ export function OrdersTable({
                 {order.id}
               </Link>
             </TableCell>
-            <TableCell className="whitespace-normal">
+            <TableCell>
               <span className="block">{order.customerName}</span>
-              <span className="text-muted-foreground text-xs break-all">
+              <span className="text-muted-foreground text-xs">
                 {order.customerEmail}
               </span>
             </TableCell>
