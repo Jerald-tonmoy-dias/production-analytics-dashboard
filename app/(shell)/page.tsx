@@ -24,7 +24,7 @@ export default async function DashboardPage() {
   const chartHint = `Last ${CHART_WINDOW_DAYS} UTC days`;
 
   return (
-    <div className="space-y-6">
+    <div className="min-w-0 space-y-6">
       <PageHeader
         title="Dashboard"
         description="Revenue, orders, customers, and recent activity."

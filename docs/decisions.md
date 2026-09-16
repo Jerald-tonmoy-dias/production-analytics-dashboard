@@ -494,6 +494,33 @@ Status: accepted
 
 ---
 
+## Decision: Skip Playwright in TASK-013
+
+Date: 2026-09-16
+
+Context: TASK-013 listed optional Playwright. Storybook already covers widget states; each UI ticket was browser-checked. The user chose not to add E2E.
+
+Problem: A small Playwright suite still needs browsers, config, CI, and README scripts for flows Storybook does not own (routing).
+
+Options considered:
+
+1. Add Playwright for dashboard, filter, pagination, details, API error.
+2. Skip E2E; keep Vitest + Storybook + a keyboard/responsive sweep.
+
+Decision: Skip Playwright. TASK-013 is the a11y/responsive/memo sweep only.
+
+Reason: E2E would mostly duplicate per-ticket browser verification. Storybook remains the UI workshop.
+
+Trade-offs: No automated multi-page flow. Keyboard and viewport still checked by hand in this ticket.
+
+Consequences: Do not add `e2e/`, Playwright scripts, or browsers.
+
+Origin: Product decision during TASK-013.
+
+Status: accepted
+
+---
+
 ## Decision: Folder architecture (route group, colocated stories, no dumping-ground `utils.ts`)
 
 Date: 2026-09-16
@@ -704,6 +731,6 @@ Status: accepted
 | `@tanstack/react-query` | Recommended | TASK-011 | Interactive list server state |
 | `recharts` | Recommended | TASK-007 | Charts |
 | `react-day-picker`, `date-fns` | Required | TASK-010 | shadcn Calendar for order date filters |
-| Playwright | Optional | TASK-013 | Critical-path E2E |
+| Playwright | Optional | skipped TASK-013 | Critical-path E2E; Storybook + Vitest used instead |
 | `nuqs` | Optional | only if URL encoding hurts | Not planned |
 | Zustand, Redux, axios, RHF, Framer Motion, next-auth, Prisma, Three.js, Docker | Avoid | never | No problem they uniquely solve here |

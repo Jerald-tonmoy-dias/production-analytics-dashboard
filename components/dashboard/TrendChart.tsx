@@ -56,7 +56,7 @@ export function TrendChart({
   const empty = series.length === 0;
 
   return (
-    <Card>
+    <Card className="min-w-0">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         {description ? (
@@ -71,7 +71,7 @@ export function TrendChart({
             className="border-0 py-8"
           />
         ) : (
-          <div className="h-64 w-full">
+          <div className="h-64 w-full min-w-0">
             <p className="sr-only">{seriesSummary(title, series, format)}</p>
             <TrendChartCanvas series={series} format={format} />
           </div>

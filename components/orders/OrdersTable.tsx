@@ -7,6 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
   TableBody,
+  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -117,6 +118,7 @@ export function OrdersTable({
 
   return (
     <Table>
+      <TableCaption className="sr-only">Orders</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead>Order</TableHead>
@@ -133,14 +135,14 @@ export function OrdersTable({
             <TableCell>
               <Link
                 href={`/orders/${order.id}`}
-                className="font-medium underline-offset-4 hover:underline"
+                className="rounded-sm font-medium underline-offset-4 outline-none hover:underline focus-visible:underline focus-visible:ring-3 focus-visible:ring-ring/50"
               >
                 {order.id}
               </Link>
             </TableCell>
-            <TableCell>
+            <TableCell className="whitespace-normal">
               <span className="block">{order.customerName}</span>
-              <span className="text-muted-foreground text-xs">
+              <span className="text-muted-foreground text-xs break-all">
                 {order.customerEmail}
               </span>
             </TableCell>

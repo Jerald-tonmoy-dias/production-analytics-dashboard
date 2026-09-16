@@ -114,7 +114,7 @@ export function OrdersWorkspace() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="min-w-0 space-y-4">
       <OrderFilters
         value={filters}
         onChange={(next) => {
