@@ -290,7 +290,9 @@ shadcn primitives   →  shared states / layout  →  feature widgets  →  page
 ```
 
 - **Do not** wrap every shadcn primitive in a second identity-less wrapper.
-- **Do** build `OrderStatusBadge` (maps domain status → Badge variant) and `KpiCard` (KPI semantics on top of Card).
+- **Do** build `OrderStatusBadge` (maps domain status → semantic tokens + label) and `KpiCard` (KPI semantics on top of Card).
+
+Status and chart hues live in `app/globals.css` (`--success`, `--warning`, `--info`, `--destructive`, `--chart-revenue`, `--chart-orders`). Do not hardcode hex in feature widgets.
 - Feature widgets are presentational: props in, events out. They do not fetch.
 - Pages / thin client containers fetch or receive server data and pass DTOs down.
 
