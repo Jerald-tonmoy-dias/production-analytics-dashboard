@@ -2,6 +2,7 @@ import Link from "next/link";
 import { OrderStatusBadge } from "@/components/orders/OrderStatusBadge";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { ErrorState } from "@/components/shared/ErrorState";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
@@ -24,6 +25,7 @@ export type OrdersTableState =
 type OrdersTableProps = {
   orders: OrderListItem[];
   state?: OrdersTableState;
+  onRetry?: () => void;
 };
 
 function OrdersTableSkeleton() {
@@ -66,6 +68,7 @@ function OrdersTableSkeleton() {
 export function OrdersTable({
   orders,
   state = "default",
+  onRetry,
 }: OrdersTableProps) {
   if (state === "loading") {
     return (
@@ -80,7 +83,13 @@ export function OrdersTable({
       <ErrorState
         title="Couldn’t load orders"
         description="The list failed to load. Try again in a moment."
-      />
+      >
+        {onRetry ? (
+          <Button type="button" variant="outline" onClick={onRetry}>
+            Try again
+          </Button>
+        ) : null}
+      </ErrorState>
     );
   }
 

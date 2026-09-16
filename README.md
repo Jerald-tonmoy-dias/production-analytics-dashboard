@@ -42,7 +42,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). You should see the operator shell with mock KPIs, 30-day charts, recent orders, and activity.
+Open [http://localhost:3000](http://localhost:3000) for the dashboard. [http://localhost:3000/orders](http://localhost:3000/orders) is the filterable list; refresh and the back button keep the query string.
 
 ## Commands
 
