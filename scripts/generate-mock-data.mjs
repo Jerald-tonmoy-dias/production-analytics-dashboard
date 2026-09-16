@@ -1,3 +1,8 @@
+/**
+ * Regenerates `data/*.json` with TASK-004 edge cases:
+ * customers with no orders, mixed statuses, a zero-order day (2026-09-03),
+ * and a zero-revenue day (2026-09-04). Deterministic via a fixed seed.
+ */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";

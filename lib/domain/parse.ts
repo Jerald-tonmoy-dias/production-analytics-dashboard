@@ -9,6 +9,11 @@ export type Datasets = {
   activities: Activity[];
 };
 
+/**
+ * Unwrap a Zod `safeParse` result or map failure to {@link InternalError}.
+ *
+ * @throws {InternalError} When the dataset does not match the schema.
+ */
 function parseOrThrow<T>(
   result: { success: true; data: T } | { success: false },
   message: string
@@ -19,6 +24,12 @@ function parseOrThrow<T>(
   return result.data;
 }
 
+/**
+ * Parse the customers JSON payload.
+ *
+ * @param data - Unknown JSON (file import or test fixture).
+ * @throws {InternalError} When the payload fails Zod.
+ */
 export function parseCustomers(data: unknown): Customer[] {
   return parseOrThrow(
     customersSchema.safeParse(data),
@@ -26,10 +37,22 @@ export function parseCustomers(data: unknown): Customer[] {
   );
 }
 
+/**
+ * Parse the orders JSON payload. Amount must equal the sum of line items.
+ *
+ * @param data - Unknown JSON (file import or test fixture).
+ * @throws {InternalError} When the payload fails Zod.
+ */
 export function parseOrders(data: unknown): OrderRecord[] {
   return parseOrThrow(ordersSchema.safeParse(data), "Corrupt orders dataset.");
 }
 
+/**
+ * Parse the activities JSON payload.
+ *
+ * @param data - Unknown JSON (file import or test fixture).
+ * @throws {InternalError} When the payload fails Zod.
+ */
 export function parseActivities(data: unknown): Activity[] {
   return parseOrThrow(
     activitiesSchema.safeParse(data),
@@ -37,6 +60,11 @@ export function parseActivities(data: unknown): Activity[] {
   );
 }
 
+/**
+ * Parse all three datasets and require every order to reference a known customer.
+ *
+ * @throws {InternalError} On schema failure or a dangling `customerId`.
+ */
 export function parseDatasets(raw: {
   customers: unknown;
   orders: unknown;

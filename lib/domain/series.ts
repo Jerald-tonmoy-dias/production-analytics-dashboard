@@ -3,6 +3,15 @@ import { utcDateKey, utcWindowDays } from "@/lib/domain/dates";
 import type { AnalyticsSeries, TimeSeriesPoint } from "@/lib/schemas/analytics";
 import type { OrderRecord } from "@/lib/schemas/order";
 
+/**
+ * Last 30 UTC days of revenue and order-count series, including zero days.
+ *
+ * Revenue buckets sum **completed** amounts. Order buckets count **all** orders
+ * created that UTC day. Orders outside the window are ignored.
+ *
+ * @param orders - Parsed order records.
+ * @param now - Window end clock; defaults to wall time. Tests freeze this.
+ */
 export function computeSeries(
   orders: readonly OrderRecord[],
   now: Date = new Date()

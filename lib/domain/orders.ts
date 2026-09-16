@@ -9,6 +9,7 @@ import type {
 } from "@/lib/schemas/order";
 import type { Pagination } from "@/lib/schemas/query";
 
+/** Filters for the Orders workspace. `from` / `to` are UTC `YYYY-MM-DD`. */
 export type OrderFilters = {
   q?: string;
   status?: OrderStatus;
@@ -16,6 +17,7 @@ export type OrderFilters = {
   to?: string;
 };
 
+/** 1-indexed page request. Out-of-range pages return empty `data`. */
 export type PageRequest = {
   page: number;
   pageSize: number;
@@ -27,6 +29,12 @@ function customerById(
   return new Map(customers.map((customer) => [customer.id, customer]));
 }
 
+/**
+ * Join an order to its customer for the list DTO.
+ *
+ * @param order - Parsed order record.
+ * @param customer - Matching customer (`order.customerId`).
+ */
 export function toOrderListItem(
   order: OrderRecord,
   customer: Customer
@@ -43,6 +51,17 @@ export function toOrderListItem(
   };
 }
 
+/**
+ * Filter and sort orders for the list endpoint.
+ *
+ * - `q` matches order id, customer name, or email (case-insensitive).
+ * - `from` / `to` are inclusive UTC calendar days on `createdAt`.
+ * - Result is `createdAt` descending, then `id` descending.
+ *
+ * @param orders - Parsed order records.
+ * @param customers - Parsed customers used to join name/email.
+ * @param filters - Optional search, status, and date bounds.
+ */
 export function filterOrders(
   orders: readonly OrderRecord[],
   customers: readonly Customer[],
@@ -93,6 +112,15 @@ export function filterOrders(
   return items;
 }
 
+/**
+ * Slice a list into a page without clamping past the last page.
+ *
+ * If `total === 0`, `totalPages` is `0`. If `page` is beyond `totalPages` and
+ * `total > 0`, `data` is empty and the requested `page` is returned as-is.
+ *
+ * @param items - Already filtered/sorted rows.
+ * @param page - 1-indexed page and page size.
+ */
 export function paginate<T>(
   items: readonly T[],
   { page, pageSize }: PageRequest
@@ -108,6 +136,9 @@ export function paginate<T>(
   };
 }
 
+/**
+ * Filter, sort, and paginate orders in one step (list endpoint).
+ */
 export function listOrders(
   orders: readonly OrderRecord[],
   customers: readonly Customer[],
@@ -117,6 +148,12 @@ export function listOrders(
   return paginate(filterOrders(orders, customers, filters), page);
 }
 
+/**
+ * Load a single order with line items and the nested customer.
+ *
+ * @param id - Order id (`ord_…`).
+ * @throws {NotFoundError} When the order (or its customer) is missing.
+ */
 export function getOrderDetail(
   orders: readonly OrderRecord[],
   customers: readonly Customer[],
