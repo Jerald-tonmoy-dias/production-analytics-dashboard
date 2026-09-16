@@ -1,3 +1,6 @@
+import { Suspense } from "react";
+import { OrdersWorkspaceSkeleton } from "@/components/orders/OrdersWorkspaceSkeleton";
+import { OrdersWorkspace } from "@/components/orders/OrdersWorkspace";
 import { PageHeader } from "@/components/shared/PageHeader";
 
 export default function OrdersPage() {
@@ -7,9 +10,9 @@ export default function OrdersPage() {
         title="Orders"
         description="Search, filter, and inspect orders."
       />
-      <p className="text-muted-foreground text-sm">
-        The orders table will be composed here.
-      </p>
+      <Suspense fallback={<OrdersWorkspaceSkeleton />}>
+        <OrdersWorkspace />
+      </Suspense>
     </div>
   );
 }

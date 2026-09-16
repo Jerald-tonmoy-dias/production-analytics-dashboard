@@ -1,5 +1,11 @@
-import { PageSkeleton } from "@/components/shared/PageSkeleton";
+import { OrdersWorkspaceSkeleton } from "@/components/orders/OrdersWorkspaceSkeleton";
+import { PageHeaderSkeleton } from "@/components/shared/PageSkeleton";
 
 export default function Loading() {
-  return <PageSkeleton />;
+  return (
+    <div className="space-y-6">
+      <PageHeaderSkeleton />
+      <OrdersWorkspaceSkeleton />
+    </div>
+  );
 }
