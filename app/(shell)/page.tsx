@@ -22,14 +22,14 @@ export default async function DashboardPage() {
   const chartHint = `Last ${CHART_WINDOW_DAYS} UTC days`;
 
   return (
-    <div className="motion-enter min-w-0 space-y-6">
+    <div className="motion-enter min-w-0 space-y-8">
       <PageHeader
         title="Dashboard"
         description="Revenue, orders, customers, and recent activity."
       />
       <section
         aria-label="Key metrics"
-        className="grid grid-cols-2 gap-3 xl:grid-cols-4"
+        className="grid grid-cols-2 gap-4 xl:grid-cols-4"
       >
         <KpiCard
           label="Total revenue"
@@ -61,23 +61,25 @@ export default async function DashboardPage() {
           tone="conversion"
         />
       </section>
-      <section aria-label="Trends" className="grid gap-4 lg:grid-cols-2">
+      <section aria-label="Trends" className="grid gap-6 lg:grid-cols-2">
         <TrendChart
           title="Revenue"
           description={chartHint}
           series={series.revenue}
           format="currency"
+          variant="area"
         />
         <TrendChart
           title="Orders"
           description={chartHint}
           series={series.orders}
           format="number"
+          variant="bar"
         />
       </section>
       <section
         aria-label="Recent orders and activity"
-        className="grid min-w-0 gap-4 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]"
+        className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]"
       >
         <div className="min-h-0 min-w-0 xl:h-full">
           <RecentOrders orders={ordersPage.data} />

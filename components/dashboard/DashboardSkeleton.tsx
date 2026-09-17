@@ -15,11 +15,11 @@ import { CHART_WINDOW_DAYS } from "@/lib/constants";
 function ChartSkeleton({ title }: { title: string }) {
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="pb-1">
         <CardTitle>{title}</CardTitle>
         <CardDescription>Last {CHART_WINDOW_DAYS} UTC days</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pt-3">
         <Skeleton className="h-64 w-full" />
       </CardContent>
     </Card>
@@ -28,11 +28,11 @@ function ChartSkeleton({ title }: { title: string }) {
 
 export function DashboardSkeleton() {
   return (
-    <div className="space-y-6" aria-busy="true" aria-live="polite">
+    <div className="space-y-8" aria-busy="true" aria-live="polite">
       <PageHeaderSkeleton />
       <section
         aria-label="Key metrics"
-        className="grid grid-cols-2 gap-3 xl:grid-cols-4"
+        className="grid grid-cols-2 gap-4 xl:grid-cols-4"
       >
         <KpiCard
           label="Total revenue"
@@ -60,13 +60,13 @@ export function DashboardSkeleton() {
           tone="conversion"
         />
       </section>
-      <section aria-label="Trends" className="grid gap-4 lg:grid-cols-2">
+      <section aria-label="Trends" className="grid gap-6 lg:grid-cols-2">
         <ChartSkeleton title="Revenue" />
         <ChartSkeleton title="Orders" />
       </section>
       <section
         aria-label="Recent orders and activity"
-        className="grid min-w-0 gap-4 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]"
+        className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]"
       >
         <div className="min-h-0 min-w-0 xl:h-full">
           <RecentOrders orders={[]} state="loading" />
