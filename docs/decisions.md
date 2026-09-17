@@ -913,7 +913,7 @@ Status: accepted
 
 Date: 2026-09-17
 
-Context: UX-015–020 and UX-022 are merged. UX-021 (#35) was the leftover a11y review. Design-feedback screenshots asked for brand, chart type, and table/pager presentation — not a reopen of closed tickets.
+Context: UX-015–020 and UX-022 are merged. UX-021 (#35) was the leftover a11y review. Operator UI feedback asked for brand, chart type, and table/pager presentation — not a reopen of closed tickets.
 
 Problem: Auditing contrast and hit targets before brand and table chrome would force a second a11y pass. Reopening 015–020/022 would break `1 ticket = 1 PR`.
 
