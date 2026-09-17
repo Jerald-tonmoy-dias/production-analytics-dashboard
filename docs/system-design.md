@@ -369,7 +369,7 @@ No invented LCP budget. The spec grades **architectural** performance.
 - Status is not color-only (`OrderStatusBadge` includes text).
 - Charts have a text summary or table alternative for the same series (minimum: aria label + KPI totals already on the page).
 - Focus visible; do not `outline-none` without a replacement.
-- Contrast: light `--muted-foreground` meets ~AA on white; review both themes after brand tokens change.
+- Contrast: light `--muted-foreground` meets ~AA on cool off-white; review both themes after brand tokens change. Surfaces use cool graphite tints (UX-026), not flat Nova gray.
 - Hit targets: primary chrome and filter/pagination controls are ≥36px (`min-h-9` / `size-9`). Dense table cells stay compact.
 - Motion: UX-022 owns duration tokens. `prefers-reduced-motion: reduce` zeroes those tokens **and** near-zeros leftover `tw-animate-css` / Radix enter-exit transitions.
 

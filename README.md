@@ -68,7 +68,7 @@ UI components receive DTOs. They do not fetch JSON or compute KPIs.
 
 ## Theme
 
-Light, Dark, and System. Default is **dark** (including first paint: `class="dark"` on `<html>`). `next-themes` then keeps `.dark` in sync (`attribute="class"`, `defaultTheme="dark"`). Tokens stay in `app/globals.css` (`:root` / `.dark`); there is no parallel hex theme. **`--primary` is teal-cyan** (hue ~200) for buttons, focus rings, and active nav. Status and chart hues stay separate. Theme + a static operator avatar sit in the desktop toolbar and mobile top bar. The shell menu persists the theme in `localStorage` (`theme`). Storybook has a Light / Dark toolbar on the same tokens (starts in dark).
+Light, Dark, and System. Default is **dark** (including first paint: `class="dark"` on `<html>`). `next-themes` then keeps `.dark` in sync (`attribute="class"`, `defaultTheme="dark"`). Tokens stay in `app/globals.css` (`:root` / `.dark`); there is no parallel hex theme. Surfaces use a **cool graphite** tint (not flat Nova gray). **`--primary` is punchier teal-cyan** (hue ~200) for buttons, focus rings, and active nav. Status and chart hues stay separate. Theme + a static operator avatar sit in the desktop toolbar and mobile top bar. The shell menu persists the theme in `localStorage` (`theme`). Storybook has a Light / Dark toolbar on the same tokens (starts in dark).
 
 Target tree: [system design — folder structure](./docs/system-design.md#4-folder--module-structure).
 
@@ -81,6 +81,10 @@ Work is **one GitHub Issue = one branch = one PR**. See [developer guidelines](.
 - Orders list uses TanStack Query (`staleTime` 30s) keyed by the URL so back/forward does not refetch blindly.
 - Search is debounced (300ms) before it writes the query string.
 - `loading.tsx` skeletons match page layout.
+
+### Why almost no `useMemo` / `useCallback`
+
+The assessment asks for those hooks when they help. Here, expensive work already lives in `lib/domain` (server) or in TanStack Query’s cache key. Client islands mostly render DTOs. Adding `useMemo`/`useCallback` by default would be cargo-cult. The meaningful client side-effect is the search debounce (`useEffect` + timer). Chart geometry uses `isAnimationActive={false}` instead of client memoization for draw cost.
 
 ## Deployment
 

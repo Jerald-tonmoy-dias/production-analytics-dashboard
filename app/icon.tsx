@@ -14,13 +14,13 @@ export default function Icon() {
         style={{
           fontSize: 18,
           fontWeight: 700,
-          background: "#0e7490",
+          background: "#0891b2",
           width: "100%",
           height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "#f0fdfa",
+          color: "#ecfeff",
         }}
       >
         P

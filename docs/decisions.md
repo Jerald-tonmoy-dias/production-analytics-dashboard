@@ -973,6 +973,32 @@ Status: accepted
 
 ---
 
+## Decision: Cool graphite surfaces (UX-026)
+
+Date: 2026-09-17
+
+Context: After brand teal (UX-023) and a11y (UX-021), the shell still read as default Nova gray — pure white / pure black neutrals with a low-chroma primary.
+
+Problem: Template-looking surfaces undermine an otherwise complete ops console. A full layout redesign is out of scope before the assessment deadline.
+
+Decision: **Token-only** refresh in `app/globals.css`:
+
+1. Cool-tinted background / card / sidebar / borders (hue ~250–260, tiny chroma).
+2. Soft cool charcoal dark mode (not pure `oklch(0.145 0 0)`).
+3. Punchier teal-cyan primary / ring / sidebar-primary (chroma ~0.12–0.13).
+4. Keep success / warning / info / destructive and chart series distinct.
+5. Preserve muted contrast ~AA in light.
+
+No style switcher. No component rewrites.
+
+This refines UX-023 brand values; it does not reopen UX-015–025 layouts.
+
+Origin: Engineering decision (UX-026).
+
+Status: accepted
+
+---
+
 ## Dependency register (summary)
 
 | Package | Class | When installed | Why |
