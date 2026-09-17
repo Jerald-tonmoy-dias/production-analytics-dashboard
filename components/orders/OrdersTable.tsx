@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { OrderStatusBadge } from "@/components/orders/OrderStatusBadge";
+import { CustomerAvatar } from "@/components/shared/CustomerAvatar";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { ErrorState } from "@/components/shared/ErrorState";
 import { Button } from "@/components/ui/button";
@@ -37,7 +38,7 @@ function OrdersTableSkeleton() {
         <TableRow>
           <TableHead>Order</TableHead>
           <TableHead>Customer</TableHead>
-          <TableHead>Amount</TableHead>
+          <TableHead className="text-right">Amount</TableHead>
           <TableHead>Status</TableHead>
           <TableHead>Created</TableHead>
           <TableHead className="text-right">Action</TableHead>
@@ -50,13 +51,19 @@ function OrdersTableSkeleton() {
               <Skeleton className="h-4 w-20" />
             </TableCell>
             <TableCell>
-              <Skeleton className="h-4 w-36" />
+              <div className="flex items-center gap-2.5">
+                <Skeleton className="size-8 rounded-full" />
+                <div className="space-y-1.5">
+                  <Skeleton className="h-4 w-28" />
+                  <Skeleton className="h-3 w-36" />
+                </div>
+              </div>
             </TableCell>
             <TableCell>
-              <Skeleton className="h-4 w-16" />
+              <Skeleton className="ml-auto h-4 w-16" />
             </TableCell>
             <TableCell>
-              <Skeleton className="h-4 w-20" />
+              <Skeleton className="h-5 w-20 rounded-full" />
             </TableCell>
             <TableCell>
               <Skeleton className="h-4 w-32" />
@@ -131,7 +138,7 @@ export function OrdersTable({
         <TableRow>
           <TableHead>Order</TableHead>
           <TableHead>Customer</TableHead>
-          <TableHead>Amount</TableHead>
+          <TableHead className="text-right">Amount</TableHead>
           <TableHead>Status</TableHead>
           <TableHead>Created</TableHead>
           <TableHead className="text-right">Action</TableHead>
@@ -140,7 +147,7 @@ export function OrdersTable({
       <TableBody>
         {orders.map((order) => (
           <TableRow key={order.id}>
-            <TableCell>
+            <TableCell className="align-middle">
               <Link
                 href={`/orders/${order.id}`}
                 className="rounded-sm font-medium underline-offset-4 outline-none hover:underline focus-visible:underline focus-visible:ring-3 focus-visible:ring-ring/50"
@@ -148,22 +155,29 @@ export function OrdersTable({
                 {order.id}
               </Link>
             </TableCell>
-            <TableCell>
-              <span className="block">{order.customerName}</span>
-              <span className="text-muted-foreground text-xs">
-                {order.customerEmail}
-              </span>
+            <TableCell className="align-middle">
+              <div className="flex min-w-0 items-center gap-2.5">
+                <CustomerAvatar name={order.customerName} />
+                <span className="min-w-0">
+                  <span className="block truncate font-medium">
+                    {order.customerName}
+                  </span>
+                  <span className="text-muted-foreground block truncate text-xs">
+                    {order.customerEmail}
+                  </span>
+                </span>
+              </div>
             </TableCell>
-            <TableCell className="tabular-nums">
+            <TableCell className="align-middle text-right tabular-nums">
               {formatUsd(order.amount)}
             </TableCell>
-            <TableCell>
+            <TableCell className="align-middle whitespace-nowrap">
               <OrderStatusBadge status={order.status} />
             </TableCell>
-            <TableCell className="text-muted-foreground">
+            <TableCell className="text-muted-foreground align-middle whitespace-nowrap">
               {formatDateTime(order.createdAt)}
             </TableCell>
-            <TableCell className="text-right">
+            <TableCell className="align-middle text-right">
               <Button asChild variant="outline" size="sm">
                 <Link href={`/orders/${order.id}`} aria-label={`View ${order.id}`}>
                   View

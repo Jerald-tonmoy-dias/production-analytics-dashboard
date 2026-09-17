@@ -64,3 +64,15 @@ export const Empty: Story = {
     onPageChange: () => {},
   },
 };
+
+export const WithEllipsis: Story = {
+  args: {
+    pagination: { page: 6, pageSize: 10, total: 120, totalPages: 12 },
+    onPageChange: () => {},
+  },
+  render: () => (
+    <PaginationPlayground
+      initial={{ page: 6, pageSize: 10, total: 120, totalPages: 12 }}
+    />
+  ),
+};

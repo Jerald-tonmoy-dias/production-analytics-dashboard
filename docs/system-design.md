@@ -96,7 +96,7 @@ app/
 
 components/
   ui/                            # shadcn primitives only
-  shared/                        # EmptyState, ErrorState, PageHeader, skeletons
+  shared/                        # EmptyState, ErrorState, PageHeader, CustomerAvatar, skeletons
   layout/                        # AppShell, AppNav, BrandLockup, ThemeToggle, OperatorMenu
   dashboard/                     # KPI, charts, recent orders, activity feed
   orders/                        # filters, table, pagination, status badge, details
@@ -106,6 +106,8 @@ lib/
   schemas/                       # Zod source of truth for runtime + types
   domain/                        # pure mappers: KPIs, series, filters, pagination
   api/                           # HTTP client (Orders Query) and `rsc.ts` (Dashboard/details)
+  pagination.ts                  # numbered page items for OrderPagination (UI helper)
+  format.ts                      # display helpers (currency, dates, customerInitials)
   errors.ts                      # typed error classes / HTTP mapping
   constants.ts                   # page size, chart window, status enum
 
@@ -325,7 +327,8 @@ Required state matrix (minimum):
 | --- | --- |
 | `KpiCard` | Default, Loading, ZeroValue, Error |
 | `OrdersTable` | Default, Loading, Empty, NoResults, Error |
-| `OrderStatusBadge` | Pending, Processing, Completed, Cancelled |
+| `OrderStatusBadge` | Pending, Processing, Completed, Cancelled (filled) |
+| `OrderPagination` | First, Middle (ellipsis), Last, Empty |
 | `EmptyState` / `ErrorState` | Default |
 | Charts | Default, Empty series |
 

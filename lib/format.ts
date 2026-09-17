@@ -132,3 +132,26 @@ export function formatCompactAxis(
     maximumFractionDigits: 1,
   }).format(value);
 }
+
+/**
+ * One or two initials from a customer display name (presentation only).
+ *
+ * @param name - Customer name from the list DTO.
+ * @returns Uppercase initials, or `?` when the name has no letters.
+ */
+export function customerInitials(name: string): string {
+  const parts = name
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((part) => part.replace(/[^A-Za-z0-9]/g, ""))
+    .filter(Boolean);
+
+  if (parts.length === 0) {
+    return "?";
+  }
+  if (parts.length === 1) {
+    return parts[0]!.slice(0, 2).toUpperCase();
+  }
+  return `${parts[0]![0]}${parts[parts.length - 1]![0]}`.toUpperCase();
+}
