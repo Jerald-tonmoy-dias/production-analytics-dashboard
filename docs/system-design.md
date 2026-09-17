@@ -365,11 +365,13 @@ No invented LCP budget. The spec grades **architectural** performance.
 
 - Semantic landmarks: `nav`, `main`, table headers, heading hierarchy.
 - Every input has a visible label (placeholder is not a label).
-- Keyboard: filters, pagination, dialogs, table row activation.
+- Keyboard: filters, pagination, theme menu, skip link, details back, dialogs.
 - Status is not color-only (`OrderStatusBadge` includes text).
 - Charts have a text summary or table alternative for the same series (minimum: aria label + KPI totals already on the page).
 - Focus visible; do not `outline-none` without a replacement.
-- UX-022 motion (shimmer, dashboard enter, duration tokens) respects `prefers-reduced-motion`. UX-021 audits the rest.
+- Contrast: light `--muted-foreground` meets ~AA on white; review both themes after brand tokens change.
+- Hit targets: primary chrome and filter/pagination controls are ≥36px (`min-h-9` / `size-9`). Dense table cells stay compact.
+- Motion: UX-022 owns duration tokens. `prefers-reduced-motion: reduce` zeroes those tokens **and** near-zeros leftover `tw-animate-css` / Radix enter-exit transitions.
 
 ---
 

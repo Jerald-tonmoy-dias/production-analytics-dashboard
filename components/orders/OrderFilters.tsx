@@ -65,7 +65,7 @@ function DateField({ id, label, value, onChange }: DateFieldProps) {
             type="button"
             variant="outline"
             className={cn(
-              "w-full justify-start font-normal",
+              "min-h-9 w-full justify-start font-normal",
               !value && "text-muted-foreground"
             )}
           >
@@ -120,6 +120,7 @@ export function OrderFilters({ value, onChange, onClear }: OrderFiltersProps) {
           id="order-search"
           type="search"
           autoComplete="off"
+          className="min-h-9"
           placeholder="Order id or customer"
           value={value.q}
           onChange={(event) =>
@@ -139,7 +140,7 @@ export function OrderFilters({ value, onChange, onClear }: OrderFiltersProps) {
             })
           }
         >
-          <SelectTrigger id="order-status" className="w-full">
+          <SelectTrigger id="order-status" className="min-h-9 w-full">
             <SelectValue placeholder="All statuses" />
           </SelectTrigger>
           <SelectContent>
@@ -166,7 +167,12 @@ export function OrderFilters({ value, onChange, onClear }: OrderFiltersProps) {
       />
       {canClear ? (
         <div className="flex items-end sm:col-span-2 xl:col-span-4">
-          <Button type="button" variant="ghost" size="sm" onClick={onClear}>
+          <Button
+            type="button"
+            variant="ghost"
+            className="min-h-9"
+            onClick={onClear}
+          >
             Clear filters
           </Button>
         </div>
