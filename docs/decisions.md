@@ -925,6 +925,22 @@ Status: accepted
 
 ---
 
+## Decision: Revenue area vs Orders bar (UX-024)
+
+Date: 2026-09-17
+
+Context: Both dashboard charts used the same AreaChart. Feedback asked for clearer encoding without a second chart library.
+
+Problem: Continuous money and discrete daily order counts read the same, so the pair looks like a demo duplicate.
+
+Decision: **Revenue** stays an **area** (trend / magnitude). **Orders** uses a **column bar** chart (discrete daily counts). Same Recharts island, named series tokens, `isAnimationActive={false}`, sr-only totals. Dashboard vertical rhythm uses `space-y-8` between sections and extra gap between chart title and plot.
+
+Origin: Engineering decision (UX-024).
+
+Status: accepted
+
+---
+
 ## Dependency register (summary)
 
 | Package | Class | When installed | Why |

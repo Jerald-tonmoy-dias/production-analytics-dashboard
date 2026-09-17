@@ -10,7 +10,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { TrendMetricFormat } from "@/components/dashboard/TrendChartCanvas";
+import type {
+  TrendChartVariant,
+  TrendMetricFormat,
+} from "@/components/dashboard/TrendChartCanvas";
 import { formatInteger, formatUsd } from "@/lib/format";
 import type { TimeSeriesPoint } from "@/lib/schemas/analytics";
 
@@ -30,6 +33,8 @@ type TrendChartProps = {
   description?: string;
   series: TimeSeriesPoint[];
   format: TrendMetricFormat;
+  /** Area for continuous magnitude; bar for discrete daily counts. */
+  variant?: TrendChartVariant;
 };
 
 function seriesSummary(
@@ -52,18 +57,19 @@ export function TrendChart({
   description,
   series,
   format,
+  variant = "area",
 }: TrendChartProps) {
   const empty = series.length === 0;
 
   return (
     <Card className="min-w-0">
-      <CardHeader>
+      <CardHeader className="pb-1">
         <CardTitle>{title}</CardTitle>
         {description ? (
           <CardDescription>{description}</CardDescription>
         ) : null}
       </CardHeader>
-      <CardContent>
+      <CardContent className="pt-3">
         {empty ? (
           <EmptyState
             title="No chart data"
@@ -73,7 +79,11 @@ export function TrendChart({
         ) : (
           <div className="h-64 w-full min-w-0">
             <p className="sr-only">{seriesSummary(title, series, format)}</p>
-            <TrendChartCanvas series={series} format={format} />
+            <TrendChartCanvas
+              series={series}
+              format={format}
+              variant={variant}
+            />
           </div>
         )}
       </CardContent>

@@ -40,6 +40,7 @@ export const Default: Story = {
     description: "Completed order amount, last 30 days",
     series: SAMPLE_REVENUE,
     format: "currency",
+    variant: "area",
   },
 };
 
@@ -52,6 +53,7 @@ export const Orders: Story = {
       value: Math.round(point.value / 800),
     })),
     format: "number",
+    variant: "bar",
   },
 };
 
@@ -80,12 +82,13 @@ export const Pair: Story = {
     format: "currency",
   },
   render: () => (
-    <div className="grid gap-4 lg:grid-cols-2">
+    <div className="grid gap-6 lg:grid-cols-2">
       <TrendChart
         title="Revenue"
         description="Completed order amount, last 30 days"
         series={SAMPLE_REVENUE}
         format="currency"
+        variant="area"
       />
       <TrendChart
         title="Orders"
@@ -95,6 +98,7 @@ export const Pair: Story = {
           value: Math.round(point.value / 800),
         }))}
         format="number"
+        variant="bar"
       />
     </div>
   ),
