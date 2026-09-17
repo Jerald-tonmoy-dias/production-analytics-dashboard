@@ -3,11 +3,17 @@ import { MobileNav } from "@/components/layout/MobileNav";
 
 type AppShellProps = {
   children: React.ReactNode;
-  /** Chrome actions (theme toggle). Called once per shell (mobile top bar, desktop sidebar foot). */
+  /** All-time order count for the Orders nav badge (`kpis.orderCount`). */
+  orderCount?: number;
+  /** Chrome actions (theme + operator). Mobile top bar and desktop toolbar. */
   headerActions?: () => React.ReactNode;
 };
 
-export function AppShell({ children, headerActions }: AppShellProps) {
+export function AppShell({
+  children,
+  orderCount,
+  headerActions,
+}: AppShellProps) {
   return (
     <div className="min-h-screen overflow-x-hidden bg-background md:h-svh md:overflow-hidden">
       <a
@@ -17,9 +23,17 @@ export function AppShell({ children, headerActions }: AppShellProps) {
         Skip to main content
       </a>
       <div className="md:flex md:h-svh">
-        <AppSidebar footer={headerActions?.()} />
+        <AppSidebar orderCount={orderCount} />
         <div className="flex min-h-0 min-w-0 flex-1 flex-col">
-          <MobileNav actions={headerActions?.()} />
+          <MobileNav actions={headerActions?.()} orderCount={orderCount} />
+          <header className="border-border hidden shrink-0 items-center justify-end gap-1 border-b px-6 py-2 md:flex">
+            <div
+              data-slot="shell-actions"
+              className="flex shrink-0 items-center gap-0.5"
+            >
+              {headerActions?.()}
+            </div>
+          </header>
           <main
             id="main-content"
             tabIndex={-1}

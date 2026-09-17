@@ -97,7 +97,7 @@ app/
 components/
   ui/                            # shadcn primitives only
   shared/                        # EmptyState, ErrorState, PageHeader, skeletons
-  layout/                        # AppShell, AppNav, ThemeToggle
+  layout/                        # AppShell, AppNav, BrandLockup, ThemeToggle, OperatorMenu
   dashboard/                     # KPI, charts, recent orders, activity feed
   orders/                        # filters, table, pagination, status badge, details
   providers/                     # ThemeProvider (root) and QueryClientProvider (orders)
@@ -156,7 +156,8 @@ Practical split:
 
 | Surface | Component type | Why |
 | --- | --- | --- |
-| Root layout, console shell chrome that is just markup | Server, with small client nav island if needed | No hooks required for static links |
+| `(shell)/layout.tsx` | Server | Calls `getAnalytics()` for the Orders nav badge (`kpis.orderCount`); `React.cache()` shares that compute with the Dashboard page |
+| Root layout, console shell chrome that is just markup | Server, with small client nav / theme / operator islands | Brand lockup is markup; collapse, drawer, theme, and operator menu need the browser |
 | Dashboard page | Server | First paint from in-process domain (`lib/api/rsc`) |
 | KPI cards | Server-safe presentational | Numbers in, markup out |
 | Charts | Client island | Recharts needs DOM |
@@ -248,7 +249,7 @@ Native Next.js `searchParams` is preferred over `nuqs` unless URL encoding becom
 ## 12. Caching
 
 - Route Handlers read JSON from disk; no Redis.
-- Dashboard and details do not `fetch` this app’s Route Handlers. Duplicate RSC work is avoided by calling domain once per page.
+- Dashboard and details do not `fetch` this app’s Route Handlers. `getAnalytics()` is wrapped in React `cache()` so the shell layout (Orders badge) and Dashboard page share one in-process compute per request.
 - TanStack Query `staleTime` on the order of 30s for lists. No infinite stale; operators expect reasonably fresh mock data after reload.
 
 This is **demonstration-scale** caching, not a CDN strategy.
@@ -291,6 +292,7 @@ shadcn primitives   →  shared states / layout  →  feature widgets  →  page
 
 - **Do not** wrap every shadcn primitive in a second identity-less wrapper.
 - **Do** build `OrderStatusBadge` (maps domain status → semantic tokens + label) and `KpiCard` (KPI semantics on top of Card, including lucide `tone` icons).
+- Shell identity: `BrandLockup` (mark + `PRODUCT_NAME`), brand active nav, Orders count from `kpis.orderCount`. Theme + static operator (`OPERATOR_NAME` / initials) live in the desktop toolbar and mobile top bar — not a sidebar footer. There is no notification bell, search, or export.
 
 Status and chart hues live in `app/globals.css` (`--success`, `--warning`, `--info`, `--destructive`, `--chart-revenue`, `--chart-orders`). Motion durations and elevation live there too (`--motion-fast`, `--motion-default`, `--elevation-hover`). Do not hardcode hex in feature widgets.
 - Feature widgets are presentational: props in, events out. They do not fetch.

@@ -859,6 +859,72 @@ Status: accepted
 
 ---
 
+## Decision: Mock API is frontend integration, not a backend to grow
+
+Date: 2026-09-17
+
+Context: The assignment allows a JSON dataset or mock API. Reviewers and later visual tickets can look like they want extra fields (growth %, customer photos, notification counts, export payloads).
+
+Problem: Treating `app/api` as a product backend invites decorative endpoints and hardcoded JSON that the UI then “fetches.” That is worse than honest derivation from customers + orders.
+
+Options considered:
+
+1. Add JSON fields and routes whenever a mock looks incomplete.
+2. Keep the four GET resources; derive chrome and analytics from existing domain (`kpis.orderCount`, series, order rows).
+
+Decision: Option 2. The mock API exists so the **frontend** can demonstrate REST, Zod, RSC vs Query, and unexpected-data handling. It is not a backend to grow. Prefer `lib/domain` over a new file in `data/`. Do not invent growth percentages, image URLs, or notification counts.
+
+Trade-offs: The shell will not look like a full marketing dashboard. Reviewers see real numbers from the same KPIs.
+
+Origin: Engineering decision (UX-023). Company requirement (JSON/mock API, no hardcoded UI data).
+
+Status: accepted
+
+---
+
+## Decision: Brand A — teal-cyan primary (UX-023)
+
+Date: 2026-09-17
+
+Context: UX-015 added semantic and chart hues; `--primary` stayed near-neutral. Visual feedback asked for SaaS identity. A live style switcher was rejected.
+
+Problem: Gray-as-primary makes focus rings, buttons, and active nav look unfinished. Brand must not collide with status (success/warning/info/destructive) or chart series.
+
+Options considered:
+
+1. Keep Nova gray primary.
+2. Teal-cyan `--primary` / `--ring` / `--sidebar-primary` (hue ~200).
+3. Expose a runtime primary picker.
+
+Decision: Option 2. Light `--primary: oklch(0.42 0.1 200)`; dark `--primary: oklch(0.82 0.1 200)`. Semantic and chart tokens are unchanged. Active nav uses `sidebar-primary`, not success/info. App icon background follows the same teal. No style switcher.
+
+This supersedes in part:
+
+- UX-016: dark `--sidebar-primary` matching a **neutral** primary.
+- UX-017: `headerActions` mounted in the **desktop sidebar footer**. Theme + static operator now live in the desktop main-column toolbar and the mobile top bar. Sidebar has no footer.
+
+Origin: Engineering decision (UX-023).
+
+Status: accepted
+
+---
+
+## Decision: Visual follow-on sequence 023 → 024 → 025, then 021
+
+Date: 2026-09-17
+
+Context: UX-015–020 and UX-022 are merged. UX-021 (#35) was the leftover a11y review. Design-feedback screenshots asked for brand, chart type, and table/pager presentation — not a reopen of closed tickets.
+
+Problem: Auditing contrast and hit targets before brand and table chrome would force a second a11y pass. Reopening 015–020/022 would break `1 ticket = 1 PR`.
+
+Decision: New serial tickets **UX-023** (brand + shell), **UX-024** (dashboard presentation), **UX-025** (orders table/pagination). **UX-021 runs last.** Do not reopen closed UX tickets. Out of this phase: notification bell, global search, export, growth % on all-time KPIs, fake images, style switcher.
+
+Origin: Engineering decision (post-021 visual feedback).
+
+Status: accepted
+
+---
+
 ## Dependency register (summary)
 
 | Package | Class | When installed | Why |

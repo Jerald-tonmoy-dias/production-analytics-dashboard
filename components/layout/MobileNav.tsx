@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { AppNav } from "@/components/layout/AppNav";
+import { BrandLockup } from "@/components/layout/BrandLockup";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -13,13 +14,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { MD_MEDIA_QUERY, PRODUCT_NAME } from "@/lib/constants";
+import { MD_MEDIA_QUERY } from "@/lib/constants";
 
 type MobileNavProps = {
   actions?: React.ReactNode;
+  orderCount?: number;
 };
 
-export function MobileNav({ actions }: MobileNavProps) {
+export function MobileNav({ actions, orderCount }: MobileNavProps) {
   const pathname = usePathname();
   const [openPath, setOpenPath] = useState<string | null>(null);
   const open = openPath === pathname;
@@ -59,19 +61,19 @@ export function MobileNav({ actions }: MobileNavProps) {
           className="bg-sidebar text-sidebar-foreground w-[min(18rem,85vw)] gap-0 p-0 duration-[var(--motion-default)] ease-standard"
         >
           <SheetHeader className="border-sidebar-border border-b pr-12">
-            <SheetTitle>{PRODUCT_NAME}</SheetTitle>
+            <SheetTitle>
+              <BrandLockup />
+            </SheetTitle>
             <SheetDescription className="sr-only">
               Primary navigation
             </SheetDescription>
           </SheetHeader>
           <div id="mobile-nav" className="min-h-0 flex-1 overflow-y-auto px-3 py-3">
-            <AppNav />
+            <AppNav orderCount={orderCount} />
           </div>
         </SheetContent>
       </Sheet>
-      <p className="font-heading min-w-0 flex-1 truncate text-sm font-semibold tracking-tight">
-        {PRODUCT_NAME}
-      </p>
+      <BrandLockup className="min-w-0 flex-1" />
       {actions ? (
         <div data-slot="shell-actions" className="flex shrink-0 items-center">
           {actions}

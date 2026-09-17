@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { AppShell } from "@/components/layout/AppShell";
-import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { ShellChromeActions } from "@/components/layout/ShellChromeActions";
 import { PageHeader } from "@/components/shared/PageHeader";
 
 const placeholderPage = (
@@ -13,7 +13,7 @@ const placeholderPage = (
   </div>
 );
 
-const renderThemeToggle = () => <ThemeToggle />;
+const renderChromeActions = () => <ShellChromeActions />;
 
 const meta = {
   title: "Layout/AppShell",
@@ -34,7 +34,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Dashboard: Story = {
   args: {
-    headerActions: renderThemeToggle,
+    orderCount: 120,
+    headerActions: renderChromeActions,
     children: placeholderPage,
   },
 };
@@ -49,7 +50,8 @@ export const Orders: Story = {
     },
   },
   args: {
-    headerActions: renderThemeToggle,
+    orderCount: 120,
+    headerActions: renderChromeActions,
     children: (
       <div className="space-y-6">
         <PageHeader
@@ -64,7 +66,8 @@ export const Orders: Story = {
 
 export const Mobile: Story = {
   args: {
-    headerActions: renderThemeToggle,
+    orderCount: 120,
+    headerActions: renderChromeActions,
     children: placeholderPage,
   },
   decorators: [

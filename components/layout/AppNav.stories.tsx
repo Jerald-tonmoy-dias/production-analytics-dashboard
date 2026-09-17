@@ -50,3 +50,23 @@ export const Collapsed: Story = {
     ),
   ],
 };
+
+export const WithCount: Story = {
+  args: {
+    orderCount: 120,
+  },
+};
+
+export const CollapsedWithCount: Story = {
+  args: {
+    collapsed: true,
+    orderCount: 120,
+  },
+  decorators: [
+    (Story) => (
+      <div className="bg-sidebar w-14 rounded-md p-2">
+        <Story />
+      </div>
+    ),
+  ],
+};
