@@ -100,10 +100,10 @@ If a file mixes fetching, filtering, and markup, split it. If a file is a 15-lin
 
 - Tailwind utility classes. Use `cn()` from `@/lib/utils` for conditional classes.
 - Tokens come from the shadcn theme (CSS variables). Semantic hues: `success`, `warning`, `info`, `destructive`; chart series: `chart-revenue`, `chart-orders`. Do not scatter raw hex in feature files.
-- Motion: `duration-[var(--motion-fast)]` (120ms, hover color/border/rows) and `duration-[var(--motion-default)]` (180ms, card lift, buttons). Easing is `ease-standard`. Charts stay `isAnimationActive={false}`. Search typing and URL list replace stay instant. `prefers-reduced-motion` zeroes those durations and disables skeleton shimmer / dashboard enter.
+- Motion: `duration-[var(--motion-fast)]` (120ms, hover color/border/rows) and `duration-[var(--motion-default)]` (180ms, card lift, buttons). Easing is `ease-standard`. Charts stay `isAnimationActive={false}`. Search typing and URL list replace stay instant. `prefers-reduced-motion` zeroes those durations, disables skeleton shimmer / dashboard enter, and near-zeros leftover Radix/`tw-animate-css` transitions.
 - Icons: lucide only. KPIs use `size-4` in a `size-8` rounded container (`KpiCard` `tone`). Nav stays `size-4`. Do **not** icon table cells, status badges, or activity rows.
 - Responsive: mobile-first. KPI grids are `grid-cols-2` from `xs`, `xl:grid-cols-4`. Tables keep a min-width (`min-w-[40rem]` on `Table`) and scroll horizontally; they do not reflow into a card list.
-- Density: this is an ops console. Prefer compact tables over large marketing cards.
+- Density: this is an ops console. Prefer compact tables over large marketing cards. Primary chrome and filter/pagination controls still target ≥36px hit areas.
 
 ---
 
@@ -117,6 +117,8 @@ Minimum bar for every UI ticket:
 - Visible focus.
 - Status text, not color alone.
 - `aria-busy` / `aria-live` on loading/error regions where it helps.
+- Muted hint text remains readable in light and dark (see `--muted-foreground`).
+- Primary chrome / filter controls ≥36px where operators tap.
 
 Do not disable scrolling or trap focus except inside dialogs.
 

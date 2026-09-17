@@ -32,7 +32,7 @@ export default async function OrderDetailsPage({
         title={order.id}
         description={`Placed ${formatDateTime(order.createdAt)}`}
       >
-        <Button asChild variant="outline">
+        <Button asChild variant="outline" className="min-h-9">
           <Link href="/orders">Back to orders</Link>
         </Button>
       </PageHeader>

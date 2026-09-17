@@ -53,15 +53,15 @@ export function AppNav({ collapsed = false, orderCount }: AppNavProps) {
                 "flex items-center rounded-md border border-transparent text-sm font-medium outline-none transition-colors duration-[var(--motion-fast)] ease-standard",
                 "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
                 collapsed
-                  ? "size-8 justify-center"
-                  : "w-full gap-2 px-2.5 py-1.5",
+                  ? "size-9 justify-center"
+                  : "min-h-9 w-full gap-2 px-2.5 py-1.5",
                 current
                   ? cn(
                       "bg-sidebar-primary/10 text-sidebar-primary",
                       !collapsed &&
                         "shadow-[inset_2px_0_0_0_var(--sidebar-primary)]"
                     )
-                  : "text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                  : "text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
               )}
             >
               <Icon className="size-4 shrink-0" aria-hidden="true" />

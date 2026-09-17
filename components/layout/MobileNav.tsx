@@ -47,8 +47,7 @@ export function MobileNav({ actions, orderCount }: MobileNavProps) {
           <Button
             type="button"
             variant="ghost"
-            size="icon"
-            className="size-8"
+            size="icon-lg"
             aria-label="Open menu"
             aria-expanded={open}
             aria-controls="mobile-nav"

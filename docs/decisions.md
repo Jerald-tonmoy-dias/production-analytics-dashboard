@@ -955,6 +955,24 @@ Status: accepted
 
 ---
 
+## Decision: Accessibility pass after brand and presentation (UX-021)
+
+Date: 2026-09-17
+
+Context: Skip link, labels, status text, chart sr-only summaries, and UX-022 motion tokens already existed. Remaining gaps were muted contrast on light, ~32px chrome hit targets, and Radix/`tw-animate-css` enter-exit that ignored `prefers-reduced-motion`.
+
+Decision:
+
+1. Raise light `--muted-foreground` to `oklch(0.45 0 0)` (~AA on white). Chart ticks inherit it. Do not invent a second muted scale.
+2. Primary chrome and filter controls target **≥36px** (`size-9` / `min-h-9`): nav, theme, operator, mobile menu, sidebar collapse, filters, pagination, details back. Table row density stays compact.
+3. Under `prefers-reduced-motion: reduce`, zero motion tokens **and** force near-zero `animation`/`transition` on all elements so popovers, sheets, and menus stop moving. Do not redefine `--motion-*` values.
+
+Origin: Engineering decision (UX-021).
+
+Status: accepted
+
+---
+
 ## Dependency register (summary)
 
 | Package | Class | When installed | Why |

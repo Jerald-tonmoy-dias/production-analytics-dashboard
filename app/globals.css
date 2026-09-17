@@ -71,7 +71,8 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  /* ~5.4:1 on white — AA for muted body/hint text (was ~3.7 at 0.556). */
+  --muted-foreground: oklch(0.45 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
@@ -212,5 +213,15 @@
   .motion-enter,
   [data-slot="skeleton"]::after {
     animation: none;
+  }
+
+  /* Also covers tw-animate-css / Radix enter-exit (popover, sheet, menu). */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
