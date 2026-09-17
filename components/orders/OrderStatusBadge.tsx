@@ -2,11 +2,12 @@ import { Badge } from "@/components/ui/badge";
 import type { OrderStatus } from "@/lib/schemas/order";
 import { cn } from "@/lib/utils";
 
+/** Filled semantic badges — status text stays for accessibility. */
 const STATUS_CLASS: Record<OrderStatus, string> = {
-  pending: "border-warning/40 bg-warning/10 text-warning",
-  processing: "border-transparent bg-info/15 text-info",
+  pending: "border-transparent bg-warning text-warning-foreground",
+  processing: "border-transparent bg-info text-info-foreground",
   completed: "border-transparent bg-success text-success-foreground",
-  cancelled: "border-destructive/40 bg-transparent text-destructive",
+  cancelled: "border-transparent bg-destructive text-white",
 };
 
 type OrderStatusBadgeProps = {

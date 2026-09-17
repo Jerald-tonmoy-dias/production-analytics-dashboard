@@ -941,6 +941,20 @@ Status: accepted
 
 ---
 
+## Decision: Filled status badges, initials, numbered pager (UX-025)
+
+Date: 2026-09-17
+
+Context: Status badges mixed outline and solid. Pagination was Previous/Next only. Feedback asked for customer marks without inventing image URLs.
+
+Decision: One **filled** badge recipe per status using existing semantic tokens (label text stays). Customer **initials** from `customerName` via `customerInitials` — no contract change. Amount columns right-align. `OrderPagination` adds numbered pages from `buildPageItems` (ellipsis when needed); current page uses brand `default` button. API `pagination` shape unchanged.
+
+Origin: Engineering decision (UX-025).
+
+Status: accepted
+
+---
+
 ## Dependency register (summary)
 
 | Package | Class | When installed | Why |

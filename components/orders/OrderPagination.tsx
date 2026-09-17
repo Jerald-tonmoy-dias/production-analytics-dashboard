@@ -3,7 +3,9 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { formatInteger } from "@/lib/format";
+import { buildPageItems } from "@/lib/pagination";
 import type { Pagination } from "@/lib/schemas/query";
+import { cn } from "@/lib/utils";
 
 type OrderPaginationProps = {
   pagination: Pagination;
@@ -27,6 +29,7 @@ export function OrderPagination({
   const { page, totalPages } = pagination;
   const previousDisabled = page <= 1 || totalPages === 0;
   const nextDisabled = totalPages === 0 || page >= totalPages;
+  const items = buildPageItems(page, totalPages);
 
   return (
     <nav
@@ -36,7 +39,7 @@ export function OrderPagination({
       <p className="text-muted-foreground text-sm" aria-live="polite">
         {rangeLabel(pagination)}
       </p>
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-1.5">
         <Button
           type="button"
           variant="outline"
@@ -47,6 +50,33 @@ export function OrderPagination({
           <ChevronLeft data-icon="inline-start" />
           Previous
         </Button>
+        {items.map((item, index) =>
+          item === "ellipsis" ? (
+            <span
+              key={`ellipsis-${index}`}
+              className="text-muted-foreground px-1.5 text-sm"
+              aria-hidden="true"
+            >
+              …
+            </span>
+          ) : (
+            <Button
+              key={item}
+              type="button"
+              variant={item === page ? "default" : "outline"}
+              size="sm"
+              className={cn(
+                "min-w-8 px-2 tabular-nums",
+                item === page && "pointer-events-none"
+              )}
+              aria-label={`Page ${item}`}
+              aria-current={item === page ? "page" : undefined}
+              onClick={() => onPageChange(item)}
+            >
+              {formatInteger(item)}
+            </Button>
+          )
+        )}
         <Button
           type="button"
           variant="outline"

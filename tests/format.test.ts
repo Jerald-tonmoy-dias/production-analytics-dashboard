@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  customerInitials,
   formatChartDay,
   formatDateTime,
   formatInteger,
@@ -59,5 +60,19 @@ describe("formatDateTime", () => {
     expect(formatDateTime("2026-09-16T12:00:00.000Z")).toBe(
       "Sep 16, 2026, 12:00 PM UTC"
     );
+  });
+});
+
+describe("customerInitials", () => {
+  it("uses the first letters of the first and last words", () => {
+    expect(customerInitials("Beacon Pharma")).toBe("BP");
+  });
+
+  it("uses two letters from a single word", () => {
+    expect(customerInitials("Acme")).toBe("AC");
+  });
+
+  it("returns ? when there are no usable characters", () => {
+    expect(customerInitials("   ")).toBe("?");
   });
 });
