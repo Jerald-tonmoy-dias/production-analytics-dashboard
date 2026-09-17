@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { getAnalytics as computeAnalytics } from "@/lib/domain/analytics";
 import { listActivities } from "@/lib/domain/activities";
 import { loadDatasets } from "@/lib/domain/datasets";
@@ -21,14 +22,16 @@ import {
  *
  * Runs in-process so Server Components do not HTTP-fetch this app's own
  * origin (that loop fails on Vercel when `VERCEL_URL` is the deployment host).
+ * Wrapped in React `cache()` so the shell layout (Orders badge) and Dashboard
+ * page share one compute per request.
  *
  * @returns Analytics DTO (`kpis` + `series`).
  * @throws {InternalError} When mock JSON fails to parse.
  */
-export async function getAnalytics(): Promise<Analytics> {
+export const getAnalytics = cache(async (): Promise<Analytics> => {
   const { customers, orders } = loadDatasets();
   return computeAnalytics(customers, orders);
-}
+});
 
 /**
  * Activity feed rows, same payload as `GET /api/activities` unwrapped `{ data }`.

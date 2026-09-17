@@ -28,6 +28,12 @@ export const PRODUCT_NAME = "Production Analytics";
 /** Compact mark for the collapsed desktop rail (matches the app icon). */
 export const PRODUCT_NAME_MARK = "P";
 
+/** Static operator chrome. There is no auth in this assessment. */
+export const OPERATOR_NAME = "Operator";
+
+/** Initials shown on the static operator avatar. */
+export const OPERATOR_INITIALS = "O";
+
 /** Matches Tailwind `md`. Desktop rail vs mobile drawer. */
 export const MD_MEDIA_QUERY = "(min-width: 768px)";
 

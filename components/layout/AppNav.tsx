@@ -8,6 +8,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Badge } from "@/components/ui/badge";
+import { formatInteger } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
@@ -17,6 +19,8 @@ const NAV_ITEMS = [
 
 type AppNavProps = {
   collapsed?: boolean;
+  /** All-time order count (`kpis.orderCount`). Shown on Orders when expanded. */
+  orderCount?: number;
 };
 
 function isCurrentPath(href: string, pathname: string): boolean {
@@ -26,7 +30,7 @@ function isCurrentPath(href: string, pathname: string): boolean {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export function AppNav({ collapsed = false }: AppNavProps) {
+export function AppNav({ collapsed = false, orderCount }: AppNavProps) {
   const pathname = usePathname();
 
   return (
@@ -35,6 +39,11 @@ export function AppNav({ collapsed = false }: AppNavProps) {
         {NAV_ITEMS.map((item) => {
           const current = isCurrentPath(item.href, pathname);
           const Icon = item.icon;
+          const showCount = item.href === "/orders" && orderCount != null;
+          const tooltipLabel =
+            showCount && collapsed
+              ? `${item.label} · ${formatInteger(orderCount)}`
+              : item.label;
 
           const link = (
             <Link
@@ -45,24 +54,41 @@ export function AppNav({ collapsed = false }: AppNavProps) {
                 "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
                 collapsed
                   ? "size-8 justify-center"
-                  : "gap-2 px-2.5 py-1.5",
+                  : "w-full gap-2 px-2.5 py-1.5",
                 current
-                  ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                  ? cn(
+                      "bg-sidebar-primary/10 text-sidebar-primary",
+                      !collapsed &&
+                        "shadow-[inset_2px_0_0_0_var(--sidebar-primary)]"
+                    )
                   : "text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
               )}
             >
               <Icon className="size-4 shrink-0" aria-hidden="true" />
-              <span className={collapsed ? "sr-only" : undefined}>{item.label}</span>
+              <span className={collapsed ? "sr-only" : "min-w-0 flex-1 truncate"}>
+                {item.label}
+              </span>
+              {showCount && !collapsed ? (
+                <Badge
+                  variant="secondary"
+                  className="ml-auto h-5 shrink-0 px-1.5 tabular-nums"
+                >
+                  {formatInteger(orderCount)}
+                </Badge>
+              ) : null}
             </Link>
           );
 
           return (
-            <li key={item.href} className={collapsed ? "flex justify-center" : undefined}>
+            <li
+              key={item.href}
+              className={collapsed ? "flex justify-center" : undefined}
+            >
               {collapsed ? (
                 <Tooltip>
                   <TooltipTrigger asChild>{link}</TooltipTrigger>
                   <TooltipContent side="right" sideOffset={8}>
-                    {item.label}
+                    {tooltipLabel}
                   </TooltipContent>
                 </Tooltip>
               ) : (
