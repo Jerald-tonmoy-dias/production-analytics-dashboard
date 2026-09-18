@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { ErrorState } from "@/components/shared/ErrorState";
-import { CustomerAvatar } from "@/components/shared/CustomerAvatar";
 import { OrderStatusBadge } from "@/components/orders/OrderStatusBadge";
 import {
   Card,
@@ -10,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
@@ -21,7 +19,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { formatDateTime, formatUsd } from "@/lib/format";
+import { formatUsd } from "@/lib/format";
 import type { OrderListItem } from "@/lib/schemas/order";
 
 type DashboardListState = "default" | "loading" | "error";
@@ -48,12 +46,12 @@ export function RecentOrders({
   const empty = state === "default" && orders.length === 0;
 
   return (
-    <Card className="h-full min-h-0 min-w-0">
-      <CardHeader>
+    <Card className="flex h-full min-h-0 min-w-0 flex-col">
+      <CardHeader className="shrink-0">
         <CardTitle>Recent orders</CardTitle>
         <CardDescription>Newest orders across the workspace.</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex min-h-0 flex-1 flex-col">
         {state === "loading" ? (
           <div aria-busy="true" aria-live="polite">
             <RecentOrdersSkeleton />
@@ -71,60 +69,50 @@ export function RecentOrders({
             className="border-0 py-8"
           />
         ) : (
-          <Table>
+          <Table className="min-w-0 table-fixed">
             <TableCaption className="sr-only">Recent orders</TableCaption>
             <TableHeader>
               <TableRow>
-                <TableHead>Order</TableHead>
-                <TableHead>Customer</TableHead>
-                <TableHead className="text-right">Amount</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Created</TableHead>
-                <TableHead className="text-right">Action</TableHead>
+                <TableHead className="w-[16%]">Order</TableHead>
+                <TableHead className="w-[30%]">Product</TableHead>
+                <TableHead className="w-[24%]">Customer</TableHead>
+                <TableHead className="w-[15%] text-right">Amount</TableHead>
+                <TableHead className="w-[15%]">Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {orders.map((order) => (
                 <TableRow key={order.id}>
-                  <TableCell className="align-middle">
+                  <TableCell className="max-w-0 align-middle">
                     <Link
                       href={`/orders/${order.id}`}
-                      className="rounded-sm font-medium underline-offset-4 outline-none hover:underline focus-visible:underline focus-visible:ring-3 focus-visible:ring-ring/50"
+                      className="block truncate rounded-sm font-medium underline-offset-4 outline-none hover:underline focus-visible:underline focus-visible:ring-3 focus-visible:ring-ring/50"
                     >
                       {order.id}
                     </Link>
                   </TableCell>
-                  <TableCell className="align-middle">
-                    <div className="flex min-w-0 items-center gap-2.5">
-                      <CustomerAvatar name={order.customerName} />
-                      <span className="min-w-0">
-                        <span className="block truncate font-medium">
-                          {order.customerName}
-                        </span>
-                        <span className="text-muted-foreground block truncate text-xs">
-                          {order.customerEmail}
-                        </span>
+                  <TableCell className="max-w-0 align-middle whitespace-normal">
+                    <span className="min-w-0">
+                      <span className="block truncate font-medium">
+                        {order.productName}
                       </span>
-                    </div>
+                      {order.itemCount > 1 ? (
+                        <span className="text-muted-foreground block truncate text-xs">
+                          +{order.itemCount - 1} more
+                        </span>
+                      ) : null}
+                    </span>
+                  </TableCell>
+                  <TableCell className="max-w-0 align-middle">
+                    <span className="block truncate font-medium">
+                      {order.customerName}
+                    </span>
                   </TableCell>
                   <TableCell className="align-middle text-right tabular-nums">
                     {formatUsd(order.amount)}
                   </TableCell>
-                  <TableCell className="align-middle whitespace-nowrap">
+                  <TableCell className="align-middle">
                     <OrderStatusBadge status={order.status} />
-                  </TableCell>
-                  <TableCell className="text-muted-foreground align-middle whitespace-nowrap">
-                    {formatDateTime(order.createdAt)}
-                  </TableCell>
-                  <TableCell className="align-middle text-right">
-                    <Button asChild variant="outline" size="sm">
-                      <Link
-                        href={`/orders/${order.id}`}
-                        aria-label={`View ${order.id}`}
-                      >
-                        View
-                      </Link>
-                    </Button>
                   </TableCell>
                 </TableRow>
               ))}

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { OrderStatusBadge } from "@/components/orders/OrderStatusBadge";
-import { CustomerAvatar } from "@/components/shared/CustomerAvatar";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { ErrorState } from "@/components/shared/ErrorState";
 import { Button } from "@/components/ui/button";
@@ -31,12 +30,20 @@ type OrdersTableProps = {
   onClearFilters?: () => void;
 };
 
+function productSecondaryLabel(order: OrderListItem): string {
+  if (order.itemCount > 1) {
+    return `${order.productSku} · +${order.itemCount - 1} more`;
+  }
+  return order.productSku;
+}
+
 function OrdersTableSkeleton() {
   return (
     <Table>
       <TableHeader>
         <TableRow>
           <TableHead>Order</TableHead>
+          <TableHead>Product</TableHead>
           <TableHead>Customer</TableHead>
           <TableHead className="text-right">Amount</TableHead>
           <TableHead>Status</TableHead>
@@ -51,12 +58,15 @@ function OrdersTableSkeleton() {
               <Skeleton className="h-4 w-20" />
             </TableCell>
             <TableCell>
-              <div className="flex items-center gap-2.5">
-                <Skeleton className="size-8 rounded-full" />
-                <div className="space-y-1.5">
-                  <Skeleton className="h-4 w-28" />
-                  <Skeleton className="h-3 w-36" />
-                </div>
+              <div className="space-y-1.5">
+                <Skeleton className="h-4 w-32" />
+                <Skeleton className="h-3 w-24" />
+              </div>
+            </TableCell>
+            <TableCell>
+              <div className="space-y-1.5">
+                <Skeleton className="h-4 w-28" />
+                <Skeleton className="h-3 w-36" />
               </div>
             </TableCell>
             <TableCell>
@@ -137,6 +147,7 @@ export function OrdersTable({
       <TableHeader>
         <TableRow>
           <TableHead>Order</TableHead>
+          <TableHead>Product</TableHead>
           <TableHead>Customer</TableHead>
           <TableHead className="text-right">Amount</TableHead>
           <TableHead>Status</TableHead>
@@ -156,17 +167,24 @@ export function OrdersTable({
               </Link>
             </TableCell>
             <TableCell className="align-middle">
-              <div className="flex min-w-0 items-center gap-2.5">
-                <CustomerAvatar name={order.customerName} />
-                <span className="min-w-0">
-                  <span className="block truncate font-medium">
-                    {order.customerName}
-                  </span>
-                  <span className="text-muted-foreground block truncate text-xs">
-                    {order.customerEmail}
-                  </span>
+              <span className="min-w-0">
+                <span className="block truncate font-medium">
+                  {order.productName}
                 </span>
-              </div>
+                <span className="text-muted-foreground block truncate text-xs">
+                  {productSecondaryLabel(order)}
+                </span>
+              </span>
+            </TableCell>
+            <TableCell className="align-middle">
+              <span className="min-w-0">
+                <span className="block truncate font-medium">
+                  {order.customerName}
+                </span>
+                <span className="text-muted-foreground block truncate text-xs">
+                  {order.customerEmail}
+                </span>
+              </span>
             </TableCell>
             <TableCell className="align-middle text-right tabular-nums">
               {formatUsd(order.amount)}

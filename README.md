@@ -68,7 +68,7 @@ UI components receive DTOs. They do not fetch JSON or compute KPIs.
 
 ## Theme
 
-Light, Dark, and System. Default is **dark** (including first paint: `class="dark"` on `<html>`). `next-themes` then keeps `.dark` in sync (`attribute="class"`, `defaultTheme="dark"`). Tokens stay in `app/globals.css` (`:root` / `.dark`); there is no parallel hex theme. **`--primary` is teal-cyan** (hue ~200) for buttons, focus rings, and active nav. Status and chart hues stay separate. Theme + a static operator avatar sit in the desktop toolbar and mobile top bar. The shell menu persists the theme in `localStorage` (`theme`). Storybook has a Light / Dark toolbar on the same tokens (starts in dark).
+Light, Dark, and System. Default is **light** (soft canvas first paint; no forced `dark` class on `<html>`). `next-themes` keeps `.dark` in sync (`attribute="class"`, `defaultTheme="light"`). Tokens live in `app/globals.css` (`:root` / `.dark`). Visual language: soft gray stage, white cards/sidebar, **royal-blue primary**, pastel KPI wells, larger radius, soft card elevation. Status and chart hues stay separate from brand. Theme + a static operator avatar sit in the desktop toolbar and mobile top bar. Storybook Light / Dark toolbar starts in **light**.
 
 Target tree: [system design — folder structure](./docs/system-design.md#4-folder--module-structure).
 

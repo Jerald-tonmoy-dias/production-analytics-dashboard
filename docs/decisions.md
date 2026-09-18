@@ -913,7 +913,7 @@ Status: accepted
 
 Date: 2026-09-17
 
-Context: UX-015–020 and UX-022 are merged. UX-021 (#35) was the leftover a11y review. Design-feedback screenshots asked for brand, chart type, and table/pager presentation — not a reopen of closed tickets.
+Context: UX-015–020 and UX-022 are merged. UX-021 (#35) was the leftover a11y review. Operator UI feedback asked for brand, chart type, and table/pager presentation — not a reopen of closed tickets.
 
 Problem: Auditing contrast and hit targets before brand and table chrome would force a second a11y pass. Reopening 015–020/022 would break `1 ticket = 1 PR`.
 
@@ -968,6 +968,31 @@ Decision:
 3. Under `prefers-reduced-motion: reduce`, zero motion tokens **and** force near-zero `animation`/`transition` on all elements so popovers, sheets, and menus stop moving. Do not redefine `--motion-*` values.
 
 Origin: Engineering decision (UX-021).
+
+Status: accepted
+
+---
+
+## Decision: Soft NETIC-like visual language (UX-027)
+
+Date: 2026-09-18
+
+Context: Assessment UI still read as dense Nova/teal console. Operator shared a soft SaaS reference (pastel KPI wells, royal-blue active nav, airy canvas). Content and IA must stay unchanged.
+
+Problem: Token-only teal/graphite tweaks were not enough. Copying the reference’s map, growth pills, notification bell, or ecommerce nav would invent scope and fake metrics.
+
+Decision:
+
+1. Soft light-gray stage + white sidebar/cards; larger radius (`0.75rem`); soft card elevation.
+2. Royal-blue `--primary` / solid active nav pill (not inset teal strip).
+3. Pastel KPI card wells + circular icons via `--kpi-*` tokens. Keep existing labels/hints/values — **no growth %**, kebabs, or new KPIs.
+4. Charts stay Revenue area + Orders bar; hues retinted to orange/blue to fit the palette.
+5. Default theme **light** (first paint + Storybook). Dark remains available and uses the same language.
+6. Out of scope unchanged: notification bell, global search, geography map, style switcher. Product **photos** are not invented — list rows use initials marks from line-item names.
+
+Supersedes UX-023 teal primary and UX-016 dark-first default for visual brand. Does not reopen closed feature tickets.
+
+Origin: Engineering decision (UX-027).
 
 Status: accepted
 

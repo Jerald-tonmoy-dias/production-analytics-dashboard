@@ -79,10 +79,26 @@ describe("filterOrders", () => {
     expect(span.map((item) => item.id)).toEqual(["ord_1002", "ord_1001"]);
   });
 
-  it("matches q case-insensitively on id, name, and email", () => {
+  it("matches q case-insensitively on id, name, email, and product", () => {
     expect(filterOrders(orders, customers, { q: "ORD_1001" })).toHaveLength(1);
     expect(filterOrders(orders, customers, { q: "acme" }).every((item) => item.customerId === "cus_12")).toBe(true);
     expect(filterOrders(orders, customers, { q: "HELLO@NORTHWIND" })).toHaveLength(1);
+    expect(filterOrders(orders, customers, { q: "starter plan" }).map((item) => item.id)).toEqual([
+      "ord_1002",
+    ]);
+    expect(filterOrders(orders, customers, { q: "PLAN-PRO" }).map((item) => item.id)).toEqual([
+      "ord_1001",
+    ]);
+  });
+
+  it("exposes the primary product on list rows", () => {
+    const [newest] = filterOrders(orders, customers);
+    expect(newest).toMatchObject({
+      id: "ord_1003",
+      productName: "Extra seat",
+      productSku: "ADDON-SEAT",
+      itemCount: 1,
+    });
   });
 
   it("filters by status and sorts createdAt descending", () => {
@@ -118,6 +134,9 @@ describe("getOrderDetail", () => {
   it("joins the customer and line items", () => {
     const detail = getOrderDetail(orders, customers, "ord_1001");
     expect(detail.customerName).toBe("Acme Labs");
+    expect(detail.productName).toBe("Pro plan — annual");
+    expect(detail.productSku).toBe("PLAN-PRO");
+    expect(detail.itemCount).toBe(1);
     expect(detail.customer).toEqual(customers[0]);
     expect(detail.items).toHaveLength(1);
   });

@@ -12,6 +12,7 @@ import {
   OrdersTable,
   type OrdersTableState,
 } from "@/components/orders/OrdersTable";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { getOrders } from "@/lib/api/orders";
 import { DEFAULT_PAGE_SIZE } from "@/lib/constants";
 import {
@@ -124,45 +125,53 @@ export function OrdersWorkspace() {
 
   return (
     <div className="min-w-0 space-y-4">
-      <OrderFilters
-        value={filters}
-        onClear={clearFilters}
-        onChange={(next) => {
-          setQDraft(next.q);
-          if (
-            next.status !== urlState.status ||
-            next.from !== urlState.from ||
-            next.to !== urlState.to
-          ) {
-            pushState({
-              q: next.q,
-              status: next.status,
-              from: next.from,
-              to: next.to,
-              page: 1,
-            });
-          }
-        }}
-      />
-      <div
+      <Card className="min-w-0">
+        <CardContent>
+          <OrderFilters
+            value={filters}
+            onClear={clearFilters}
+            onChange={(next) => {
+              setQDraft(next.q);
+              if (
+                next.status !== urlState.status ||
+                next.from !== urlState.from ||
+                next.to !== urlState.to
+              ) {
+                pushState({
+                  q: next.q,
+                  status: next.status,
+                  from: next.from,
+                  to: next.to,
+                  page: 1,
+                });
+              }
+            }}
+          />
+        </CardContent>
+      </Card>
+      <Card
         aria-busy={isRefreshing || undefined}
-        className={cn(isRefreshing && "opacity-60")}
+        className={cn("min-w-0", isRefreshing && "opacity-60")}
       >
-        <OrdersTable
-          orders={listQuery.data?.data ?? []}
-          state={tableState}
-          onClearFilters={clearFilters}
-          onRetry={() => {
-            void listQuery.refetch();
-          }}
-        />
-      </div>
-      {listQuery.data ? (
-        <OrderPagination
-          pagination={listQuery.data.pagination}
-          onPageChange={(page) => pushState({ ...urlState, page })}
-        />
-      ) : null}
+        <CardContent className="min-w-0">
+          <OrdersTable
+            orders={listQuery.data?.data ?? []}
+            state={tableState}
+            onClearFilters={clearFilters}
+            onRetry={() => {
+              void listQuery.refetch();
+            }}
+          />
+        </CardContent>
+        {listQuery.data ? (
+          <CardFooter className="w-full bg-transparent">
+            <OrderPagination
+              pagination={listQuery.data.pagination}
+              onPageChange={(page) => pushState({ ...urlState, page })}
+            />
+          </CardFooter>
+        ) : null}
+      </Card>
     </div>
   );
 }

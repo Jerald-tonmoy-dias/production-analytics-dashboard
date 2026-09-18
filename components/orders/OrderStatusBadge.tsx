@@ -2,12 +2,15 @@ import { Badge } from "@/components/ui/badge";
 import type { OrderStatus } from "@/lib/schemas/order";
 import { cn } from "@/lib/utils";
 
-/** Filled semantic badges — status text stays for accessibility. */
+/**
+ * Soft tinted status pills — pastel wells + saturated label text, matching
+ * the NETIC-like card language. Avoid solid mid-tone fills that muddy contrast.
+ */
 const STATUS_CLASS: Record<OrderStatus, string> = {
-  pending: "border-transparent bg-warning text-warning-foreground",
-  processing: "border-transparent bg-info text-info-foreground",
-  completed: "border-transparent bg-success text-success-foreground",
-  cancelled: "border-transparent bg-destructive text-white",
+  pending: "border-transparent bg-kpi-revenue text-kpi-revenue-fg",
+  processing: "border-transparent bg-kpi-orders text-kpi-orders-fg",
+  completed: "border-transparent bg-kpi-conversion text-kpi-conversion-fg",
+  cancelled: "border-transparent bg-kpi-customers text-kpi-customers-fg",
 };
 
 type OrderStatusBadgeProps = {

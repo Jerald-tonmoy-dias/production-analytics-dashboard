@@ -39,11 +39,15 @@ export function toOrderListItem(
   order: OrderRecord,
   customer: Customer
 ): OrderListItem {
+  const primary = order.items[0];
   return {
     id: order.id,
     customerId: order.customerId,
     customerName: customer.name,
     customerEmail: customer.email,
+    productName: primary.name,
+    productSku: primary.sku,
+    itemCount: order.items.length,
     amount: order.amount,
     currency: order.currency,
     status: order.status,
@@ -54,7 +58,7 @@ export function toOrderListItem(
 /**
  * Filter and sort orders for the list endpoint.
  *
- * - `q` matches order id, customer name, or email (case-insensitive).
+ * - `q` matches order id, customer name/email, or primary product name/SKU (case-insensitive).
  * - `from` / `to` are inclusive UTC calendar days on `createdAt`.
  * - Result is `createdAt` descending, then `id` descending.
  *
@@ -95,7 +99,7 @@ export function filterOrders(
     const listItem = toOrderListItem(order, customer);
     if (query) {
       const haystack =
-        `${listItem.id} ${listItem.customerName} ${listItem.customerEmail}`.toLowerCase();
+        `${listItem.id} ${listItem.customerName} ${listItem.customerEmail} ${listItem.productName} ${listItem.productSku}`.toLowerCase();
       if (!haystack.includes(query)) {
         continue;
       }

@@ -1,6 +1,6 @@
 import { OrderStatusBadge } from "@/components/orders/OrderStatusBadge";
+import { CustomerStatusBadge } from "@/components/shared/CustomerStatusBadge";
 import { ErrorState } from "@/components/shared/ErrorState";
-import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -27,10 +27,6 @@ type OrderDetailsProps = {
   order?: OrderDetail;
   state?: OrderDetailsState;
 };
-
-function customerStatusLabel(status: OrderDetail["customer"]["status"]): string {
-  return status.charAt(0).toUpperCase() + status.slice(1);
-}
 
 function DetailItem({
   label,
@@ -150,9 +146,7 @@ export function OrderDetails({
                 <span className="break-all">{order.customer.email}</span>
               </DetailItem>
               <DetailItem label="Status">
-                <Badge variant="outline">
-                  {customerStatusLabel(order.customer.status)}
-                </Badge>
+                <CustomerStatusBadge status={order.customer.status} />
               </DetailItem>
               <DetailItem label="Customer since">
                 <time dateTime={order.customer.createdAt}>
