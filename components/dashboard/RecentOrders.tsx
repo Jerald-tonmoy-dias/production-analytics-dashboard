@@ -75,21 +75,26 @@ export function RecentOrders({
             <TableCaption className="sr-only">Recent orders</TableCaption>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[36%]">Product</TableHead>
-                <TableHead className="w-[28%]">Customer</TableHead>
-                <TableHead className="w-[18%] text-right">Amount</TableHead>
-                <TableHead className="w-[18%]">Status</TableHead>
+                <TableHead className="w-[16%]">Order</TableHead>
+                <TableHead className="w-[30%]">Product</TableHead>
+                <TableHead className="w-[24%]">Customer</TableHead>
+                <TableHead className="w-[15%] text-right">Amount</TableHead>
+                <TableHead className="w-[15%]">Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {orders.map((order) => (
                 <TableRow key={order.id}>
-                  <TableCell className="max-w-0 align-middle whitespace-normal">
+                  <TableCell className="max-w-0 align-middle">
                     <Link
                       href={`/orders/${order.id}`}
-                      className="flex min-w-0 items-center gap-2.5 rounded-sm outline-none hover:opacity-90 focus-visible:ring-3 focus-visible:ring-ring/50"
-                      aria-label={`View ${order.id}: ${order.productName}`}
+                      className="block truncate rounded-sm font-medium underline-offset-4 outline-none hover:underline focus-visible:underline focus-visible:ring-3 focus-visible:ring-ring/50"
                     >
+                      {order.id}
+                    </Link>
+                  </TableCell>
+                  <TableCell className="max-w-0 align-middle whitespace-normal">
+                    <div className="flex min-w-0 items-center gap-2.5">
                       <ProductMark name={order.productName} />
                       <span className="min-w-0">
                         <span className="block truncate font-medium">
@@ -101,7 +106,7 @@ export function RecentOrders({
                           </span>
                         ) : null}
                       </span>
-                    </Link>
+                    </div>
                   </TableCell>
                   <TableCell className="max-w-0 align-middle whitespace-normal">
                     <div className="flex min-w-0 items-center gap-2.5">
