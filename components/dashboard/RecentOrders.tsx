@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { ErrorState } from "@/components/shared/ErrorState";
-import { CustomerAvatar } from "@/components/shared/CustomerAvatar";
-import { ProductMark } from "@/components/shared/ProductMark";
 import { OrderStatusBadge } from "@/components/orders/OrderStatusBadge";
 import {
   Card,
@@ -94,27 +92,21 @@ export function RecentOrders({
                     </Link>
                   </TableCell>
                   <TableCell className="max-w-0 align-middle whitespace-normal">
-                    <div className="flex min-w-0 items-center gap-2.5">
-                      <ProductMark name={order.productName} />
-                      <span className="min-w-0">
-                        <span className="block truncate font-medium">
-                          {order.productName}
-                        </span>
-                        {order.itemCount > 1 ? (
-                          <span className="text-muted-foreground block truncate text-xs">
-                            +{order.itemCount - 1} more
-                          </span>
-                        ) : null}
-                      </span>
-                    </div>
-                  </TableCell>
-                  <TableCell className="max-w-0 align-middle whitespace-normal">
-                    <div className="flex min-w-0 items-center gap-2.5">
-                      <CustomerAvatar name={order.customerName} />
+                    <span className="min-w-0">
                       <span className="block truncate font-medium">
-                        {order.customerName}
+                        {order.productName}
                       </span>
-                    </div>
+                      {order.itemCount > 1 ? (
+                        <span className="text-muted-foreground block truncate text-xs">
+                          +{order.itemCount - 1} more
+                        </span>
+                      ) : null}
+                    </span>
+                  </TableCell>
+                  <TableCell className="max-w-0 align-middle">
+                    <span className="block truncate font-medium">
+                      {order.customerName}
+                    </span>
                   </TableCell>
                   <TableCell className="align-middle text-right tabular-nums">
                     {formatUsd(order.amount)}
