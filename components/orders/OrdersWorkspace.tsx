@@ -12,6 +12,7 @@ import {
   OrdersTable,
   type OrdersTableState,
 } from "@/components/orders/OrdersTable";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { getOrders } from "@/lib/api/orders";
 import { DEFAULT_PAGE_SIZE } from "@/lib/constants";
 import {
@@ -144,25 +145,29 @@ export function OrdersWorkspace() {
           }
         }}
       />
-      <div
+      <Card
         aria-busy={isRefreshing || undefined}
-        className={cn(isRefreshing && "opacity-60")}
+        className={cn("min-w-0", isRefreshing && "opacity-60")}
       >
-        <OrdersTable
-          orders={listQuery.data?.data ?? []}
-          state={tableState}
-          onClearFilters={clearFilters}
-          onRetry={() => {
-            void listQuery.refetch();
-          }}
-        />
-      </div>
-      {listQuery.data ? (
-        <OrderPagination
-          pagination={listQuery.data.pagination}
-          onPageChange={(page) => pushState({ ...urlState, page })}
-        />
-      ) : null}
+        <CardContent className="min-w-0">
+          <OrdersTable
+            orders={listQuery.data?.data ?? []}
+            state={tableState}
+            onClearFilters={clearFilters}
+            onRetry={() => {
+              void listQuery.refetch();
+            }}
+          />
+        </CardContent>
+        {listQuery.data ? (
+          <CardFooter className="w-full bg-transparent">
+            <OrderPagination
+              pagination={listQuery.data.pagination}
+              onPageChange={(page) => pushState({ ...urlState, page })}
+            />
+          </CardFooter>
+        ) : null}
+      </Card>
     </div>
   );
 }

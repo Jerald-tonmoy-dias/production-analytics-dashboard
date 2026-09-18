@@ -34,7 +34,7 @@ export function OrderPagination({
   return (
     <nav
       aria-label="Order pagination"
-      className="flex flex-wrap items-center justify-between gap-3"
+      className="flex w-full flex-wrap items-center justify-between gap-3"
     >
       <p className="text-muted-foreground text-sm" aria-live="polite">
         {rangeLabel(pagination)}

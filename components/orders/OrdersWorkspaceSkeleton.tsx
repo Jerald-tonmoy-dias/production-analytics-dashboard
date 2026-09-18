@@ -1,4 +1,5 @@
 import { OrdersTable } from "@/components/orders/OrdersTable";
+import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export function OrdersWorkspaceSkeleton() {
@@ -10,7 +11,11 @@ export function OrdersWorkspaceSkeleton() {
         <Skeleton className="h-14 w-full" />
         <Skeleton className="h-14 w-full" />
       </div>
-      <OrdersTable orders={[]} state="loading" />
+      <Card className="min-w-0">
+        <CardContent>
+          <OrdersTable orders={[]} state="loading" />
+        </CardContent>
+      </Card>
     </div>
   );
 }
