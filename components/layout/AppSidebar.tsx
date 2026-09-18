@@ -78,8 +78,8 @@ export function AppSidebar({ orderCount }: AppSidebarProps) {
         variant="outline"
         size="icon-sm"
         className={cn(
-          "bg-background text-foreground absolute top-3 right-0 z-30 cursor-pointer",
-          "translate-x-1/2 rounded-full border shadow-sm",
+          "bg-background text-foreground absolute top-3 left-full z-30 ml-2 cursor-pointer",
+          "rounded-full border shadow-sm",
           "hover:bg-muted"
         )}
         aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
