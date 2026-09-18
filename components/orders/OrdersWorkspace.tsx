@@ -125,26 +125,30 @@ export function OrdersWorkspace() {
 
   return (
     <div className="min-w-0 space-y-4">
-      <OrderFilters
-        value={filters}
-        onClear={clearFilters}
-        onChange={(next) => {
-          setQDraft(next.q);
-          if (
-            next.status !== urlState.status ||
-            next.from !== urlState.from ||
-            next.to !== urlState.to
-          ) {
-            pushState({
-              q: next.q,
-              status: next.status,
-              from: next.from,
-              to: next.to,
-              page: 1,
-            });
-          }
-        }}
-      />
+      <Card className="min-w-0">
+        <CardContent>
+          <OrderFilters
+            value={filters}
+            onClear={clearFilters}
+            onChange={(next) => {
+              setQDraft(next.q);
+              if (
+                next.status !== urlState.status ||
+                next.from !== urlState.from ||
+                next.to !== urlState.to
+              ) {
+                pushState({
+                  q: next.q,
+                  status: next.status,
+                  from: next.from,
+                  to: next.to,
+                  page: 1,
+                });
+              }
+            }}
+          />
+        </CardContent>
+      </Card>
       <Card
         aria-busy={isRefreshing || undefined}
         className={cn("min-w-0", isRefreshing && "opacity-60")}
