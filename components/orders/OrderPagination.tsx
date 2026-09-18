@@ -43,7 +43,7 @@ export function OrderPagination({
         <Button
           type="button"
           variant="outline"
-          className="min-h-9"
+          className="min-h-9 cursor-pointer"
           disabled={previousDisabled}
           onClick={() => onPageChange(page - 1)}
         >
@@ -65,7 +65,7 @@ export function OrderPagination({
               type="button"
               variant={item === page ? "default" : "outline"}
               className={cn(
-                "min-h-9 min-w-9 px-2 tabular-nums",
+                "min-h-9 min-w-9 cursor-pointer px-2 tabular-nums",
                 item === page && "pointer-events-none"
               )}
               aria-label={`Page ${item}`}
@@ -79,7 +79,7 @@ export function OrderPagination({
         <Button
           type="button"
           variant="outline"
-          className="min-h-9"
+          className="min-h-9 cursor-pointer"
           disabled={nextDisabled}
           onClick={() => onPageChange(page + 1)}
         >
