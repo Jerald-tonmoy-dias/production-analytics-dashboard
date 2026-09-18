@@ -60,11 +60,10 @@ npm run chromatic        # Publish Storybook to Chromatic (needs CHROMATIC_PROJE
 
 ## Storybook (public)
 
-Local: `npm run storybook` → [http://localhost:6006](http://localhost:6006).
+- **Live Storybook:** [https://6aad3d50a6b3159a11f9a584-cptzzpfjvu.chromatic.com/](https://6aad3d50a6b3159a11f9a584-cptzzpfjvu.chromatic.com/) — anyone can open this; no local setup.
+- **Local:** `npm run storybook` → [http://localhost:6006](http://localhost:6006)
 
-**Public link (no local setup for viewers):** published via [Chromatic](https://www.chromatic.com). After the first publish, the permanent Storybook URL is on the Chromatic project page (and printed in the CLI / GitHub Action log). Add that URL here once available:
-
-- **Storybook:** _(paste Chromatic Storybook URL after first publish)_
+Published via [Chromatic](https://www.chromatic.com). Owner re-publish: set GitHub secret `CHROMATIC_PROJECT_TOKEN`, then push to `main` (Action) or run `CHROMATIC_PROJECT_TOKEN=… npm run chromatic`.
 
 Setup (one-time, owner only):
 
