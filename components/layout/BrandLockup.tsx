@@ -16,7 +16,7 @@ export function BrandLockup({ compact = false, className }: BrandLockupProps) {
       )}
     >
       <span
-        className="bg-primary text-primary-foreground flex size-7 shrink-0 items-center justify-center rounded-md font-heading text-xs font-semibold"
+        className="bg-primary text-primary-foreground flex size-8 shrink-0 items-center justify-center rounded-lg font-heading text-xs font-semibold shadow-sm"
         title={compact ? PRODUCT_NAME : undefined}
         aria-hidden="true"
       >
@@ -25,7 +25,7 @@ export function BrandLockup({ compact = false, className }: BrandLockupProps) {
       {compact ? (
         <span className="sr-only">{PRODUCT_NAME}</span>
       ) : (
-        <span className="font-heading min-w-0 truncate text-sm font-semibold tracking-tight">
+        <span className="font-heading text-primary min-w-0 truncate text-sm font-semibold tracking-tight">
           {PRODUCT_NAME}
         </span>
       )}

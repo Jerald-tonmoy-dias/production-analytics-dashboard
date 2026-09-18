@@ -37,7 +37,6 @@ export default async function DashboardPage() {
           value={kpis.totalRevenue}
           format="currency"
           tone="revenue"
-          className="border-chart-revenue/40"
         />
         <KpiCard
           label="Orders"

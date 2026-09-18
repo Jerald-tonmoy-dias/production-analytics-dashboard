@@ -19,7 +19,7 @@ const preview: Preview = {
     },
   },
   initialGlobals: {
-    theme: "dark",
+    theme: "light",
   },
   decorators: [
     (Story, context) => {
