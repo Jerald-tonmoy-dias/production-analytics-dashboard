@@ -11,7 +11,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.103.0",
@@ -38,6 +39,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "chromatic": "^18.9.4",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
     "storybook": "^10.6.0",

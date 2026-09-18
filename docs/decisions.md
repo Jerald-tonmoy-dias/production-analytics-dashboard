@@ -172,7 +172,7 @@ Options considered:
 Decision: Option 2.
 
 - Framework: `@storybook/nextjs-vite`. Preview imports `app/globals.css`, sets `nextjs.appDirectory`, and wraps stories in `TooltipProvider` (same client leaf as the root layout).
-- Addons: docs and a11y. No Chromatic. No Storybook Vitest addon — domain tests stay in Vitest.
+- Addons: docs and a11y. No Chromatic at install time. No Storybook Vitest addon — domain tests stay in Vitest.
 - One smoke story (`.storybook/Smoke.stories.tsx`) proves theme wiring. Feature stories colocate with components in later tickets. Do not story uncustomized shadcn primitives.
 
 Reason: Matches Next 16, keeps the workshop useful for a11y states, and avoids a second test runner before we have widgets.
@@ -181,7 +181,7 @@ Trade-offs: We do not demonstrate Storybook interaction tests in this ticket.
 
 Origin: Engineering decision (TASK-003).
 
-Status: superseded in part by “Catalog shadcn primitives in Storybook” (primitive stories). Vite + addons still apply.
+Status: superseded in part by “Catalog shadcn primitives in Storybook” (primitive stories) and by “Publish Storybook with Chromatic”. Vite + addons still apply.
 
 ---
 
@@ -998,6 +998,32 @@ Status: accepted
 
 ---
 
+## Decision: Publish Storybook with Chromatic
+
+Date: 2026-09-18
+
+Context: Reviewers should open the component workshop without cloning or running `npm run storybook`. TASK-003 skipped Chromatic at install time to avoid extra tooling before widgets existed.
+
+Problem: Local-only Storybook fails the “working demo / easy review” bar for UI states.
+
+Options considered:
+
+1. Keep Storybook local-only.
+2. Deploy `storybook-static` on a second Vercel project or GitHub Pages.
+3. Chromatic publish (free Storybook hosting + optional visual snapshots).
+
+Decision: Option 3. Install `chromatic` CLI, document owner setup, publish via GitHub Action using secret `CHROMATIC_PROJECT_TOKEN`. Prefer publish (`exitOnceUploaded`) over gating PRs on visual diffs for now.
+
+Reason: Purpose-built public Storybook URLs; no second host project; free tier is enough for sharing.
+
+Trade-offs: Needs a Chromatic account + GitHub secret. Snapshot quota applies if visual testing is enabled later.
+
+Origin: Product request (share Storybook without local setup).
+
+Status: accepted
+
+---
+
 ## Dependency register (summary)
 
 | Package | Class | When installed | Why |
@@ -1007,6 +1033,7 @@ Status: accepted
 | Vitest | Required | TASK-001 (config) / used TASK-004 | Domain tests |
 | shadcn/ui (`class-variance-authority`, `cn`, `lucide-react`, `radix-ui`, `shadcn`, `tw-animate-css`) | Required | TASK-002 | Primitive layer |
 | Storybook 10 (`@storybook/nextjs-vite`, addon-docs, addon-a11y, `vite`) | Recommended | TASK-003 | Stateful UI review |
+| `chromatic` | Recommended | Storybook publish | Public Storybook link without local setup |
 | `zod` | Recommended | TASK-004 | Unexpected data |
 | `@tanstack/react-query` | Recommended | TASK-011 | Interactive list server state |
 | `recharts` | Recommended | TASK-007 | Charts |

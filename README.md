@@ -54,7 +54,28 @@ npm run lint         # ESLint
 npm run typecheck    # TypeScript (`tsc --noEmit`)
 npm test             # Vitest
 npm run storybook    # Storybook at http://localhost:6006
+npm run build-storybook  # Static Storybook build → storybook-static/
+npm run chromatic        # Publish Storybook to Chromatic (needs CHROMATIC_PROJECT_TOKEN)
 ```
+
+## Storybook (public)
+
+Local: `npm run storybook` → [http://localhost:6006](http://localhost:6006).
+
+**Public link (no local setup for viewers):** published via [Chromatic](https://www.chromatic.com). After the first publish, the permanent Storybook URL is on the Chromatic project page (and printed in the CLI / GitHub Action log). Add that URL here once available:
+
+- **Storybook:** _(paste Chromatic Storybook URL after first publish)_
+
+Setup (one-time, owner only):
+
+1. Sign in at [chromatic.com](https://www.chromatic.com) with **GitHub**.
+2. **Add project** → choose this repository (`production-analytics-dashboard`).
+3. Copy the **project token** from **Manage → Configure**.
+4. GitHub → this repo → **Settings → Secrets and variables → Actions** → New secret  
+   `CHROMATIC_PROJECT_TOKEN` = that token.
+5. Push to `main` (or run locally: `CHROMATIC_PROJECT_TOKEN=… npm run chromatic`).
+
+Viewers only need the Chromatic Storybook link — no install or config.
 
 ## Architecture overview
 
@@ -88,6 +109,7 @@ Hosted on **Vercel**, connected to this GitHub repository. Pushes to `main` rede
 
 - **Production URL:** [https://production-analytics-dashboard.vercel.app](https://production-analytics-dashboard.vercel.app)
 - **Env:** none required. Mock JSON ships in the repo. Optional `NEXT_PUBLIC_APP_URL` if you want the HTTP client to target a specific origin; RSC pages do not need it.
+- **Storybook:** Chromatic (see [Storybook (public)](#storybook-public)). Uses GitHub secret `CHROMATIC_PROJECT_TOKEN` only — never commit the token.
 
 ## Documentation
 
