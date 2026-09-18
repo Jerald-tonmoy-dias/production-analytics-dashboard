@@ -76,14 +76,14 @@ export function RecentOrders({
                 <TableHead className="w-[16%]">Order</TableHead>
                 <TableHead className="w-[30%]">Product</TableHead>
                 <TableHead className="w-[24%]">Customer</TableHead>
-                <TableHead className="w-[15%] text-right">Amount</TableHead>
+                <TableHead className="w-[15%]">Amount</TableHead>
                 <TableHead className="w-[15%]">Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {orders.map((order) => (
                 <TableRow key={order.id}>
-                  <TableCell className="max-w-0 align-middle">
+                  <TableCell className="max-w-0">
                     <Link
                       href={`/orders/${order.id}`}
                       className="block truncate rounded-sm font-medium underline-offset-4 outline-none hover:underline focus-visible:underline focus-visible:ring-3 focus-visible:ring-ring/50"
@@ -91,7 +91,7 @@ export function RecentOrders({
                       {order.id}
                     </Link>
                   </TableCell>
-                  <TableCell className="max-w-0 align-middle whitespace-normal">
+                  <TableCell className="max-w-0 whitespace-normal">
                     <span className="min-w-0">
                       <span className="block truncate font-medium">
                         {order.productName}
@@ -103,15 +103,15 @@ export function RecentOrders({
                       ) : null}
                     </span>
                   </TableCell>
-                  <TableCell className="max-w-0 align-middle">
+                  <TableCell className="max-w-0">
                     <span className="block truncate font-medium">
                       {order.customerName}
                     </span>
                   </TableCell>
-                  <TableCell className="align-middle text-right tabular-nums">
+                  <TableCell className="tabular-nums">
                     {formatUsd(order.amount)}
                   </TableCell>
-                  <TableCell className="align-middle">
+                  <TableCell>
                     <OrderStatusBadge status={order.status} />
                   </TableCell>
                 </TableRow>
