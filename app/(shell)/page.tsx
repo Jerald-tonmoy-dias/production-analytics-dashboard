@@ -30,7 +30,7 @@ export default async function DashboardPage() {
       />
       <section
         aria-label="Key metrics"
-        className="grid grid-cols-2 gap-4 xl:grid-cols-4"
+        className="grid grid-cols-1 gap-4 min-[400px]:grid-cols-2 xl:grid-cols-4"
       >
         <KpiCard
           label="Total revenue"
