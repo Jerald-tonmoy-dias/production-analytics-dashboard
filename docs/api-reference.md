@@ -93,12 +93,17 @@ These are the canonical shapes. Zod schemas in `lib/schemas` must match.
   customerId: string;
   customerName: string;
   customerEmail: string;
+  productName: string;   // first line-item name
+  productSku: string;    // first line-item SKU
+  itemCount: number;     // total line items (≥ 1)
   amount: number;
   currency: "USD";
   status: OrderStatus;
   createdAt: string;
 }
 ```
+
+Derived from `orders[].items` — no product image URLs in the mock dataset.
 
 ### Order detail
 
@@ -221,7 +226,7 @@ Host: localhost:3000
 
 | Name | Type | Required | Default | Notes |
 | --- | --- | --- | --- | --- |
-| `q` | string | no | `""` | Case-insensitive match on order id, customer name, or customer email |
+| `q` | string | no | `""` | Case-insensitive match on order id, customer name/email, or primary product name/SKU |
 | `status` | OrderStatus | no | all | Exact match |
 | `from` | `YYYY-MM-DD` | no | unbounded | Inclusive lower bound on `createdAt` |
 | `to` | `YYYY-MM-DD` | no | unbounded | Inclusive upper bound on `createdAt` |

@@ -988,7 +988,7 @@ Decision:
 3. Pastel KPI card wells + circular icons via `--kpi-*` tokens. Keep existing labels/hints/values — **no growth %**, kebabs, or new KPIs.
 4. Charts stay Revenue area + Orders bar; hues retinted to orange/blue to fit the palette.
 5. Default theme **light** (first paint + Storybook). Dark remains available and uses the same language.
-6. Out of scope unchanged: notification bell, global search, geography map, style switcher, fake images.
+6. Out of scope unchanged: notification bell, global search, geography map, style switcher. Product **photos** are not invented — list rows use initials marks from line-item names.
 
 Supersedes UX-023 teal primary and UX-016 dark-first default for visual brand. Does not reopen closed feature tickets.
 

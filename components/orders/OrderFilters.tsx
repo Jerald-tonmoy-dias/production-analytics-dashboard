@@ -121,7 +121,7 @@ export function OrderFilters({ value, onChange, onClear }: OrderFiltersProps) {
           type="search"
           autoComplete="off"
           className="min-h-9"
-          placeholder="Order id or customer"
+          placeholder="Order id, customer, or product"
           value={value.q}
           onChange={(event) =>
             onChange({ ...value, q: event.target.value })

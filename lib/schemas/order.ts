@@ -46,6 +46,12 @@ export const orderListItemSchema = z.object({
   customerId: z.string().min(1),
   customerName: z.string().min(1),
   customerEmail: z.email(),
+  /** Primary line-item name (first item). */
+  productName: z.string().min(1),
+  /** Primary line-item SKU (first item). */
+  productSku: z.string().min(1),
+  /** Total line items on the order (`1` when a single product). */
+  itemCount: z.number().int().positive(),
   amount: moneySchema,
   currency: z.literal(CURRENCY),
   status: orderStatusSchema,

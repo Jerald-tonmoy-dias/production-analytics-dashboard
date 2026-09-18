@@ -3,6 +3,7 @@ import { OrderStatusBadge } from "@/components/orders/OrderStatusBadge";
 import { CustomerAvatar } from "@/components/shared/CustomerAvatar";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { ErrorState } from "@/components/shared/ErrorState";
+import { ProductMark } from "@/components/shared/ProductMark";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -31,12 +32,20 @@ type OrdersTableProps = {
   onClearFilters?: () => void;
 };
 
+function productSecondaryLabel(order: OrderListItem): string {
+  if (order.itemCount > 1) {
+    return `${order.productSku} · +${order.itemCount - 1} more`;
+  }
+  return order.productSku;
+}
+
 function OrdersTableSkeleton() {
   return (
     <Table>
       <TableHeader>
         <TableRow>
           <TableHead>Order</TableHead>
+          <TableHead>Product</TableHead>
           <TableHead>Customer</TableHead>
           <TableHead className="text-right">Amount</TableHead>
           <TableHead>Status</TableHead>
@@ -49,6 +58,15 @@ function OrdersTableSkeleton() {
           <TableRow key={index}>
             <TableCell>
               <Skeleton className="h-4 w-20" />
+            </TableCell>
+            <TableCell>
+              <div className="flex items-center gap-2.5">
+                <Skeleton className="size-8 rounded-lg" />
+                <div className="space-y-1.5">
+                  <Skeleton className="h-4 w-32" />
+                  <Skeleton className="h-3 w-24" />
+                </div>
+              </div>
             </TableCell>
             <TableCell>
               <div className="flex items-center gap-2.5">
@@ -137,6 +155,7 @@ export function OrdersTable({
       <TableHeader>
         <TableRow>
           <TableHead>Order</TableHead>
+          <TableHead>Product</TableHead>
           <TableHead>Customer</TableHead>
           <TableHead className="text-right">Amount</TableHead>
           <TableHead>Status</TableHead>
@@ -154,6 +173,19 @@ export function OrdersTable({
               >
                 {order.id}
               </Link>
+            </TableCell>
+            <TableCell className="align-middle">
+              <div className="flex min-w-0 items-center gap-2.5">
+                <ProductMark name={order.productName} />
+                <span className="min-w-0">
+                  <span className="block truncate font-medium">
+                    {order.productName}
+                  </span>
+                  <span className="text-muted-foreground block truncate text-xs">
+                    {productSecondaryLabel(order)}
+                  </span>
+                </span>
+              </div>
             </TableCell>
             <TableCell className="align-middle">
               <div className="flex min-w-0 items-center gap-2.5">

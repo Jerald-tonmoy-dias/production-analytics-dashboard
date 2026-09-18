@@ -2,6 +2,7 @@ import Link from "next/link";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { ErrorState } from "@/components/shared/ErrorState";
 import { CustomerAvatar } from "@/components/shared/CustomerAvatar";
+import { ProductMark } from "@/components/shared/ProductMark";
 import { OrderStatusBadge } from "@/components/orders/OrderStatusBadge";
 import {
   Card,
@@ -30,6 +31,13 @@ type RecentOrdersProps = {
   orders: OrderListItem[];
   state?: DashboardListState;
 };
+
+function productSecondaryLabel(order: OrderListItem): string {
+  if (order.itemCount > 1) {
+    return `${order.productSku} · +${order.itemCount - 1} more`;
+  }
+  return order.productSku;
+}
 
 function RecentOrdersSkeleton() {
   return (
@@ -76,6 +84,7 @@ export function RecentOrders({
             <TableHeader>
               <TableRow>
                 <TableHead>Order</TableHead>
+                <TableHead>Product</TableHead>
                 <TableHead>Customer</TableHead>
                 <TableHead className="text-right">Amount</TableHead>
                 <TableHead>Status</TableHead>
@@ -93,6 +102,19 @@ export function RecentOrders({
                     >
                       {order.id}
                     </Link>
+                  </TableCell>
+                  <TableCell className="align-middle">
+                    <div className="flex min-w-0 items-center gap-2.5">
+                      <ProductMark name={order.productName} />
+                      <span className="min-w-0">
+                        <span className="block truncate font-medium">
+                          {order.productName}
+                        </span>
+                        <span className="text-muted-foreground block truncate text-xs">
+                          {productSecondaryLabel(order)}
+                        </span>
+                      </span>
+                    </div>
                   </TableCell>
                   <TableCell className="align-middle">
                     <div className="flex min-w-0 items-center gap-2.5">
