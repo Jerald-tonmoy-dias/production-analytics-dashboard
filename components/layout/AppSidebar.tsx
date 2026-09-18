@@ -48,7 +48,7 @@ export function AppSidebar({ orderCount }: AppSidebarProps) {
   return (
     <aside
       className={cn(
-        "border-sidebar-border bg-sidebar text-sidebar-foreground hidden h-svh shrink-0 flex-col overflow-hidden border-r md:flex",
+        "border-sidebar-border bg-sidebar text-sidebar-foreground relative hidden h-svh shrink-0 flex-col border-r md:flex",
         "transition-[width] duration-[var(--motion-default)] ease-standard",
         collapsed ? "w-14" : "w-64"
       )}
@@ -56,29 +56,11 @@ export function AppSidebar({ orderCount }: AppSidebarProps) {
     >
       <div
         className={cn(
-          "flex shrink-0 gap-1 py-3",
-          collapsed
-            ? "flex-col items-center px-1"
-            : "items-center justify-between px-3"
+          "flex shrink-0 py-3",
+          collapsed ? "justify-center px-1" : "items-center px-3"
         )}
       >
         <BrandLockup compact={collapsed} />
-        <Button
-          type="button"
-          variant="ghost"
-          size="icon-lg"
-          className="cursor-pointer"
-          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          aria-pressed={collapsed}
-          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          onClick={() => writeSidebarCollapsed(!collapsed)}
-        >
-          {collapsed ? (
-            <PanelLeft className="size-4" aria-hidden="true" />
-          ) : (
-            <PanelLeftClose className="size-4" aria-hidden="true" />
-          )}
-        </Button>
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto px-2 pb-2">
         <AppNav collapsed={collapsed} orderCount={orderCount} />
@@ -91,6 +73,26 @@ export function AppSidebar({ orderCount }: AppSidebarProps) {
       >
         <SidebarLogout collapsed={collapsed} />
       </div>
+      <Button
+        type="button"
+        variant="outline"
+        size="icon-sm"
+        className={cn(
+          "bg-background text-foreground absolute top-3 right-0 z-30 cursor-pointer",
+          "translate-x-1/2 rounded-full border shadow-sm",
+          "hover:bg-muted"
+        )}
+        aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+        aria-pressed={collapsed}
+        title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+        onClick={() => writeSidebarCollapsed(!collapsed)}
+      >
+        {collapsed ? (
+          <PanelLeft className="size-4" aria-hidden="true" />
+        ) : (
+          <PanelLeftClose className="size-4" aria-hidden="true" />
+        )}
+      </Button>
     </aside>
   );
 }
