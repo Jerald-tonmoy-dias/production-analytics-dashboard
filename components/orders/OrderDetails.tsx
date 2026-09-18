@@ -170,9 +170,9 @@ export function OrderDetails({
               <TableRow>
                 <TableHead>SKU</TableHead>
                 <TableHead>Name</TableHead>
-                <TableHead className="text-right">Qty</TableHead>
-                <TableHead className="text-right">Unit price</TableHead>
-                <TableHead className="text-right">Line total</TableHead>
+                <TableHead>Qty</TableHead>
+                <TableHead>Unit price</TableHead>
+                <TableHead>Line total</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -180,13 +180,11 @@ export function OrderDetails({
                 <TableRow key={`${item.sku}-${index}`}>
                   <TableCell className="font-medium">{item.sku}</TableCell>
                   <TableCell>{item.name}</TableCell>
-                  <TableCell className="text-right tabular-nums">
-                    {item.quantity}
-                  </TableCell>
-                  <TableCell className="text-right tabular-nums">
+                  <TableCell className="tabular-nums">{item.quantity}</TableCell>
+                  <TableCell className="tabular-nums">
                     {formatUsd(item.unitPrice)}
                   </TableCell>
-                  <TableCell className="text-right tabular-nums">
+                  <TableCell className="tabular-nums">
                     {formatUsd(item.quantity * item.unitPrice)}
                   </TableCell>
                 </TableRow>
@@ -195,7 +193,7 @@ export function OrderDetails({
             <TableFooter>
               <TableRow>
                 <TableCell colSpan={4}>Total</TableCell>
-                <TableCell className="text-right tabular-nums">
+                <TableCell className="tabular-nums">
                   {formatUsd(order.amount)}
                 </TableCell>
               </TableRow>

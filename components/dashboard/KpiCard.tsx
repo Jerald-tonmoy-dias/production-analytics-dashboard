@@ -70,11 +70,11 @@ function KpiIcon({ tone }: { tone: KpiTone }) {
   return (
     <span
       className={cn(
-        "flex size-10 shrink-0 items-center justify-center rounded-full",
+        "flex size-8 shrink-0 items-center justify-center rounded-full sm:size-10",
         iconClassName
       )}
     >
-      <Icon className="size-5" aria-hidden="true" />
+      <Icon className="size-4 sm:size-5" aria-hidden="true" />
     </span>
   );
 }
@@ -95,19 +95,21 @@ export function KpiCard({
     <Card
       size="sm"
       className={cn(
-        "min-w-0 overflow-visible shadow-[var(--elevation-card)] transition-[box-shadow,transform] duration-[var(--motion-default)] ease-standard",
+        "min-w-0 overflow-hidden shadow-[var(--elevation-card)] transition-[box-shadow,transform] duration-[var(--motion-default)] ease-standard",
         "hover:-translate-y-px hover:shadow-[var(--elevation-hover)]",
         toneStyles?.cardClassName,
         className
       )}
       aria-busy={state === "loading" || undefined}
     >
-      <CardHeader>
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0 space-y-1">
-            <CardDescription className="font-medium">{label}</CardDescription>
+      <CardHeader className="min-w-0">
+        <div className="flex min-w-0 items-start justify-between gap-2 sm:gap-3">
+          <div className="min-w-0 flex-1 space-y-1 overflow-hidden">
+            <CardDescription className="text-pretty font-medium">
+              {label}
+            </CardDescription>
             {state === "loading" ? (
-              <Skeleton className="mt-1 h-8 w-28" />
+              <Skeleton className="mt-1 h-7 w-24 sm:h-8 sm:w-28" />
             ) : state === "error" ? (
               <p
                 role="alert"
@@ -118,8 +120,9 @@ export function KpiCard({
               </p>
             ) : (
               <p
+                title={formatValue(value, format)}
                 className={cn(
-                  "font-heading text-2xl font-semibold tracking-tight tabular-nums",
+                  "font-heading max-w-full truncate text-lg font-semibold tracking-tight tabular-nums sm:text-2xl",
                   isZero && "text-muted-foreground"
                 )}
               >
@@ -127,7 +130,7 @@ export function KpiCard({
               </p>
             )}
             {hint && state === "default" ? (
-              <p className="text-muted-foreground text-xs">{hint}</p>
+              <p className="text-muted-foreground line-clamp-2 text-xs">{hint}</p>
             ) : null}
           </div>
           {tone ? <KpiIcon tone={tone} /> : null}

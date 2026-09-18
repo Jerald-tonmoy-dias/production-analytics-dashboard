@@ -45,10 +45,10 @@ function OrdersTableSkeleton() {
           <TableHead>Order</TableHead>
           <TableHead>Product</TableHead>
           <TableHead>Customer</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
+          <TableHead>Amount</TableHead>
           <TableHead>Status</TableHead>
           <TableHead>Created</TableHead>
-          <TableHead className="text-right">Action</TableHead>
+          <TableHead>Action</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -70,7 +70,7 @@ function OrdersTableSkeleton() {
               </div>
             </TableCell>
             <TableCell>
-              <Skeleton className="ml-auto h-4 w-16" />
+              <Skeleton className="h-4 w-16" />
             </TableCell>
             <TableCell>
               <Skeleton className="h-5 w-20 rounded-full" />
@@ -78,8 +78,8 @@ function OrdersTableSkeleton() {
             <TableCell>
               <Skeleton className="h-4 w-32" />
             </TableCell>
-            <TableCell className="text-right">
-              <Skeleton className="ml-auto h-7 w-12" />
+            <TableCell>
+              <Skeleton className="h-7 w-12" />
             </TableCell>
           </TableRow>
         ))}
@@ -149,16 +149,16 @@ export function OrdersTable({
           <TableHead>Order</TableHead>
           <TableHead>Product</TableHead>
           <TableHead>Customer</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
+          <TableHead>Amount</TableHead>
           <TableHead>Status</TableHead>
           <TableHead>Created</TableHead>
-          <TableHead className="text-right">Action</TableHead>
+          <TableHead>Action</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {orders.map((order) => (
           <TableRow key={order.id}>
-            <TableCell className="align-middle">
+            <TableCell>
               <Link
                 href={`/orders/${order.id}`}
                 className="rounded-sm font-medium underline-offset-4 outline-none hover:underline focus-visible:underline focus-visible:ring-3 focus-visible:ring-ring/50"
@@ -166,7 +166,7 @@ export function OrdersTable({
                 {order.id}
               </Link>
             </TableCell>
-            <TableCell className="align-middle">
+            <TableCell>
               <span className="min-w-0">
                 <span className="block truncate font-medium">
                   {order.productName}
@@ -176,7 +176,7 @@ export function OrdersTable({
                 </span>
               </span>
             </TableCell>
-            <TableCell className="align-middle">
+            <TableCell>
               <span className="min-w-0">
                 <span className="block truncate font-medium">
                   {order.customerName}
@@ -186,16 +186,16 @@ export function OrdersTable({
                 </span>
               </span>
             </TableCell>
-            <TableCell className="align-middle text-right tabular-nums">
+            <TableCell className="tabular-nums">
               {formatUsd(order.amount)}
             </TableCell>
-            <TableCell className="align-middle whitespace-nowrap">
+            <TableCell className="whitespace-nowrap">
               <OrderStatusBadge status={order.status} />
             </TableCell>
-            <TableCell className="text-muted-foreground align-middle whitespace-nowrap">
+            <TableCell className="text-muted-foreground whitespace-nowrap">
               {formatDateTime(order.createdAt)}
             </TableCell>
-            <TableCell className="align-middle text-right">
+            <TableCell>
               <Button asChild variant="outline" size="sm">
                 <Link href={`/orders/${order.id}`} aria-label={`View ${order.id}`}>
                   View

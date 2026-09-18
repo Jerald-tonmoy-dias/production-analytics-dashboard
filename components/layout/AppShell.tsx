@@ -22,7 +22,7 @@ export function AppShell({
       >
         Skip to main content
       </a>
-      <div className="md:flex md:h-svh">
+      <div className="relative md:flex md:h-svh">
         <AppSidebar orderCount={orderCount} />
         <div className="flex min-h-0 min-w-0 flex-1 flex-col">
           <MobileNav actions={headerActions?.()} orderCount={orderCount} />
