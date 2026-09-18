@@ -11,7 +11,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
@@ -22,7 +21,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { formatDateTime, formatUsd } from "@/lib/format";
+import { formatUsd } from "@/lib/format";
 import type { OrderListItem } from "@/lib/schemas/order";
 
 type DashboardListState = "default" | "loading" | "error";
@@ -31,13 +30,6 @@ type RecentOrdersProps = {
   orders: OrderListItem[];
   state?: DashboardListState;
 };
-
-function productSecondaryLabel(order: OrderListItem): string {
-  if (order.itemCount > 1) {
-    return `${order.productSku} · +${order.itemCount - 1} more`;
-  }
-  return order.productSku;
-}
 
 function RecentOrdersSkeleton() {
   return (
@@ -79,74 +71,51 @@ export function RecentOrders({
             className="border-0 py-8"
           />
         ) : (
-          <Table>
+          <Table className="min-w-0 table-fixed">
             <TableCaption className="sr-only">Recent orders</TableCaption>
             <TableHeader>
               <TableRow>
-                <TableHead>Order</TableHead>
-                <TableHead>Product</TableHead>
-                <TableHead>Customer</TableHead>
-                <TableHead className="text-right">Amount</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Created</TableHead>
-                <TableHead className="text-right">Action</TableHead>
+                <TableHead className="w-[36%]">Product</TableHead>
+                <TableHead className="w-[28%]">Customer</TableHead>
+                <TableHead className="w-[18%] text-right">Amount</TableHead>
+                <TableHead className="w-[18%]">Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {orders.map((order) => (
                 <TableRow key={order.id}>
-                  <TableCell className="align-middle">
+                  <TableCell className="max-w-0 align-middle whitespace-normal">
                     <Link
                       href={`/orders/${order.id}`}
-                      className="rounded-sm font-medium underline-offset-4 outline-none hover:underline focus-visible:underline focus-visible:ring-3 focus-visible:ring-ring/50"
+                      className="flex min-w-0 items-center gap-2.5 rounded-sm outline-none hover:opacity-90 focus-visible:ring-3 focus-visible:ring-ring/50"
+                      aria-label={`View ${order.id}: ${order.productName}`}
                     >
-                      {order.id}
-                    </Link>
-                  </TableCell>
-                  <TableCell className="align-middle">
-                    <div className="flex min-w-0 items-center gap-2.5">
                       <ProductMark name={order.productName} />
                       <span className="min-w-0">
                         <span className="block truncate font-medium">
                           {order.productName}
                         </span>
-                        <span className="text-muted-foreground block truncate text-xs">
-                          {productSecondaryLabel(order)}
-                        </span>
+                        {order.itemCount > 1 ? (
+                          <span className="text-muted-foreground block truncate text-xs">
+                            +{order.itemCount - 1} more
+                          </span>
+                        ) : null}
                       </span>
-                    </div>
+                    </Link>
                   </TableCell>
-                  <TableCell className="align-middle">
+                  <TableCell className="max-w-0 align-middle whitespace-normal">
                     <div className="flex min-w-0 items-center gap-2.5">
                       <CustomerAvatar name={order.customerName} />
-                      <span className="min-w-0">
-                        <span className="block truncate font-medium">
-                          {order.customerName}
-                        </span>
-                        <span className="text-muted-foreground block truncate text-xs">
-                          {order.customerEmail}
-                        </span>
+                      <span className="block truncate font-medium">
+                        {order.customerName}
                       </span>
                     </div>
                   </TableCell>
                   <TableCell className="align-middle text-right tabular-nums">
                     {formatUsd(order.amount)}
                   </TableCell>
-                  <TableCell className="align-middle whitespace-nowrap">
+                  <TableCell className="align-middle">
                     <OrderStatusBadge status={order.status} />
-                  </TableCell>
-                  <TableCell className="text-muted-foreground align-middle whitespace-nowrap">
-                    {formatDateTime(order.createdAt)}
-                  </TableCell>
-                  <TableCell className="align-middle text-right">
-                    <Button asChild variant="outline" size="sm">
-                      <Link
-                        href={`/orders/${order.id}`}
-                        aria-label={`View ${order.id}`}
-                      >
-                        View
-                      </Link>
-                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
