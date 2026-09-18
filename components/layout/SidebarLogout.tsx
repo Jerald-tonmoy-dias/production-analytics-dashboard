@@ -27,7 +27,7 @@ export function SidebarLogout({
       aria-label="Log out"
       title="Log out (demo — no authentication)"
       className={cn(
-        "flex items-center rounded-xl border border-transparent text-sm font-medium outline-none transition-colors duration-[var(--motion-fast)] ease-standard",
+        "flex cursor-pointer items-center rounded-xl border border-transparent text-sm font-medium outline-none transition-colors duration-[var(--motion-fast)] ease-standard",
         "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
         "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
         collapsed

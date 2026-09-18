@@ -67,6 +67,7 @@ export function AppSidebar({ orderCount }: AppSidebarProps) {
           type="button"
           variant="ghost"
           size="icon-lg"
+          className="cursor-pointer"
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           aria-pressed={collapsed}
           title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
