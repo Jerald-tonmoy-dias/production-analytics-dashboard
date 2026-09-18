@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { AppNav } from "@/components/layout/AppNav";
 import { BrandLockup } from "@/components/layout/BrandLockup";
+import { SidebarLogout } from "@/components/layout/SidebarLogout";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -67,8 +68,16 @@ export function MobileNav({ actions, orderCount }: MobileNavProps) {
               Primary navigation
             </SheetDescription>
           </SheetHeader>
-          <div id="mobile-nav" className="min-h-0 flex-1 overflow-y-auto px-3 py-3">
-            <AppNav orderCount={orderCount} />
+          <div
+            id="mobile-nav"
+            className="flex min-h-0 flex-1 flex-col overflow-hidden"
+          >
+            <div className="min-h-0 flex-1 overflow-y-auto px-3 py-3">
+              <AppNav orderCount={orderCount} />
+            </div>
+            <div className="border-sidebar-border shrink-0 border-t px-3 py-3">
+              <SidebarLogout />
+            </div>
           </div>
         </SheetContent>
       </Sheet>

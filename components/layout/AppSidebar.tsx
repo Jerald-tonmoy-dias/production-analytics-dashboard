@@ -4,6 +4,7 @@ import { useEffect, useSyncExternalStore } from "react";
 import { PanelLeft, PanelLeftClose } from "lucide-react";
 import { AppNav } from "@/components/layout/AppNav";
 import { BrandLockup } from "@/components/layout/BrandLockup";
+import { SidebarLogout } from "@/components/layout/SidebarLogout";
 import { Button } from "@/components/ui/button";
 import { MD_MEDIA_QUERY } from "@/lib/constants";
 import {
@@ -80,6 +81,14 @@ export function AppSidebar({ orderCount }: AppSidebarProps) {
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto px-2 pb-2">
         <AppNav collapsed={collapsed} orderCount={orderCount} />
+      </div>
+      <div
+        className={cn(
+          "border-sidebar-border shrink-0 border-t px-2 py-2",
+          collapsed && "flex justify-center"
+        )}
+      >
+        <SidebarLogout collapsed={collapsed} />
       </div>
     </aside>
   );

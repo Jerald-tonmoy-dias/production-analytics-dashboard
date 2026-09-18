@@ -294,7 +294,7 @@ shadcn primitives   →  shared states / layout  →  feature widgets  →  page
 
 - **Do not** wrap every shadcn primitive in a second identity-less wrapper.
 - **Do** build `OrderStatusBadge` (maps domain status → semantic tokens + label) and `KpiCard` (KPI semantics on top of Card, including lucide `tone` icons).
-- Shell identity: `BrandLockup` (mark + `PRODUCT_NAME`), brand active nav, Orders count from `kpis.orderCount`. Theme + static operator (`OPERATOR_NAME` / initials) live in the desktop toolbar and mobile top bar — not a sidebar footer. There is no notification bell, search, or export.
+- Shell identity: `BrandLockup` (mark + `PRODUCT_NAME`), brand active nav, Orders count from `kpis.orderCount`. Theme + static operator (`OPERATOR_NAME` / initials) live in the desktop toolbar and mobile top bar. Sidebar footer has a chrome-only **Log out** control (no auth session). There is no notification bell, search, or export.
 
 Status and chart hues live in `app/globals.css` (`--success`, `--warning`, `--info`, `--destructive`, `--chart-revenue`, `--chart-orders`). Motion durations and elevation live there too (`--motion-fast`, `--motion-default`, `--elevation-hover`). Do not hardcode hex in feature widgets. Dashboard trends: **Revenue** is an area chart; **Orders** is a column bar chart (same Recharts island, `isAnimationActive={false}`).
 - Feature widgets are presentational: props in, events out. They do not fetch.
