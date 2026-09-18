@@ -48,12 +48,12 @@ export function RecentOrders({
   const empty = state === "default" && orders.length === 0;
 
   return (
-    <Card className="h-full min-h-0 min-w-0">
-      <CardHeader>
+    <Card className="flex h-full min-h-0 min-w-0 flex-col">
+      <CardHeader className="shrink-0">
         <CardTitle>Recent orders</CardTitle>
         <CardDescription>Newest orders across the workspace.</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex min-h-0 flex-1 flex-col">
         {state === "loading" ? (
           <div aria-busy="true" aria-live="polite">
             <RecentOrdersSkeleton />

@@ -7,6 +7,7 @@ import { getActivities, getAnalytics, getOrders } from "@/lib/api/rsc";
 import { CHART_WINDOW_DAYS } from "@/lib/constants";
 
 const RECENT_ORDERS_PAGE_SIZE = 5;
+const ACTIVITY_FEED_LIMIT = 5;
 
 /** Series window uses wall-clock `now`; do not statically freeze at build. */
 export const dynamic = "force-dynamic";
@@ -15,7 +16,7 @@ export default async function DashboardPage() {
   const [analytics, ordersPage, activities] = await Promise.all([
     getAnalytics(),
     getOrders({ page: 1, pageSize: RECENT_ORDERS_PAGE_SIZE }),
-    getActivities(),
+    getActivities(ACTIVITY_FEED_LIMIT),
   ]);
 
   const { kpis, series } = analytics;
@@ -78,12 +79,12 @@ export default async function DashboardPage() {
       </section>
       <section
         aria-label="Recent orders and activity"
-        className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]"
+        className="grid min-w-0 items-stretch gap-6 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]"
       >
-        <div className="min-h-0 min-w-0 xl:h-full">
+        <div className="min-h-0 min-w-0">
           <RecentOrders orders={ordersPage.data} />
         </div>
-        <div className="min-h-0 min-w-0 xl:h-full">
+        <div className="min-h-0 min-w-0">
           <ActivityFeed activities={activities} />
         </div>
       </section>

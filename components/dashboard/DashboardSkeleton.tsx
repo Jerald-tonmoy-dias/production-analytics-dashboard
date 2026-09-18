@@ -66,12 +66,12 @@ export function DashboardSkeleton() {
       </section>
       <section
         aria-label="Recent orders and activity"
-        className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]"
+        className="grid min-w-0 items-stretch gap-6 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]"
       >
-        <div className="min-h-0 min-w-0 xl:h-full">
+        <div className="min-h-0 min-w-0">
           <RecentOrders orders={[]} state="loading" />
         </div>
-        <div className="min-h-0 min-w-0 xl:h-full">
+        <div className="min-h-0 min-w-0">
           <ActivityFeed activities={[]} state="loading" />
         </div>
       </section>
