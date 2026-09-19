@@ -71,7 +71,7 @@ export function isAppError(error: unknown): error is AppError {
 }
 
 /**
- * Map a thrown value to the HTTP status and envelope in `docs/api-reference.md`.
+ * Map a thrown value to the HTTP status and envelope documented in `docs/architecture.md`.
  *
  * Unknown failures become `500 INTERNAL_ERROR` with a generic message (no stack).
  *

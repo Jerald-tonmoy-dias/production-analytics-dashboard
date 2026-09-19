@@ -10,7 +10,7 @@ Closes #
 
 ## Architecture Notes
 
-<!-- RSC vs client, new dependency class (Required/Recommended/Optional/Avoid), memoization justification. Omit if no architectural change. -->
+<!-- RSC vs client, new dependency, memoization justification. Omit if unchanged. -->
 
 ## Testing
 
@@ -22,7 +22,7 @@ Closes #
 
 ## Documentation
 
-<!-- Which public docs changed, or “n/a”. API contract changes must update docs/api-reference.md in this PR. -->
+<!-- README and/or docs/architecture.md, or “n/a”. -->
 
 ## Screenshots
 
