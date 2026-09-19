@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,21 +12,15 @@ export function OperatorMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
+        <button
           type="button"
-          variant="ghost"
-          size="icon-lg"
           aria-label="Operator menu"
+          className="bg-primary text-primary-foreground ring-primary/20 hover:bg-primary/90 flex size-8 cursor-pointer items-center justify-center rounded-full text-xs font-bold shadow-sm outline-none ring-2 transition focus-visible:ring-3 focus-visible:ring-ring/50"
         >
-          <span
-            className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-full text-[0.65rem] font-semibold"
-            aria-hidden="true"
-          >
-            {OPERATOR_INITIALS}
-          </span>
-        </Button>
+          {OPERATOR_INITIALS}
+        </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="min-w-44">
+      <DropdownMenuContent align="end" className="min-w-44 rounded-xl">
         <DropdownMenuLabel className="font-normal">
           <span className="text-muted-foreground block text-xs font-normal">
             Operator

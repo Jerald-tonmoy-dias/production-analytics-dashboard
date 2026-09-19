@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PRODUCT_NAME, PRODUCT_NAME_MARK } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -8,15 +9,16 @@ type BrandLockupProps = {
 
 export function BrandLockup({ compact = false, className }: BrandLockupProps) {
   return (
-    <span
+    <Link
+      href="/"
       className={cn(
-        "flex min-w-0 items-center gap-2",
+        "group flex min-w-0 items-center gap-3 outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
         compact && "justify-center",
         className
       )}
     >
       <span
-        className="bg-primary text-primary-foreground flex size-8 shrink-0 items-center justify-center rounded-xl font-heading text-xs font-bold shadow-sm"
+        className="bg-primary text-primary-foreground group-hover:bg-primary/90 flex size-8 shrink-0 items-center justify-center rounded-xl text-base font-bold shadow-[var(--shadow-brand-sm)] transition-colors"
         title={compact ? PRODUCT_NAME : undefined}
         aria-hidden="true"
       >
@@ -25,10 +27,10 @@ export function BrandLockup({ compact = false, className }: BrandLockupProps) {
       {compact ? (
         <span className="sr-only">{PRODUCT_NAME}</span>
       ) : (
-        <span className="font-heading text-primary min-w-0 truncate text-sm font-semibold tracking-tight">
+        <span className="text-foreground group-hover:text-primary min-w-0 truncate text-[15px] font-bold tracking-tight transition-colors">
           {PRODUCT_NAME}
         </span>
       )}
-    </span>
+    </Link>
   );
 }

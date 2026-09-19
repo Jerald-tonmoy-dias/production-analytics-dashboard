@@ -1030,13 +1030,13 @@ Date: 2026-09-19
 
 Context: Operator provided `production_analytics_dashboard (4).html` as the target look (slate canvas, blue-600 brand, Inter + JetBrains Mono, denser enterprise chrome). Dynamic product data must stay on the Next.js domain/API path.
 
-Problem: Full HTML conversion would reintroduce Chart.js series, fake mutations, CSV export, and websockets that conflict with Task-1 (RSC + Recharts + Zod domain series).
+Problem: Full HTML conversion would reintroduce Chart.js series, fake mutations, CSV export, and websockets that conflict with Task-1 (RSC + Recharts + Zod domain series). Early port drifted from the mock (collapsed icon rail, soft-SaaS card chrome, missing chart footers / timeline activity).
 
 Decision:
 
-1. Port **visual language** into tokens (`globals.css`), fonts (Inter / JetBrains Mono via `next/font`), shell, KPIs, badges, tables, and details.
-2. Keep **charts and KPIs dynamic** — Recharts + domain 30-day revenue/orders series and list APIs. Do not hard-code chart series in UI components.
-3. Treat HTML-only controls as **demo chrome stubs**: live sync, date range, export, create order, status tabs, bulk action ribbon, chart series toggles, logout confirm. They may toast / update local UI only — no new backends, CSV, websockets, or order mutations.
+1. Port **visual language** into tokens (`globals.css` uses HTML hex: `#f8fafc`, `#e2e8f0`, `#2563eb`, KPI wells), fonts (Inter / JetBrains Mono via `next/font`), shell (`w-60` sidebar, `h-16` topbar with left toggle), KPIs, badges, tables, and details.
+2. Keep **charts and KPIs dynamic** — Recharts + domain 30-day revenue/orders series and list APIs. Chart footers (avg / peak / velocity) derive from the same series. Do not hard-code chart series in UI components.
+3. Treat HTML-only controls as **demo chrome stubs**: live sync, date range, export, create order, status tabs, bulk action ribbon, chart series toggles, logout confirm, growth badge. They may toast / update local UI only — no new backends, CSV, websockets, or order mutations.
 4. Demo toasts use a tiny client event bus (`lib/demo-toast.ts` + `DemoToaster`); stubs are labeled in `aria-label` / dialog copy / toast text.
 5. HTML mock stays **gitignored** (`production_analytics_dashboard*.html`) as reference only.
 

@@ -130,7 +130,7 @@ export function OrdersWorkspace() {
   const selectedOnPage = selectedIds.filter((id) => pageIds.includes(id));
 
   return (
-    <div className="mx-auto min-w-0 max-w-[1360px] space-y-4">
+    <div className="min-w-0 space-y-4">
       <OrdersDemoChrome
         totalCount={listQuery.data?.pagination.total}
         activeStatus={urlState.status}

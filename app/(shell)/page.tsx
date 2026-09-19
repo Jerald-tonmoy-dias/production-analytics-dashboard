@@ -33,7 +33,7 @@ export default async function DashboardPage() {
       </PageHeader>
       <section
         aria-label="Key metrics"
-        className="grid grid-cols-1 gap-5 min-[400px]:grid-cols-2 xl:grid-cols-4"
+        className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
       >
         <KpiCard
           label="Total revenue"
@@ -80,6 +80,7 @@ export default async function DashboardPage() {
           format="number"
           variant="bar"
           demoControls="orders"
+          totalBadge={`${kpis.orderCount} total`}
         />
       </section>
       <section

@@ -1,24 +1,9 @@
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { ErrorState } from "@/components/shared/ErrorState";
 import { OrderStatusBadge } from "@/components/orders/OrderStatusBadge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { formatUsd } from "@/lib/format";
 import type { OrderListItem } from "@/lib/schemas/order";
 
@@ -46,12 +31,26 @@ export function RecentOrders({
   const empty = state === "default" && orders.length === 0;
 
   return (
-    <Card className="flex h-full min-h-0 min-w-0 flex-col">
-      <CardHeader className="shrink-0">
-        <CardTitle>Recent orders</CardTitle>
-        <CardDescription>Newest orders across the workspace.</CardDescription>
-      </CardHeader>
-      <CardContent className="flex min-h-0 flex-1 flex-col">
+    <div className="bg-card flex h-full min-h-0 min-w-0 flex-col justify-between rounded-2xl border border-slate-200/80 p-6 shadow-sm dark:border-slate-800">
+      <div>
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <div>
+            <h2 className="text-base font-semibold text-slate-900 dark:text-white">
+              Recent orders
+            </h2>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              Newest orders across the workspace.
+            </p>
+          </div>
+          <Link
+            href="/orders"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 shadow-sm transition hover:bg-primary/5 hover:text-primary dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+          >
+            <span>View all</span>
+            <ChevronRight className="size-3.5" aria-hidden="true" />
+          </Link>
+        </div>
+
         {state === "loading" ? (
           <div aria-busy="true" aria-live="polite">
             <RecentOrdersSkeleton />
@@ -69,57 +68,58 @@ export function RecentOrders({
             className="border-0 py-8"
           />
         ) : (
-          <Table className="min-w-0 table-fixed">
-            <TableCaption className="sr-only">Recent orders</TableCaption>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-[16%]">Order</TableHead>
-                <TableHead className="w-[30%]">Product</TableHead>
-                <TableHead className="w-[24%]">Customer</TableHead>
-                <TableHead className="w-[15%]">Amount</TableHead>
-                <TableHead className="w-[15%]">Status</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {orders.map((order) => (
-                <TableRow key={order.id}>
-                  <TableCell className="max-w-0">
-                    <Link
-                      href={`/orders/${order.id}`}
-                      className="block truncate rounded-sm font-mono text-xs font-semibold underline-offset-4 outline-none hover:underline focus-visible:underline focus-visible:ring-3 focus-visible:ring-ring/50"
-                    >
-                      {order.id}
-                    </Link>
-                  </TableCell>
-                  <TableCell className="max-w-0 whitespace-normal">
-                    <span className="min-w-0">
-                      <span className="block truncate font-medium">
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-left text-sm">
+              <caption className="sr-only">Recent orders</caption>
+              <thead>
+                <tr className="border-b border-slate-100 bg-slate-50/70 text-[11px] font-semibold tracking-wider text-slate-500 uppercase dark:border-slate-800 dark:bg-slate-800/40 dark:text-slate-400">
+                  <th className="px-3 py-2.5">Order</th>
+                  <th className="px-3 py-2.5">Product</th>
+                  <th className="px-3 py-2.5">Customer</th>
+                  <th className="px-3 py-2.5">Amount</th>
+                  <th className="px-4 py-2.5 text-right">Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                {orders.map((order) => (
+                  <tr
+                    key={order.id}
+                    className="group transition hover:bg-primary/5 dark:hover:bg-slate-800/40"
+                  >
+                    <td className="px-3 py-3">
+                      <Link
+                        href={`/orders/${order.id}`}
+                        className="font-mono text-xs font-semibold text-slate-900 outline-none transition-colors group-hover:text-primary focus-visible:underline dark:text-white"
+                      >
+                        {order.id}
+                      </Link>
+                    </td>
+                    <td className="px-3 py-3">
+                      <div className="font-medium text-slate-800 dark:text-slate-200">
                         {order.productName}
-                      </span>
+                      </div>
                       {order.itemCount > 1 ? (
-                        <span className="text-muted-foreground block truncate text-xs">
+                        <div className="text-xs text-slate-400">
                           +{order.itemCount - 1} more
-                        </span>
+                        </div>
                       ) : null}
-                    </span>
-                  </TableCell>
-                  <TableCell className="max-w-0">
-                    <span className="block truncate font-medium">
+                    </td>
+                    <td className="px-3 py-3 font-medium text-slate-900 dark:text-white">
                       {order.customerName}
-                    </span>
-                  </TableCell>
-                  <TableCell className="font-mono text-sm tabular-nums">
-                    {formatUsd(order.amount)}
-                  </TableCell>
-                  <TableCell>
-                    <OrderStatusBadge status={order.status} />
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+                    </td>
+                    <td className="px-3 py-3 font-mono font-medium text-slate-700 dark:text-slate-300">
+                      {formatUsd(order.amount)}
+                    </td>
+                    <td className="px-4 py-3 text-right">
+                      <OrderStatusBadge status={order.status} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

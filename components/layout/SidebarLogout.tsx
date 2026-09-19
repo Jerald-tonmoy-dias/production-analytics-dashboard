@@ -39,17 +39,20 @@ export function SidebarLogout({
       aria-label="Log out"
       title="Log out (demo — no authentication)"
       className={cn(
-        "flex cursor-pointer items-center rounded-xl border border-transparent text-sm font-medium outline-none transition-colors duration-[var(--motion-fast)] ease-standard",
-        "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-        "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
+        "group flex cursor-pointer items-center rounded-xl text-sm font-medium outline-none transition",
+        "text-[#475569] hover:bg-primary/5 hover:text-primary dark:text-slate-400",
+        "focus-visible:ring-3 focus-visible:ring-ring/50",
         collapsed
           ? "size-9 justify-center"
-          : "min-h-10 w-full gap-2.5 px-3 py-2",
+          : "w-full gap-3 px-3.5 py-2",
         className
       )}
       onClick={() => setOpen(true)}
     >
-      <LogOut className="size-4 shrink-0" aria-hidden="true" />
+      <LogOut
+        className="size-[18px] shrink-0 text-slate-400 transition-colors group-hover:text-primary"
+        aria-hidden="true"
+      />
       <span className={collapsed ? "sr-only" : "min-w-0 flex-1 truncate text-left"}>
         Log out
       </span>
@@ -71,10 +74,10 @@ export function SidebarLogout({
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="rounded-2xl sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Log out?</DialogTitle>
+            <DialogTitle>Are you sure you want to log out?</DialogTitle>
             <DialogDescription>
-              This console has no authentication. Confirming only shows a demo
-              message — your session is not cleared on a server.
+              You will need to sign back in to access your workspace, customer
+              orders, and analytics dashboards. (Demo only — no auth session.)
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -94,7 +97,7 @@ export function SidebarLogout({
                 showDemoToast("Logged out safely (demo — no auth).");
               }}
             >
-              Confirm
+              Log out
             </Button>
           </DialogFooter>
         </DialogContent>
