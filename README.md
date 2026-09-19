@@ -15,6 +15,8 @@ An internal tool for checking business health and finding orders.
 
 How the app is built: **[docs/architecture.md](./docs/architecture.md)**.
 
+Work was tracked as GitHub Issues, each with its own branch and pull request.
+
 ## Tools used
 
 - **App:** Next.js, React, TypeScript, Tailwind, shadcn/ui
@@ -26,16 +28,23 @@ How the app is built: **[docs/architecture.md](./docs/architecture.md)**.
 
 ## How to run it
 
-You need Node.js 20 or newer.
+1. Clone this repository.
+2. Make sure **Node.js 20 or newer** is installed (`node -v`).
+3. Then run:
 
 ```bash
 npm install
 npm run dev          # app → http://localhost:3000
 npm run storybook    # Storybook → http://localhost:6006
+
+# Checks — one by one:
+npm run lint         # ESLint
+npm run typecheck    # TypeScript
+npm test             # Vitest
+
+# Or all three together:
 npm run lint && npm run typecheck && npm test
 ```
-
-Storybook online updates when we push UI-related changes to `main` (uses the GitHub secret `CHROMATIC_PROJECT_TOKEN`).
 
 ## How data moves (short)
 
