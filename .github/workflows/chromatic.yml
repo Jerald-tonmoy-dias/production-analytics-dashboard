@@ -1,5 +1,5 @@
 # Publish Storybook to Chromatic (public preview URL).
-# Runs only when `main` is updated — not on pull requests.
+# Runs only on `main` when Storybook-relevant paths change — not on docs/README-only pushes.
 # Requires repo secret CHROMATIC_PROJECT_TOKEN from https://www.chromatic.com
 
 name: Chromatic
@@ -7,6 +7,16 @@ name: Chromatic
 on:
   push:
     branches: [main]
+    paths:
+      - "components/**"
+      - ".storybook/**"
+      - "app/globals.css"
+      - "lib/**"
+      - "package.json"
+      - "package-lock.json"
+      - "postcss.config.mjs"
+      - "components.json"
+      - ".github/workflows/chromatic.yml"
 
 concurrency:
   group: chromatic-main
