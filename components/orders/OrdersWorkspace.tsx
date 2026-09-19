@@ -13,8 +13,6 @@ import {
   OrdersTable,
   type OrdersTableState,
 } from "@/components/orders/OrdersTable";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { getOrders } from "@/lib/api/orders";
 import { DEFAULT_PAGE_SIZE } from "@/lib/constants";
 import { showDemoToast } from "@/lib/demo-toast";
@@ -142,8 +140,8 @@ export function OrdersWorkspace() {
           })
         }
       />
-      <Card className="min-w-0 overflow-hidden rounded-2xl">
-        <CardContent className="bg-muted/30 border-b">
+      <div className="space-y-5">
+        <div className="rounded-2xl border border-slate-200/90 bg-slate-50/50 p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/50">
           <OrderFilters
             value={filters}
             onClear={clearFilters}
@@ -164,11 +162,12 @@ export function OrdersWorkspace() {
               }
             }}
           />
-        </CardContent>
-        {selectedOnPage.length > 0 ? (
-          <div className="bg-primary/5 border-b px-5 py-2.5">
-            <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold">
-              <div className="text-primary flex flex-wrap items-center gap-3">
+        </div>
+
+        <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          {selectedOnPage.length > 0 ? (
+            <div className="border-primary/20 bg-primary/5 flex items-center justify-between border-b px-5 py-2.5">
+              <div className="text-primary flex flex-wrap items-center gap-3 text-xs font-semibold">
                 <span>{selectedOnPage.length} selected</span>
                 <span className="text-primary/40">|</span>
                 <button
@@ -192,47 +191,47 @@ export function OrdersWorkspace() {
                   Export selected
                 </button>
               </div>
-              <Button
+              <button
                 type="button"
-                variant="ghost"
-                size="sm"
-                className="cursor-pointer text-xs"
+                className="cursor-pointer text-xs font-medium text-slate-500 hover:text-slate-800 dark:hover:text-white"
                 onClick={() => setSelectedIds([])}
               >
                 Deselect all
-              </Button>
+              </button>
             </div>
-          </div>
-        ) : null}
-        <CardContent
-          aria-busy={isRefreshing || undefined}
-          className={cn("min-w-0", isRefreshing && "opacity-60")}
-        >
-          <OrdersTable
-            orders={listQuery.data?.data ?? []}
-            state={tableState}
-            selectedIds={selectedOnPage}
-            onSelectedIdsChange={(ids) => {
-              const otherPages = selectedIds.filter(
-                (id) => !pageIds.includes(id)
-              );
-              setSelectedIds([...otherPages, ...ids]);
-            }}
-            onClearFilters={clearFilters}
-            onRetry={() => {
-              void listQuery.refetch();
-            }}
-          />
-        </CardContent>
-        {listQuery.data ? (
-          <CardFooter className="w-full bg-transparent">
-            <OrderPagination
-              pagination={listQuery.data.pagination}
-              onPageChange={(page) => pushState({ ...urlState, page })}
+          ) : null}
+
+          <div
+            aria-busy={isRefreshing || undefined}
+            className={cn("min-w-0", isRefreshing && "opacity-60")}
+          >
+            <OrdersTable
+              orders={listQuery.data?.data ?? []}
+              state={tableState}
+              selectedIds={selectedOnPage}
+              onSelectedIdsChange={(ids) => {
+                const otherPages = selectedIds.filter(
+                  (id) => !pageIds.includes(id)
+                );
+                setSelectedIds([...otherPages, ...ids]);
+              }}
+              onClearFilters={clearFilters}
+              onRetry={() => {
+                void listQuery.refetch();
+              }}
             />
-          </CardFooter>
-        ) : null}
-      </Card>
+          </div>
+
+          {listQuery.data ? (
+            <div className="border-t border-slate-100 px-6 py-4 dark:border-slate-800">
+              <OrderPagination
+                pagination={listQuery.data.pagination}
+                onPageChange={(page) => pushState({ ...urlState, page })}
+              />
+            </div>
+          ) : null}
+        </div>
+      </div>
     </div>
   );
 }

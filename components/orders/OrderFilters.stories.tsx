@@ -34,7 +34,11 @@ export const Default: Story = {
     value: { q: "" },
     onChange: () => {},
   },
-  render: () => <FiltersPlayground initial={{ q: "" }} />,
+  render: () => (
+    <div className="rounded-2xl border border-slate-200/90 bg-slate-50/50 p-4">
+      <FiltersPlayground initial={{ q: "" }} />
+    </div>
+  ),
 };
 
 export const Filled: Story = {
@@ -43,13 +47,15 @@ export const Filled: Story = {
     onChange: () => {},
   },
   render: () => (
-    <FiltersPlayground
-      initial={{
-        q: "acme",
-        status: "pending",
-        from: "2026-09-01",
-        to: "2026-09-16",
-      }}
-    />
+    <div className="rounded-2xl border border-slate-200/90 bg-slate-50/50 p-4">
+      <FiltersPlayground
+        initial={{
+          q: "acme",
+          status: "pending",
+          from: "2026-09-01",
+          to: "2026-09-16",
+        }}
+      />
+    </div>
   ),
 };
