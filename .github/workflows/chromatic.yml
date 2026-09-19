@@ -1,4 +1,5 @@
 # Publish Storybook to Chromatic (public preview URL).
+# Runs only when `main` is updated — not on pull requests.
 # Requires repo secret CHROMATIC_PROJECT_TOKEN from https://www.chromatic.com
 
 name: Chromatic
@@ -6,10 +7,9 @@ name: Chromatic
 on:
   push:
     branches: [main]
-  pull_request:
 
 concurrency:
-  group: chromatic-${{ github.ref }}
+  group: chromatic-main
   cancel-in-progress: true
 
 jobs:
