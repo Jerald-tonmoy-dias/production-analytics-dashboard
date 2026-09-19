@@ -5,10 +5,10 @@ import { PageHeader } from "@/components/shared/PageHeader";
 
 export default function OrdersPage() {
   return (
-    <div className="min-w-0 space-y-6">
+    <div className="mx-auto min-w-0 max-w-[1360px] space-y-5">
       <PageHeader
         title="Orders"
-        description="Search, filter, and inspect orders."
+        description="Search, filter, inspect, and fulfill customer orders across channels."
       />
       <Suspense fallback={<OrdersWorkspaceSkeleton />}>
         <OrdersWorkspace />

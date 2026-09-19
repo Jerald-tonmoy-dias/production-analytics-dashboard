@@ -86,7 +86,7 @@ export function RecentOrders({
                   <TableCell className="max-w-0">
                     <Link
                       href={`/orders/${order.id}`}
-                      className="block truncate rounded-sm font-medium underline-offset-4 outline-none hover:underline focus-visible:underline focus-visible:ring-3 focus-visible:ring-ring/50"
+                      className="block truncate rounded-sm font-mono text-xs font-semibold underline-offset-4 outline-none hover:underline focus-visible:underline focus-visible:ring-3 focus-visible:ring-ring/50"
                     >
                       {order.id}
                     </Link>
@@ -108,7 +108,7 @@ export function RecentOrders({
                       {order.customerName}
                     </span>
                   </TableCell>
-                  <TableCell className="tabular-nums">
+                  <TableCell className="font-mono text-sm tabular-nums">
                     {formatUsd(order.amount)}
                   </TableCell>
                   <TableCell>

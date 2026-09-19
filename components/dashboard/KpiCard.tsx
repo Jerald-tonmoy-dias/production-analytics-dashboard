@@ -33,23 +33,31 @@ const KPI_TONES: Record<
 > = {
   revenue: {
     icon: CircleDollarSign,
-    cardClassName: "bg-kpi-revenue ring-transparent",
-    iconClassName: "bg-white/70 text-kpi-revenue-fg dark:bg-black/20",
+    cardClassName:
+      "bg-kpi-revenue ring-1 ring-amber-200/70 dark:ring-amber-800/30",
+    iconClassName:
+      "border border-amber-100 bg-white text-kpi-revenue-fg shadow-sm dark:border-amber-800/40 dark:bg-amber-950/50",
   },
   orders: {
     icon: ShoppingBag,
-    cardClassName: "bg-kpi-orders ring-transparent",
-    iconClassName: "bg-white/70 text-kpi-orders-fg dark:bg-black/20",
+    cardClassName:
+      "bg-kpi-orders ring-1 ring-blue-200/70 dark:ring-blue-800/30",
+    iconClassName:
+      "border border-blue-100 bg-white text-kpi-orders-fg shadow-sm dark:border-blue-800/40 dark:bg-blue-950/50",
   },
   customers: {
     icon: Users,
-    cardClassName: "bg-kpi-customers ring-transparent",
-    iconClassName: "bg-white/70 text-kpi-customers-fg dark:bg-black/20",
+    cardClassName:
+      "bg-kpi-customers ring-1 ring-rose-200/60 dark:ring-rose-800/30",
+    iconClassName:
+      "border border-rose-100 bg-white text-kpi-customers-fg shadow-sm dark:border-rose-800/40 dark:bg-rose-950/50",
   },
   conversion: {
     icon: Percent,
-    cardClassName: "bg-kpi-conversion ring-transparent",
-    iconClassName: "bg-white/70 text-kpi-conversion-fg dark:bg-black/20",
+    cardClassName:
+      "bg-kpi-conversion ring-1 ring-emerald-200/60 dark:ring-emerald-800/30",
+    iconClassName:
+      "border border-emerald-100 bg-white text-kpi-conversion-fg shadow-sm dark:border-emerald-800/40 dark:bg-emerald-950/50",
   },
 };
 
@@ -95,8 +103,9 @@ export function KpiCard({
     <Card
       size="sm"
       className={cn(
-        "min-w-0 overflow-hidden shadow-[var(--elevation-card)] transition-[box-shadow,transform] duration-[var(--motion-default)] ease-standard",
-        "hover:-translate-y-px hover:shadow-[var(--elevation-hover)]",
+        "min-w-0 overflow-hidden rounded-2xl shadow-[var(--elevation-card)] transition-[box-shadow,transform] duration-300 ease-out",
+        "hover:-translate-y-1.5 hover:shadow-[var(--elevation-hover)]",
+        "motion-reduce:hover:translate-y-0",
         toneStyles?.cardClassName,
         className
       )}
@@ -122,7 +131,7 @@ export function KpiCard({
               <p
                 title={formatValue(value, format)}
                 className={cn(
-                  "font-heading max-w-full truncate text-lg font-semibold tracking-tight tabular-nums sm:text-2xl",
+                  "font-mono max-w-full truncate text-lg font-bold tracking-tight tabular-nums sm:text-2xl",
                   isZero && "text-muted-foreground"
                 )}
               >

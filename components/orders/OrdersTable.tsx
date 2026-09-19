@@ -28,6 +28,9 @@ type OrdersTableProps = {
   state?: OrdersTableState;
   onRetry?: () => void;
   onClearFilters?: () => void;
+  /** Demo chrome: local selection only. */
+  selectedIds?: string[];
+  onSelectedIdsChange?: (ids: string[]) => void;
 };
 
 function productSecondaryLabel(order: OrderListItem): string {
@@ -42,6 +45,7 @@ function OrdersTableSkeleton() {
     <Table>
       <TableHeader>
         <TableRow>
+          <TableHead className="w-10" />
           <TableHead>Order</TableHead>
           <TableHead>Product</TableHead>
           <TableHead>Customer</TableHead>
@@ -54,6 +58,9 @@ function OrdersTableSkeleton() {
       <TableBody>
         {Array.from({ length: 8 }, (_, index) => (
           <TableRow key={index}>
+            <TableCell>
+              <Skeleton className="size-3.5" />
+            </TableCell>
             <TableCell>
               <Skeleton className="h-4 w-20" />
             </TableCell>
@@ -93,6 +100,8 @@ export function OrdersTable({
   state = "default",
   onRetry,
   onClearFilters,
+  selectedIds = [],
+  onSelectedIdsChange,
 }: OrdersTableProps) {
   if (state === "loading") {
     return (
@@ -141,11 +150,27 @@ export function OrdersTable({
     );
   }
 
+  const allSelected =
+    orders.length > 0 && orders.every((order) => selectedIds.includes(order.id));
+
   return (
     <Table>
       <TableCaption className="sr-only">Orders</TableCaption>
       <TableHeader>
         <TableRow>
+          <TableHead className="w-10 text-center">
+            <input
+              type="checkbox"
+              className="accent-primary size-3.5 cursor-pointer rounded border"
+              checked={allSelected}
+              aria-label="Select all rows on this page (demo)"
+              onChange={(event) => {
+                onSelectedIdsChange?.(
+                  event.target.checked ? orders.map((order) => order.id) : []
+                );
+              }}
+            />
+          </TableHead>
           <TableHead>Order</TableHead>
           <TableHead>Product</TableHead>
           <TableHead>Customer</TableHead>
@@ -156,54 +181,80 @@ export function OrdersTable({
         </TableRow>
       </TableHeader>
       <TableBody>
-        {orders.map((order) => (
-          <TableRow key={order.id}>
-            <TableCell>
-              <Link
-                href={`/orders/${order.id}`}
-                className="rounded-sm font-medium underline-offset-4 outline-none hover:underline focus-visible:underline focus-visible:ring-3 focus-visible:ring-ring/50"
-              >
-                {order.id}
-              </Link>
-            </TableCell>
-            <TableCell>
-              <span className="min-w-0">
-                <span className="block truncate font-medium">
-                  {order.productName}
-                </span>
-                <span className="text-muted-foreground block truncate text-xs">
-                  {productSecondaryLabel(order)}
-                </span>
-              </span>
-            </TableCell>
-            <TableCell>
-              <span className="min-w-0">
-                <span className="block truncate font-medium">
-                  {order.customerName}
-                </span>
-                <span className="text-muted-foreground block truncate text-xs">
-                  {order.customerEmail}
-                </span>
-              </span>
-            </TableCell>
-            <TableCell className="tabular-nums">
-              {formatUsd(order.amount)}
-            </TableCell>
-            <TableCell className="whitespace-nowrap">
-              <OrderStatusBadge status={order.status} />
-            </TableCell>
-            <TableCell className="text-muted-foreground whitespace-nowrap">
-              {formatDateTime(order.createdAt)}
-            </TableCell>
-            <TableCell>
-              <Button asChild variant="outline" size="sm">
-                <Link href={`/orders/${order.id}`} aria-label={`View ${order.id}`}>
-                  View
+        {orders.map((order) => {
+          const checked = selectedIds.includes(order.id);
+          return (
+            <TableRow key={order.id}>
+              <TableCell className="text-center">
+                <input
+                  type="checkbox"
+                  className="accent-primary size-3.5 cursor-pointer rounded border"
+                  checked={checked}
+                  aria-label={`Select ${order.id} (demo)`}
+                  onChange={(event) => {
+                    if (!onSelectedIdsChange) {
+                      return;
+                    }
+                    if (event.target.checked) {
+                      onSelectedIdsChange([...selectedIds, order.id]);
+                    } else {
+                      onSelectedIdsChange(
+                        selectedIds.filter((id) => id !== order.id)
+                      );
+                    }
+                  }}
+                />
+              </TableCell>
+              <TableCell>
+                <Link
+                  href={`/orders/${order.id}`}
+                  className="font-mono text-xs font-semibold underline-offset-4 outline-none hover:underline focus-visible:underline focus-visible:ring-3 focus-visible:ring-ring/50"
+                >
+                  {order.id}
                 </Link>
-              </Button>
-            </TableCell>
-          </TableRow>
-        ))}
+              </TableCell>
+              <TableCell>
+                <span className="min-w-0">
+                  <span className="block truncate font-medium">
+                    {order.productName}
+                  </span>
+                  <span className="text-muted-foreground block truncate text-xs">
+                    {productSecondaryLabel(order)}
+                  </span>
+                </span>
+              </TableCell>
+              <TableCell>
+                <span className="min-w-0">
+                  <span className="block truncate font-medium">
+                    {order.customerName}
+                  </span>
+                  <span className="text-muted-foreground block truncate text-xs">
+                    {order.customerEmail}
+                  </span>
+                </span>
+              </TableCell>
+              <TableCell className="font-mono text-sm tabular-nums">
+                {formatUsd(order.amount)}
+              </TableCell>
+              <TableCell className="whitespace-nowrap">
+                <OrderStatusBadge status={order.status} />
+              </TableCell>
+              <TableCell className="text-muted-foreground whitespace-nowrap">
+                {formatDateTime(order.createdAt)}
+              </TableCell>
+              <TableCell>
+                <Button asChild variant="outline" size="sm" className="rounded-xl">
+                  <Link
+                    href={`/orders/${order.id}`}
+                    aria-label={`View ${order.id}`}
+                  >
+                    View
+                  </Link>
+                </Button>
+              </TableCell>
+            </TableRow>
+          );
+        })}
       </TableBody>
     </Table>
   );

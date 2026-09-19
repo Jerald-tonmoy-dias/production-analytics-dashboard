@@ -16,7 +16,7 @@ export function BrandLockup({ compact = false, className }: BrandLockupProps) {
       )}
     >
       <span
-        className="bg-primary text-primary-foreground flex size-8 shrink-0 items-center justify-center rounded-lg font-heading text-xs font-semibold shadow-sm"
+        className="bg-primary text-primary-foreground flex size-8 shrink-0 items-center justify-center rounded-xl font-heading text-xs font-bold shadow-sm"
         title={compact ? PRODUCT_NAME : undefined}
         aria-hidden="true"
       >

@@ -7,14 +7,17 @@ import {
   OrderFilters,
   type OrderFiltersValue,
 } from "@/components/orders/OrderFilters";
+import { OrdersDemoChrome } from "@/components/orders/OrdersDemoChrome";
 import { OrderPagination } from "@/components/orders/OrderPagination";
 import {
   OrdersTable,
   type OrdersTableState,
 } from "@/components/orders/OrdersTable";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { getOrders } from "@/lib/api/orders";
 import { DEFAULT_PAGE_SIZE } from "@/lib/constants";
+import { showDemoToast } from "@/lib/demo-toast";
 import {
   clearedOrdersUrl,
   hasOrdersFilters,
@@ -33,6 +36,7 @@ export function OrdersWorkspace() {
   const urlState = readOrdersUrl(searchParams);
   const [qDraft, setQDraft] = useState(urlState.q);
   const [prevUrlQ, setPrevUrlQ] = useState(urlState.q);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
   if (urlState.q !== prevUrlQ) {
     setPrevUrlQ(urlState.q);
     setQDraft(urlState.q);
@@ -122,11 +126,24 @@ export function OrdersWorkspace() {
   }
 
   const isRefreshing = listQuery.isFetching && listQuery.isPlaceholderData;
+  const pageIds = (listQuery.data?.data ?? []).map((order) => order.id);
+  const selectedOnPage = selectedIds.filter((id) => pageIds.includes(id));
 
   return (
-    <div className="min-w-0 space-y-4">
-      <Card className="min-w-0">
-        <CardContent>
+    <div className="mx-auto min-w-0 max-w-[1360px] space-y-4">
+      <OrdersDemoChrome
+        totalCount={listQuery.data?.pagination.total}
+        activeStatus={urlState.status}
+        onStatusChange={(status) =>
+          pushState({
+            ...urlState,
+            status,
+            page: 1,
+          })
+        }
+      />
+      <Card className="min-w-0 overflow-hidden rounded-2xl">
+        <CardContent className="bg-muted/30 border-b">
           <OrderFilters
             value={filters}
             onClear={clearFilters}
@@ -148,15 +165,59 @@ export function OrdersWorkspace() {
             }}
           />
         </CardContent>
-      </Card>
-      <Card
-        aria-busy={isRefreshing || undefined}
-        className={cn("min-w-0", isRefreshing && "opacity-60")}
-      >
-        <CardContent className="min-w-0">
+        {selectedOnPage.length > 0 ? (
+          <div className="bg-primary/5 border-b px-5 py-2.5">
+            <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold">
+              <div className="text-primary flex flex-wrap items-center gap-3">
+                <span>{selectedOnPage.length} selected</span>
+                <span className="text-primary/40">|</span>
+                <button
+                  type="button"
+                  className="hover:underline cursor-pointer"
+                  onClick={() =>
+                    showDemoToast(
+                      "Mark completed is demo-only — no order mutations."
+                    )
+                  }
+                >
+                  Mark completed
+                </button>
+                <button
+                  type="button"
+                  className="hover:underline cursor-pointer"
+                  onClick={() =>
+                    showDemoToast("Export selected is demo-only.")
+                  }
+                >
+                  Export selected
+                </button>
+              </div>
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                className="cursor-pointer text-xs"
+                onClick={() => setSelectedIds([])}
+              >
+                Deselect all
+              </Button>
+            </div>
+          </div>
+        ) : null}
+        <CardContent
+          aria-busy={isRefreshing || undefined}
+          className={cn("min-w-0", isRefreshing && "opacity-60")}
+        >
           <OrdersTable
             orders={listQuery.data?.data ?? []}
             state={tableState}
+            selectedIds={selectedOnPage}
+            onSelectedIdsChange={(ids) => {
+              const otherPages = selectedIds.filter(
+                (id) => !pageIds.includes(id)
+              );
+              setSelectedIds([...otherPages, ...ids]);
+            }}
             onClearFilters={clearFilters}
             onRetry={() => {
               void listQuery.refetch();

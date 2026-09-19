@@ -1,4 +1,5 @@
 import { ActivityFeed } from "@/components/dashboard/ActivityFeed";
+import { DashboardDemoChrome } from "@/components/dashboard/DashboardDemoChrome";
 import { KpiCard } from "@/components/dashboard/KpiCard";
 import { RecentOrders } from "@/components/dashboard/RecentOrders";
 import { TrendChart } from "@/components/dashboard/TrendChart";
@@ -23,14 +24,16 @@ export default async function DashboardPage() {
   const chartHint = `Last ${CHART_WINDOW_DAYS} UTC days`;
 
   return (
-    <div className="motion-enter min-w-0 space-y-8">
+    <div className="motion-enter mx-auto min-w-0 max-w-[1360px] space-y-6">
       <PageHeader
         title="Dashboard"
         description="Revenue, orders, customers, and recent activity."
-      />
+      >
+        <DashboardDemoChrome />
+      </PageHeader>
       <section
         aria-label="Key metrics"
-        className="grid grid-cols-1 gap-4 min-[400px]:grid-cols-2 xl:grid-cols-4"
+        className="grid grid-cols-1 gap-5 min-[400px]:grid-cols-2 xl:grid-cols-4"
       >
         <KpiCard
           label="Total revenue"
@@ -68,20 +71,22 @@ export default async function DashboardPage() {
           series={series.revenue}
           format="currency"
           variant="area"
+          demoControls="revenue"
         />
         <TrendChart
-          title="Orders"
+          title="Orders & Fulfillment"
           description={chartHint}
           series={series.orders}
           format="number"
           variant="bar"
+          demoControls="orders"
         />
       </section>
       <section
         aria-label="Recent orders and activity"
-        className="grid min-w-0 items-stretch gap-6 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]"
+        className="grid min-w-0 items-stretch gap-6 lg:grid-cols-3"
       >
-        <div className="min-h-0 min-w-0">
+        <div className="min-h-0 min-w-0 lg:col-span-2">
           <RecentOrders orders={ordersPage.data} />
         </div>
         <div className="min-h-0 min-w-0">
