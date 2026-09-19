@@ -1034,7 +1034,7 @@ Problem: Full HTML conversion would reintroduce Chart.js series, fake mutations,
 
 Decision:
 
-1. Port **visual language** into tokens (`globals.css` uses HTML hex: `#f8fafc`, `#e2e8f0`, `#2563eb`, KPI wells), fonts (Inter / JetBrains Mono via `next/font`), shell (`w-60` sidebar, `h-16` topbar with left toggle), KPIs, badges, tables, and details.
+1. Port **visual language** into tokens (`globals.css` uses HTML hex: `#f8fafc`, `#e2e8f0`, `#2563eb`, KPI wells; radius scale matches Tailwind CDN so `rounded-2xl` ≈ 16px), fonts (Inter / JetBrains Mono via `next/font`), shell (`w-60` sidebar, `h-16` topbar with left toggle), KPIs, badges, tables, and details.
 2. Keep **charts and KPIs dynamic** — Recharts + domain 30-day revenue/orders series and list APIs. Chart footers (avg / peak / velocity) derive from the same series. Do not hard-code chart series in UI components.
 3. Treat HTML-only controls as **demo chrome stubs**: live sync, date range, export, create order, status tabs, bulk action ribbon, chart series toggles, logout confirm, growth badge. They may toast / update local UI only — no new backends, CSV, websockets, or order mutations.
 4. Demo toasts use a tiny client event bus (`lib/demo-toast.ts` + `DemoToaster`); stubs are labeled in `aria-label` / dialog copy / toast text.
