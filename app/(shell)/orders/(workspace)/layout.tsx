@@ -1,6 +1,6 @@
 import { QueryProvider } from "@/components/providers/QueryProvider";
 
-export default function OrdersLayout({
+export default function OrdersWorkspaceLayout({
   children,
 }: {
   children: React.ReactNode;

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { OrderDetails } from "@/components/orders/OrderDetails";
+import { OrderDetailsHeaderActions } from "@/components/orders/OrderDetailsHeaderActions";
 import { PageHeader } from "@/components/shared/PageHeader";
-import { Button } from "@/components/ui/button";
 import { getOrder } from "@/lib/api/rsc";
 import { NotFoundError, ValidationError } from "@/lib/errors";
 import { formatDateTime } from "@/lib/format";
@@ -27,14 +27,26 @@ export default async function OrderDetailsPage({
   }
 
   return (
-    <div className="min-w-0 space-y-6">
+    <div className="mx-auto min-w-0 max-w-[1360px] space-y-6">
+      <nav
+        aria-label="Breadcrumb"
+        className="text-muted-foreground flex items-center gap-2 text-xs font-medium"
+      >
+        <Link
+          href="/orders"
+          className="hover:text-primary rounded-sm outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+        >
+          Orders
+        </Link>
+        <span aria-hidden="true">/</span>
+        <span className="text-foreground font-mono font-semibold">{order.id}</span>
+      </nav>
       <PageHeader
         title={order.id}
         description={`Placed ${formatDateTime(order.createdAt)}`}
+        className="[&_h1]:font-mono"
       >
-        <Button asChild variant="outline" className="min-h-9">
-          <Link href="/orders">Back to orders</Link>
-        </Button>
+        <OrderDetailsHeaderActions orderId={order.id} />
       </PageHeader>
       <OrderDetails order={order} />
     </div>

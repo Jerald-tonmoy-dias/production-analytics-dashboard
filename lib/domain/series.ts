@@ -45,3 +45,38 @@ export function computeSeries(
     orders: toPoints(ordersByDay),
   };
 }
+
+/** UTC Monday (`YYYY-MM-DD`) for the week containing `isoDate`. */
+export function utcWeekStart(isoDate: string): string {
+  const date = new Date(`${isoDate}T00:00:00.000Z`);
+  const day = date.getUTCDay();
+  const offset = day === 0 ? -6 : 1 - day;
+  date.setUTCDate(date.getUTCDate() + offset);
+  return utcDateKey(date);
+}
+
+/**
+ * Roll daily series points into UTC ISO weeks (Mon–Sun), summing values.
+ * Point `date` is the week’s Monday. Empty input → empty output.
+ */
+export function aggregateSeriesByWeek(
+  series: readonly TimeSeriesPoint[]
+): TimeSeriesPoint[] {
+  if (series.length === 0) {
+    return [];
+  }
+
+  const totals = new Map<string, number>();
+  const order: string[] = [];
+
+  for (const point of series) {
+    const week = utcWeekStart(point.date);
+    if (!totals.has(week)) {
+      totals.set(week, 0);
+      order.push(week);
+    }
+    totals.set(week, (totals.get(week) ?? 0) + point.value);
+  }
+
+  return order.map((date) => ({ date, value: totals.get(date) ?? 0 }));
+}

@@ -8,7 +8,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Badge } from "@/components/ui/badge";
 import { formatInteger } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
@@ -35,7 +34,7 @@ export function AppNav({ collapsed = false, orderCount }: AppNavProps) {
 
   return (
     <nav aria-label="Primary">
-      <ul className="flex flex-col gap-1">
+      <ul className={cn("flex flex-col", collapsed ? "gap-1" : "gap-2")}>
         {NAV_ITEMS.map((item) => {
           const current = isCurrentPath(item.href, pathname);
           const Icon = item.icon;
@@ -50,31 +49,46 @@ export function AppNav({ collapsed = false, orderCount }: AppNavProps) {
               href={item.href}
               aria-current={current ? "page" : undefined}
               className={cn(
-                "flex items-center rounded-xl border border-transparent text-sm font-medium outline-none transition-colors duration-[var(--motion-fast)] ease-standard",
-                "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
+                "flex w-full items-center rounded-xl text-sm font-semibold outline-none transition-all",
+                "focus-visible:ring-3 focus-visible:ring-ring/50",
                 collapsed
                   ? "size-9 justify-center"
-                  : "min-h-10 w-full gap-2.5 px-3 py-2",
+                  : "justify-between gap-3 px-3.5 py-2.5",
                 current
-                  ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-sm"
-                  : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                  ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-[var(--shadow-brand-sm)]"
+                  : "text-[#334155] hover:bg-primary/10 hover:text-primary dark:text-slate-300 dark:hover:bg-slate-800/60"
               )}
             >
-              <Icon className="size-4 shrink-0" aria-hidden="true" />
-              <span className={collapsed ? "sr-only" : "min-w-0 flex-1 truncate"}>
-                {item.label}
+              <span
+                className={cn(
+                  "flex min-w-0 items-center",
+                  collapsed ? "justify-center" : "gap-3"
+                )}
+              >
+                <Icon
+                  className={cn(
+                    "size-[18px] shrink-0",
+                    !current && "text-slate-400"
+                  )}
+                  aria-hidden="true"
+                />
+                <span
+                  className={collapsed ? "sr-only" : "min-w-0 flex-1 truncate"}
+                >
+                  {item.label}
+                </span>
               </span>
               {showCount && !collapsed ? (
-                <Badge
-                  variant="secondary"
+                <span
                   className={cn(
-                    "ml-auto h-5 shrink-0 px-1.5 tabular-nums",
-                    current &&
-                      "border-transparent bg-sidebar-primary-foreground/20 text-sidebar-primary-foreground"
+                    "rounded-full px-2 py-0.5 text-xs font-semibold",
+                    current
+                      ? "bg-white/20 text-white"
+                      : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300"
                   )}
                 >
                   {formatInteger(orderCount)}
-                </Badge>
+                </span>
               ) : null}
             </Link>
           );

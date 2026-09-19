@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import { DemoToaster } from "@/components/shared/DemoToaster";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
 });
 
@@ -28,12 +29,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(geistSans.variable, geistMono.variable)}
+      className={cn(inter.variable, jetbrainsMono.variable)}
       suppressHydrationWarning
     >
-      <body className="antialiased">
+      <body className="font-sans antialiased">
         <ThemeProvider>
-          <TooltipProvider>{children}</TooltipProvider>
+          <TooltipProvider>
+            {children}
+            <DemoToaster />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>

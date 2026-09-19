@@ -37,6 +37,8 @@ export function ThemeToggle() {
           variant="ghost"
           size="icon-lg"
           aria-label="Color theme"
+          title="Toggle Theme"
+          className="rounded-lg text-slate-500 hover:bg-slate-100 hover:text-primary dark:text-slate-400 dark:hover:bg-slate-800"
         >
           <TriggerIcon className="size-4" aria-hidden="true" />
         </Button>
