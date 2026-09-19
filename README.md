@@ -4,8 +4,8 @@ An internal tool for checking business health and finding orders.
 
 | | |
 | --- | --- |
-| **Live demo** | [https://production-analytics-dashboard.vercel.app](https://production-analytics-dashboard.vercel.app) |
-| **Storybook** | [https://main--6aad3d50a6b3159a11f9a584.chromatic.com](https://main--6aad3d50a6b3159a11f9a584.chromatic.com) |
+| **Live demo** | <a href="https://production-analytics-dashboard.vercel.app" target="_blank" rel="noopener noreferrer">https://production-analytics-dashboard.vercel.app</a> |
+| **Storybook** | <a href="https://main--6aad3d50a6b3159a11f9a584.chromatic.com" target="_blank" rel="noopener noreferrer">https://main--6aad3d50a6b3159a11f9a584.chromatic.com</a> |
 
 ## What you can do
 
