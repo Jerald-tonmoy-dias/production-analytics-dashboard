@@ -10,6 +10,7 @@ import type {
   TrendMetricFormat,
 } from "@/components/dashboard/TrendChartCanvas";
 import { formatInteger, formatUsd } from "@/lib/format";
+import { aggregateSeriesByWeek } from "@/lib/domain/series";
 import { showDemoToast } from "@/lib/demo-toast";
 import type { TimeSeriesPoint } from "@/lib/schemas/analytics";
 import { cn } from "@/lib/utils";
@@ -53,7 +54,11 @@ function seriesSummary(
   return `${title}: ${series.length} days, total ${formatted}.`;
 }
 
-function seriesStats(series: TimeSeriesPoint[], format: TrendMetricFormat) {
+function seriesStats(
+  series: TimeSeriesPoint[],
+  format: TrendMetricFormat,
+  grain: "daily" | "weekly" = "daily"
+) {
   if (series.length === 0) {
     return null;
   }
@@ -78,16 +83,25 @@ function seriesStats(series: TimeSeriesPoint[], format: TrendMetricFormat) {
         : formatUsd(peak.value);
     return {
       left: [
-        { label: "Avg daily", value: formatUsd(Math.round(avg)) },
-        { label: "Peak day", value: `${peakLabel} (${peakShort})` },
+        {
+          label: grain === "weekly" ? "Avg weekly" : "Avg daily",
+          value: formatUsd(Math.round(avg)),
+        },
+        {
+          label: grain === "weekly" ? "Peak week" : "Peak day",
+          value: `${peakLabel} (${peakShort})`,
+        },
       ],
     };
   }
   return {
     left: [
       {
-        label: "Daily velocity",
-        value: `${avg.toFixed(1)} orders`,
+        label: grain === "weekly" ? "Weekly velocity" : "Daily velocity",
+        value:
+          grain === "weekly"
+            ? `${avg.toFixed(1)} orders/wk`
+            : `${avg.toFixed(1)} orders`,
       },
     ],
   };
@@ -131,13 +145,20 @@ export function TrendChart({
   const [revenueMode, setRevenueMode] = useState<"daily" | "weekly">("daily");
   const [benchmark, setBenchmark] = useState(false);
   const [ordersMode, setOrdersMode] = useState<"stacked" | "volume">("stacked");
-  const stats = seriesStats(series, format);
+
+  const plottedSeries =
+    demoControls === "revenue" && revenueMode === "weekly"
+      ? aggregateSeriesByWeek(series)
+      : series;
+  const grain =
+    demoControls === "revenue" && revenueMode === "weekly" ? "weekly" : "daily";
+  const stats = seriesStats(plottedSeries, format, grain);
 
   const subtitle =
     demoControls === "revenue"
       ? revenueMode === "daily"
         ? `${description ?? "Last 30 UTC days"} · Net sales trend`
-        : "Weekly view is demo chrome — plot stays daily series"
+        : `${description ?? "Last 30 UTC days"} · Weekly totals (rolled up from daily)`
       : demoControls === "orders"
         ? ordersMode === "stacked"
           ? `${description ?? "Last 30 UTC days"} · Daily status breakdown`
@@ -204,21 +225,13 @@ export function TrendChart({
               <div className="inline-flex items-center rounded-xl border border-slate-200/80 bg-slate-100 p-0.5 dark:border-slate-700/80 dark:bg-slate-800">
                 <Segment
                   active={revenueMode === "daily"}
-                  onClick={() => {
-                    setRevenueMode("daily");
-                    showDemoToast("Daily view — showing real 30-day series.");
-                  }}
+                  onClick={() => setRevenueMode("daily")}
                 >
                   Daily
                 </Segment>
                 <Segment
                   active={revenueMode === "weekly"}
-                  onClick={() => {
-                    setRevenueMode("weekly");
-                    showDemoToast(
-                      "Weekly is demo chrome — chart data stays daily from the API."
-                    );
-                  }}
+                  onClick={() => setRevenueMode("weekly")}
                 >
                   Weekly
                 </Segment>
@@ -259,9 +272,11 @@ export function TrendChart({
           />
         ) : (
           <div className="relative h-60 w-full min-w-0">
-            <p className="sr-only">{seriesSummary(title, series, format)}</p>
+            <p className="sr-only">
+              {seriesSummary(title, plottedSeries, format)}
+            </p>
             <TrendChartCanvas
-              series={series}
+              series={plottedSeries}
               format={format}
               variant={variant}
             />
