@@ -1,63 +1,63 @@
 # Production Analytics Dashboard
 
-SaaS operations console for operators who need to see whether customers and orders are healthy, then find a specific order.
+An internal tool for checking business health and finding orders.
 
 | | |
 | --- | --- |
 | **Live demo** | [https://production-analytics-dashboard.vercel.app](https://production-analytics-dashboard.vercel.app) |
-| **Storybook** | [https://main--6aad3d50a6b3159a11f9a584.chromatic.com](https://main--6aad3d50a6b3159a11f9a584.chromatic.com) — latest publish from `main` |
+| **Storybook** | [https://main--6aad3d50a6b3159a11f9a584.chromatic.com](https://main--6aad3d50a6b3159a11f9a584.chromatic.com) |
 
-## What it does
+## What you can do
 
-1. **Dashboard** — revenue, orders, active customers, conversion, charts, recent orders, activity.
-2. **Orders** — search, status/date filters, pagination, order details.
-3. **Shared UX** — loading skeletons, empty/error states, responsive tables (horizontal scroll under a shared min-width).
+1. **Dashboard** — see revenue, orders, customers, conversion, charts, recent orders, and activity.
+2. **Orders** — search and filter orders, move between pages, open order details.
+3. **Basic states** — loading, empty, and error screens; layout works on phone and desktop.
 
-Architecture (data flow, RSC vs client, API, key decisions): **[docs/architecture.md](./docs/architecture.md)**.
+How the app is built: **[docs/architecture.md](./docs/architecture.md)**.
 
-## Stack
+## Tools used
 
-Next.js App Router · React · TypeScript (strict) · Tailwind · shadcn/ui · Zod · TanStack Query (Orders list) · Recharts · Storybook/Chromatic · Vitest · Vercel
+- **App:** Next.js, React, TypeScript, Tailwind, shadcn/ui
+- **Data:** Zod (validation), TanStack Query (orders list)
+- **Charts:** Recharts
+- **UI workshop:** Storybook (hosted on Chromatic)
+- **Tests:** Vitest
+- **Hosting:** Vercel
 
-## Setup
+## How to run it
 
-Requires Node.js 20+.
+You need Node.js 20 or newer.
 
 ```bash
 npm install
-npm run dev          # http://localhost:3000
-npm run storybook    # http://localhost:6006
+npm run dev          # app → http://localhost:3000
+npm run storybook    # Storybook → http://localhost:6006
 npm run lint && npm run typecheck && npm test
 ```
 
-Chromatic republishes Storybook on **pushes to `main`** when UI/Storybook-related paths change (GitHub secret `CHROMATIC_PROJECT_TOKEN`). The Storybook link above is a stable branch permalink.
+Storybook online updates when we push UI-related changes to `main` (uses the GitHub secret `CHROMATIC_PROJECT_TOKEN`).
 
-## Architecture (short)
+## How data moves (short)
 
-```text
-data/*.json → Zod → lib/domain → Route Handlers (/api/*)
-                              ↘ lib/api/rsc (Dashboard + detail RSC)
-Orders list: URL filters + TanStack Query → GET /api/orders
-```
+1. Mock data lives in JSON files.
+2. The app checks that data with Zod, then prepares numbers and lists in `lib/domain`.
+3. Pages show that prepared data. They do **not** read the JSON files directly.
 
-UI never imports JSON or computes KPIs. Folder map and decisions: [architecture.md](./docs/architecture.md).
+- Dashboard and order details load data on the server.
+- The orders list loads data in the browser from `/api/orders`, using the filters in the URL.
 
-| Surface | Pattern |
-| --- | --- |
-| `/`, `/orders/[id]` | Server Components + `lib/api/rsc` |
-| `/orders` | Client + Query (workspace only) |
-| Charts / theme / menus | Client islands |
+More detail: [architecture.md](./docs/architecture.md).
 
-## Performance
+## Speed and rendering
 
-- Domain math once in `lib/domain` (Vitest), not in every card.
-- Recharts dynamically imported; date Calendar lazy-loaded on open.
-- Query scoped to the Orders workspace; search debounced before URL writes.
-- No default `useMemo` / `useCallback` / `React.memo` — add only with measured evidence.
+- Heavy math runs once in `lib/domain`, then tests cover it.
+- Charts load only when needed. The date picker loads only when you open it.
+- We do not add `useMemo` / `useCallback` / `React.memo` unless we measure a real problem.
 
-## Assumptions
+## What we left out on purpose
 
-- No auth, tenancy, websockets, or customer CRUD.
-- Revenue = **completed** orders; conversion = customers with a completed order / all customers.
-- Charts = last **30 UTC days**; Orders filters live in the URL.
-- Some chrome (export, live sync, create order, …) is **demo-only** (toast/local UI); product data still comes from the domain/API path.
+- No login, no multi-tenant setup, no live websocket sync, no customer editing.
+- Revenue counts **completed** orders only.
+- Charts use the last **30 days**.
+- Order filters are stored in the URL so you can refresh or share the link.
+- Some buttons (export, live sync, create order, and similar) are **demo only**. They show a toast; they do not call a real backend. Real numbers still come from the API/domain layer.

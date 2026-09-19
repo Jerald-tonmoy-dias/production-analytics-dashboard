@@ -1,124 +1,145 @@
 # Architecture
 
-Concise architecture for the Production Analytics Dashboard. For setup and the live demo, see the [README](../README.md).
+This page explains how the Production Analytics Dashboard is put together.  
+For setup and links, see the [README](../README.md).
 
-## Overview
+## Big picture
 
-Next.js App Router frontend for a small SaaS **operations console**. Operators check business health on the Dashboard, then find and open orders.
+This is a Next.js front-end for an internal ops dashboard. People use it to:
 
-There is **no external backend**. JSON in `data/` is validated with Zod, transformed in `lib/domain`, and exposed as REST via Route Handlers. UI components never import JSON and never compute KPIs.
+1. Check if the business looks healthy (Dashboard).
+2. Find and open a specific order (Orders).
+
+There is **no real backend**. Sample data sits in JSON files. The app:
+
+1. Checks the data with **Zod**.
+2. Turns it into KPIs, charts, and filtered lists in **`lib/domain`**.
+3. Serves it through simple **API routes** (`/api/...`).
+4. Shows it in the UI.
+
+UI files never import the JSON files. They only receive ready-to-show data.
 
 ```text
 Browser
-  ├── RSC pages (Dashboard, order detail) → lib/api/rsc → lib/domain → data/*.json
-  └── Orders list (client) → TanStack Query → GET /api/orders → domain + Zod
+  ├── Dashboard + order detail (server) → lib/api/rsc → lib/domain → data/*.json
+  └── Orders list (browser) → TanStack Query → GET /api/orders → same domain layer
 
-Storybook / Chromatic → component states
-Vitest → lib/domain + schemas
+Storybook → UI states in isolation
+Vitest → tests for domain math and schemas
 ```
 
-## Folder structure
+## Folders
 
 ```text
 app/
-  (shell)/                 # shared chrome (not a URL segment)
-    page.tsx               # Dashboard (RSC)
-    orders/(workspace)/    # list + QueryProvider
-    orders/[id]/           # details (RSC)
-  api/                     # Route Handlers (REST)
+  (shell)/                 # shared sidebar/header (not part of the URL)
+    page.tsx               # Dashboard (server)
+    orders/(workspace)/    # orders list
+    orders/[id]/           # order details (server)
+  api/                     # /api/... routes
 
 components/
-  ui/                      # shadcn primitives
+  ui/                      # base UI pieces (shadcn)
   layout/ dashboard/ orders/ shared/ providers/
 
 lib/
-  schemas/                 # Zod → inferred types
-  domain/                  # pure transforms (KPIs, series, filters)
-  api/                     # browser HTTP + rsc.ts (in-process)
+  schemas/                 # Zod shapes + TypeScript types
+  domain/                  # KPI math, charts series, filters (no React)
+  api/                     # browser fetch helpers + server helpers (rsc.ts)
 
-data/                      # customers, orders, activities JSON
-tests/                     # Vitest for domain / API helpers
-.storybook/
+data/                      # JSON sample data
+tests/                     # Vitest tests
+.storybook/                # Storybook config
 ```
 
-Stories are colocated next to components (`*.stories.tsx`).
+Story files live next to their components (`Something.stories.tsx`).
 
-## Data flow
+## How data flows
 
-1. Parse JSON with Zod (`lib/schemas`).
-2. Derive KPIs, 30-day series, filtered/paginated orders (`lib/domain`).
-3. Serve via thin Route Handlers **or** call domain in-process from RSC (`lib/api/rsc`).
-4. Pass DTOs into UI.
+1. Read JSON.
+2. Validate with Zod (`lib/schemas`).
+3. Build KPIs, 30-day chart series, and filtered order pages (`lib/domain`).
+4. Either:
+   - call that logic directly on the server (`lib/api/rsc`), or
+   - expose it on `/api/...` for the browser.
+5. Pass the result into components as props.
 
-| Consumer | Path |
+| Screen | How it loads data |
 | --- | --- |
-| Dashboard, order detail | `lib/api/rsc` (in-process) |
-| Orders list | HTTP `GET /api/orders` + TanStack Query |
-| REST demo / tools | `GET /api/analytics`, `/api/orders`, `/api/orders/:id`, `/api/activities` |
+| Dashboard, order details | Server helper `lib/api/rsc` (same logic as the API, no HTTP hop) |
+| Orders list | Browser calls `GET /api/orders` with TanStack Query |
+| Anyone testing the API | `GET /api/analytics`, `/api/orders`, `/api/orders/:id`, `/api/activities` |
 
-RSC does **not** `fetch` this app’s own `/api` on the server — that failed on Vercel. Route Handlers remain so the Orders workspace is a real REST + Query integration.
+**Why two ways?** Loading the Dashboard by calling our own `/api` on the server broke on Vercel. So server pages call domain code directly. The `/api` routes stay so the Orders page still works like a normal REST + Query app.
 
-## Server vs Client
+## Server vs browser code
 
-**Default: Server Components.** Add `"use client"` only for browser APIs, state/effects, or client-only libraries.
+Most pages run on the **server**.  
+We mark a file `"use client"` only when it needs the browser (clicks, local state, chart library, and so on).
 
-| Surface | Type |
+| Screen | Runs on |
 | --- | --- |
-| Dashboard, order detail | RSC |
-| Orders filters / list / pagination | Client + Query (provider on `(workspace)` only) |
-| Charts (Recharts) | Client island (`next/dynamic`) |
-| Theme, menus, demo toasts | Client islands |
+| Dashboard, order details | Server |
+| Orders filters, table, pagination | Browser (+ TanStack Query) |
+| Charts | Browser (loaded only when needed) |
+| Theme switch, menus, demo toasts | Browser |
 
-## State
+TanStack Query is wrapped only around the orders list, not the whole app.
 
-| Kind | Where |
+## What holds the filters
+
+| Kind of state | Where it lives |
 | --- | --- |
-| Filters / page | URL: `q`, `status`, `from`, `to`, `page` |
-| Orders list data | TanStack Query (`staleTime` ~30s, keyed by URL) |
-| Chrome (sidebar, popovers) | Local `useState` |
+| Search, status, dates, page | In the URL (`q`, `status`, `from`, `to`, `page`) |
+| Orders list results | TanStack Query (keeps data ~30 seconds, key = URL) |
+| Sidebar open, popovers | Local React state |
 
-No Redux/Zustand. Search is debounced (~300ms) before writing the URL.
+We do not use Redux or Zustand. Typing in search waits a short moment (~300ms) before updating the URL.
 
-## API (mock REST)
+## API routes
 
-All errors use `{ error: { code, message, details? } }` (`VALIDATION_ERROR` 400, `NOT_FOUND` 404, `INTERNAL_ERROR` 500).
+Errors look like:
 
-| Method | Route | Notes |
+```json
+{ "error": { "code": "VALIDATION_ERROR", "message": "…", "details": [] } }
+```
+
+| Method | Path | Purpose |
 | --- | --- | --- |
-| `GET` | `/api/analytics` | KPIs + 30-day series |
-| `GET` | `/api/orders` | `q`, `status`, `from`, `to`, `page`, `pageSize` |
-| `GET` | `/api/orders/:id` | Detail + customer |
-| `GET` | `/api/activities` | Recent system activity |
+| `GET` | `/api/analytics` | KPIs and chart series |
+| `GET` | `/api/orders` | Filtered order list (`q`, `status`, `from`, `to`, `page`, `pageSize`) |
+| `GET` | `/api/orders/:id` | One order + customer |
+| `GET` | `/api/activities` | Recent activity |
 
-No mutations in v1. Source of truth for shapes: Zod schemas in `lib/schemas` + Vitest.
+No create/update/delete in this version. Exact shapes live in `lib/schemas` and the Vitest tests.
 
-### Product formulas
+### How numbers are defined
 
-- **Revenue:** sum of **completed** order amounts.
-- **Conversion:** customers with ≥1 completed order / all customers.
-- **Charts:** last **30 UTC days** (revenue daily/weekly rollup from the same series).
-- **Active customers:** defined in domain tests / `lib/domain/kpis.ts`.
+- **Revenue** — sum of **completed** order amounts.
+- **Conversion** — customers with at least one completed order ÷ all customers.
+- **Charts** — last **30 days** (daily, or weekly rollup of that same data).
+- **Active customers** — see `lib/domain/kpis.ts` and its tests.
 
-## Key decisions
+## Main choices
 
-| Decision | Choice | Trade-off |
+| Topic | What we chose | Why / trade-off |
 | --- | --- | --- |
-| Scope | Assessment console — no auth, tenancy, websockets, customer CRUD | Doesn’t demo every JD keyword |
-| UI kit | shadcn/ui (Nova) + Tailwind | Tied to that primitive set |
-| Validation | Zod at the boundary; types inferred | Slight ceremony vs raw TS |
-| Domain | Transforms in `lib/domain`, unit-tested | Extra layer vs computing in components |
-| Orders state | URL search params + TanStack Query on the list only | Two fetching styles (intentional) |
-| Charts | Recharts, dynamically imported | Bundle cost on Dashboard only |
-| Details | `/orders/[id]` route, not a modal | Extra route; deep-linkable |
-| Memoization | No default `useMemo` / `useCallback` / `React.memo` | Prefer domain + Query + measured splits |
-| Visual chrome | Enterprise slate look; export/live-sync/etc. are **demo stubs** | Some controls are non-functional by design |
-| Docs | README + this file only | History lives in git, not a long ADR log |
+| Scope | No login, no multi-tenant, no websockets | Keeps the assessment focused |
+| UI kit | shadcn/ui + Tailwind | Fast, consistent components |
+| Validation | Zod at the edge | Safe data in, clear types |
+| Business logic | `lib/domain` + unit tests | UI stays simple |
+| Orders filters | URL + TanStack Query on the list only | Shareable links; Query only where needed |
+| Charts | Recharts, loaded on demand | Keeps other pages lighter |
+| Order details | Own page `/orders/[id]` | Easy to link and bookmark |
+| Memo hooks | Not used by default | Fix real slowdowns when we measure them |
+| Extra UI buttons | Some are demo-only | Look complete without fake backends |
+| Docs | README + this file | Easy for reviewers to read |
 
-## Testing
+## Tests
 
-- **Vitest:** domain math, schemas, URL helpers, thin API adapters.
-- **Storybook + Chromatic:** UI states (loading/empty/error) and primitives; publishes from `main` when Storybook-relevant paths change.
+- **Vitest** — KPI math, schemas, URL helpers, API helpers.
+- **Storybook / Chromatic** — UI states (loading, empty, error). Online Storybook updates from `main` when UI files change.
 
-## Non-goals
+## Not in scope
 
-Authentication, multi-tenancy, realtime sync backends, CSV export APIs, order mutations, Zustand/Redux, Playwright E2E, growing the mock API into a product backend.
+Login, multi-tenant apps, real-time sync servers, CSV export APIs, editing orders, Redux/Zustand, full end-to-end browser test suites, or turning the mock API into a full product backend.
