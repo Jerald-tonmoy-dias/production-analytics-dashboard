@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { CalendarIcon, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
@@ -28,6 +28,26 @@ import { hasOrdersFilters } from "@/lib/orders-url";
 import { cn } from "@/lib/utils";
 
 const ALL_STATUSES = "all";
+
+/** Matches shadcn Calendar footprint (`--cell-size` grid) to avoid popover CLS while DayPicker loads. */
+function CalendarFallback() {
+  return (
+    <div
+      className="bg-background w-[16.75rem] p-2"
+      style={{ minHeight: "17.5rem" }}
+      aria-hidden="true"
+    />
+  );
+}
+
+const Calendar = dynamic(
+  () =>
+    import("@/components/ui/calendar").then((mod) => mod.Calendar),
+  {
+    ssr: false,
+    loading: () => <CalendarFallback />,
+  }
+);
 
 export type OrderFiltersValue = {
   q: string;
@@ -75,6 +95,10 @@ function DateField({ id, emptyLabel, value, onChange }: DateFieldProps) {
         align="start"
         className="w-auto max-w-[calc(100vw-2rem)] rounded-xl p-2"
       >
+        {/*
+          Popover content mounts on open only; dynamic() therefore fetches
+          react-day-picker on first open, not on initial Orders paint.
+        */}
         <Calendar
           mode="single"
           selected={selected}
